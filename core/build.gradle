@@ -1,0 +1,65 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def dagger_version = '2.22.1'
+    def retrofit_version = '2.5.0'
+    def navigation_version = '1.0.0'
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+
+    // Debug Libraries
+    api 'com.jakewharton.timber:timber:4.7.1'
+    debugApi 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+
+    // Dagger Libraries
+    api "com.google.dagger:dagger-android-support:$dagger_version"
+
+    // Retrofit Libraries
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    api 'com.squareup.okhttp3:logging-interceptor:3.13.1'
+    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Rx Libraries
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'io.reactivex.rxjava2:rxjava:2.2.6'
+
+    // Navigation
+
+    api "android.arch.navigation:navigation-fragment-ktx:$navigation_version"
+    api "android.arch.navigation:navigation-ui-ktx:$navigation_version"
+
+    api 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+}
