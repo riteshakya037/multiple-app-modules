@@ -11,6 +11,6 @@ abstract class LoginActivityModule {
     @ContributesAndroidInjector(modules = [FragmentModules::class])
     abstract fun provideLoginActivityFactory(): LoginActivity
 
-    @Module(includes = [LoginModule::class])
+    @Module(includes = [OnBoardingModule::class, LoginModule::class])
     class FragmentModules
 }

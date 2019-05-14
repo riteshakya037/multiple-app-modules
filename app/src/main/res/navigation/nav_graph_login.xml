@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/nav_graph_login.xml" app:startDestination="@id/loginFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_login.xml"
+    app:startDestination="@+id/onBoardingFragment">
 
-    <fragment android:id="@+id/loginFragment"
-              android:name="com.riteshakya.teacher.feature.login.ui.login.LoginFragment"
-              tools:layout="@layout/fragment_login"
-              android:label="LoginFragment"/>
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.riteshakya.teacher.feature.login.ui.onboarding.OnBoardingFragment"
+        android:label="OnBoardingFragment"
+        tools:layout="@layout/fragment_on_boarding" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.riteshakya.teacher.feature.login.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" />
 </navigation>

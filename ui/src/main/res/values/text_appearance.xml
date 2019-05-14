@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance">
+        <item name="android:textColor">@color/colorTextLight</item>
+    </style>
+
+    <style name="TextAppearance.Montserrat" parent="TextAppearance">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="TextAppearance.Montserrat.SemiBold" parent="TextAppearance.Montserrat">
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+
+    <style name="TextAppearance.Title" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">70sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Title.Sub" parent="TextAppearance.Title">
+        <item name="android:textSize">35sp</item>
+    </style>
+
+    <style name="TextAppearance.Button.Outline" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">44sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+</resources>

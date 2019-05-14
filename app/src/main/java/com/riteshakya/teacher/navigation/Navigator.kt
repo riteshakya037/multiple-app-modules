@@ -14,7 +14,6 @@ class Navigator
     }
 
     private fun navigateToLogin(context: Context) = context.startActivity(LoginActivity.callingIntent(context))
-
 }
 
 

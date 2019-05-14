@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="CoreAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="Widget.Button.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:textAppearance">@style/TextAppearance.Button.Outline</item>
+        <item name="android:textColor">@color/colorTextLight</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="strokeColor">@color/colorTextLight</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="rippleColor">@color/colorTextLight</item>
+    </style>
+
+</resources>
