@@ -10,7 +10,9 @@
             android:supportsRtl="true"
             android:name=".TeacherApp"
             android:theme="@style/AppTheme">
-        <activity android:name=".feature.login.ui.LoginActivity">
+        <activity
+            android:name=".feature.login.ui.LoginActivity"
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
         <activity android:name=".navigation.RouteActivity">

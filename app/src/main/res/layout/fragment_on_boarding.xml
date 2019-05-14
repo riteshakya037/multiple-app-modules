@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/horizontal_padding"
             android:text="@string/txt_on_boarding_subtitle"
-            android:textAppearance="@style/TextAppearance.Title.Sub"
+            android:textAppearance="@style/TextAppearance.SubTitle"
             app:layout_constraintBottom_toTopOf="@id/signUpBtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleTxt"

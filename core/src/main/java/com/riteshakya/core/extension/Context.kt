@@ -11,3 +11,9 @@ val Context.isConnected: Boolean
 
 val Context.connectivityManager: ConnectivityManager
     get() = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+
+val Context.screenWidth: Int
+    get() = resources.displayMetrics.widthPixels
+
+fun Context.getDimensionPixelSize(dimen: Int): Int = resources.getDimensionPixelSize(dimen)

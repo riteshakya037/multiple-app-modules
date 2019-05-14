@@ -18,7 +18,20 @@
         <item name="android:letterSpacing">0</item>
     </style>
 
-    <style name="TextAppearance.Title.Sub" parent="TextAppearance.Title">
+    <style name="TextAppearance.SignUp.Title" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.SignUp.SubTitle" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.SubTitle" parent="TextAppearance.Title">
         <item name="android:textSize">35sp</item>
     </style>
 
@@ -27,4 +40,19 @@
         <item name="android:letterSpacing">0</item>
     </style>
 
+    <style name="TextAppearance.Button.Bottom" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+
+    <style name="TextAppearance.TextInput.Hint" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextAppearance.TextInput.Text" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
 </resources>

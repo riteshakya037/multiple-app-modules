@@ -1,0 +1,11 @@
+<!-- Style for "rectangle_" --><!-- Add this snippet to layer-list xml in drawable. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="0"
+        android:centerColor="#ffe8364e"
+        android:endColor="#ffec1432"
+        android:startColor="#ffe8364e"
+        android:type="linear"
+        android:useLevel="false" />
+</shape>

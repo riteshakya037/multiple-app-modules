@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/hintTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.TextInput.Hint"
+        android:textColor="@color/colorTextDark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/lorem" />
+
+    <com.riteshakya.ui.components.CountrySpinner
+        android:id="@+id/countrySpinner"
+        style="@style/SpinnerTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.riteshakya.ui.components.CustomFontTextInputEditText
+        android:id="@+id/inputTxt"
+        style="@style/AppTheme.TextInputEditText"
+        android:layout_width="0dp"
+        android:layout_marginTop="18dp"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:paddingEnd="@dimen/input_icon_padding"
+        android:theme="@style/AppTheme.InputLayout.Text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/countrySpinner"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ViewFlipper
+        android:id="@+id/inputStatus"
+        style="@style/Widget.TextInput.Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:measureAllChildren="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView style="@style/Widget.TextInput.Status.Icon" />
+
+        <ImageView
+            style="@style/Widget.TextInput.Status.Icon"
+            app:srcCompat="@drawable/ic_success" />
+
+        <ImageView
+            style="@style/Widget.TextInput.Status.Icon"
+            android:padding="2dp"
+            app:srcCompat="@drawable/ic_error" />
+    </ViewFlipper>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

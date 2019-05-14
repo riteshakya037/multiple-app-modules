@@ -6,6 +6,7 @@
 
     // Text colors
     <color name="colorTextLight">#707070</color>
+    <color name="colorTextDark">#000000</color>
 
     // Solid Colors
     <color name="colorWhite">#FFFFFF</color>

@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">Teacher</string>
+
+    // Onboarding
     <string name="txt_on_boarding_title">testapp.</string>
     <string name="txt_on_boarding_subtitle">teachers/school</string>
     <string name="txt_on_boarding_signup">signup.</string>
     <string name="txt_on_boarding_login">login.</string>
+
+    // Login
+    <string name="txt_login_title">login.</string>
+    <string name="txt_login_subtitle">Welcome back.</string>
 </resources>

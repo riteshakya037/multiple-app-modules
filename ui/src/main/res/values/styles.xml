@@ -27,4 +27,71 @@
         <item name="rippleColor">@color/colorTextLight</item>
     </style>
 
+    <style name="AppTheme.InputLayout.Text" parent="Theme.MaterialComponents.Light">
+        <!-- Inactive underline color-->
+        <item name="colorControlNormal">@color/colorTextLight</item>
+        <!-- Cursor and Active underline color, uses colorAccent by default if not defined-->
+        <item name="colorControlActivated">@color/colorTextDark</item>
+    </style>
+
+    <style name="AppTheme.InputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="hintTextAppearance">@style/TextAppearance.TextInput.Hint</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="android:textColorHint">@color/colorTextDark</item>
+        <item name="android:theme">@style/AppTheme.InputLayout.Text</item>
+    </style>
+
+    <style name="AppTheme.TextInputEditText" parent="Widget.MaterialComponents.TextInputEditText.FilledBox.Dense">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.TextInput.Text</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:paddingTop">12dp</item>
+        // Remove padding in TextInputLayout
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:background">@drawable/edit_text_material_without_padding</item>
+    </style>
+
+
+    <style name="SpinnerTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/background_spinner</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+    <style name="Widget.TextInput.Status" parent="CoreAppTheme">
+        <item name="android:layout_marginTop">14dp</item>
+    </style>
+
+    <style name="Widget.TextInput.Status.Icon" parent="CoreAppTheme">
+        <item name="android:layout_width">18dp</item>
+        <item name="android:layout_height">18dp</item>
+    </style>
+
+    <style name="Widget.Form.Input" parent="CoreAppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/horizontal_padding_large</item>
+        <item name="android:layout_marginEnd">@dimen/horizontal_padding_large</item>
+    </style>
+
+    <style name="Widget.Button.Bottom" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:background">@drawable/background_bottom_button_state</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Button.Bottom</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">end|center_vertical</item>
+    </style>
 </resources>

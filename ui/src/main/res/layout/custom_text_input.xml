@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.riteshakya.ui.components.CustomFontTextInputLayout
+        android:id="@+id/inputTxtLayout"
+        style="@style/AppTheme.InputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:passwordToggleTint="@color/colorTextDark">
+
+        <com.riteshakya.ui.components.CustomFontTextInputEditText
+            android:id="@+id/inputTxt"
+            style="@style/AppTheme.TextInputEditText"
+            android:paddingEnd="@dimen/input_icon_padding"
+            tools:imeOptions="actionNext"
+            tools:inputType="textPassword" />
+
+    </com.riteshakya.ui.components.CustomFontTextInputLayout>
+
+    <ViewFlipper
+        android:id="@+id/inputStatus"
+        style="@style/Widget.TextInput.Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:measureAllChildren="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView style="@style/Widget.TextInput.Status.Icon" />
+
+        <ImageView
+            style="@style/Widget.TextInput.Status.Icon"
+            app:srcCompat="@drawable/ic_success" />
+
+        <ImageView
+            style="@style/Widget.TextInput.Status.Icon"
+            android:padding="2dp"
+            app:srcCompat="@drawable/ic_error" />
+    </ViewFlipper>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="status" format="enum">
+        <enum name="none" value="0" />
+        <enum name="success" value="1" />
+        <enum name="error" value="2" />
+    </attr>
+    <declare-styleable name="PhoneInput">
+        <attr name="android:hint" format="string" />
+        <attr name="status" />
+    </declare-styleable>
+    <declare-styleable name="TextInput">
+        <attr name="android:hint" format="string" />
+        <attr name="android:imeOptions" format="integer" />
+        <attr name="password" format="boolean" />
+        <attr name="android:inputType" format="integer" />
+        <attr name="status" />
+    </declare-styleable>
+    <declare-styleable name="SelectInput">
+        <attr name="android:hint" format="string" />
+        <attr name="status" />
+    </declare-styleable>
+</resources>
