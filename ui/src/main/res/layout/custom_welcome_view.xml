@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="@dimen/horizontal_padding"
+        app:layout_constraintBottom_toBottomOf="@id/nameHolder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/nameHolder"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <LinearLayout
+        android:id="@+id/nameHolder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_padding"
+        android:background="@drawable/background_welcome_holder"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/horizontal_padding"
+        android:paddingTop="@dimen/vertical_padding_small"
+        android:paddingEnd="@dimen/horizontal_padding"
+        android:paddingBottom="@dimen/vertical_padding_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/profileImage"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/titleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Welcome.Title"
+            tools:text="Hey, Amanda" />
+
+        <TextView
+            android:id="@+id/subtitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textAppearance="@style/TextAppearance.Welcome.Subtitle"
+            tools:text="Lotus Valley International" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/profileBadge"
+        style="@style/Widget.Welcome.Badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_padding_medium"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/profileImage"
+        app:layout_constraintStart_toStartOf="@id/profileImage"
+        app:layout_constraintTop_toBottomOf="@id/profileImage"
+        tools:text="Class Teacher"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

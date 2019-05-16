@@ -143,4 +143,12 @@
         <item name="android:background">@drawable/background_top_border</item>
         <item name="android:theme">@style/AppTheme.InputLayout.Text</item>
     </style>
+
+    <style name="Widget.Welcome.Badge" parent="CoreAppTheme">
+        <item name="android:padding">6dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/background_welcome_badge</item>
+        <item name="android:textAppearance">@style/TextAppearance.Welcome.Badge</item>
+    </style>
 </resources>

@@ -35,4 +35,12 @@
         <attr name="length" format="integer" />
         <attr name="android:inputType" />
     </declare-styleable>
+    <declare-styleable name="WelcomeView">
+        <attr name="android:title" format="string" />
+        <attr name="android:subtitle" format="string" />
+        <attr name="android:src" format="reference" />
+        <attr name="showBadge" format="boolean" />
+        <attr name="badgeText" format="string" />
+
+    </declare-styleable>
 </resources>

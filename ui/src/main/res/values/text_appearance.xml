@@ -100,4 +100,20 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/colorTextDark</item>
     </style>
+
+    <style name="TextAppearance.Welcome.Title" parent="TextAppearance.Montserrat.Bold">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
+
+    <style name="TextAppearance.Welcome.Subtitle" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
+
+    <style name="TextAppearance.Welcome.Badge" parent="TextAppearance.Montserrat.Bold">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
 </resources>
