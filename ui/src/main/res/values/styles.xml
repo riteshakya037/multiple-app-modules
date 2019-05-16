@@ -136,4 +136,11 @@
         <item name="android:background">@color/colorTransparent</item>
         <item name="android:theme">@style/AppTheme.InputLayout.Text</item>
     </style>
+
+    <style name="Widget.HomeTabLayout" parent="CoreAppTheme">
+        <item name="android:layout_height">50dp</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="android:background">@drawable/background_top_border</item>
+        <item name="android:theme">@style/AppTheme.InputLayout.Text</item>
+    </style>
 </resources>

@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import com.riteshakya.core.platform.BaseActivity
 import com.riteshakya.teacher.R
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
     companion object {
@@ -17,6 +17,6 @@ class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
     }
 }

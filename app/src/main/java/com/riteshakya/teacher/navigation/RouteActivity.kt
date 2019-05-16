@@ -12,5 +12,6 @@ class RouteActivity : DaggerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         navigator.showMain(this)
+        finishAffinity()
     }
 }
