@@ -11,12 +11,19 @@ import android.view.ViewGroup
 import com.riteshakya.core.extension.addMovementMethod
 import com.riteshakya.core.platform.BaseFragment
 import com.riteshakya.teacher.R
+import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
+import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
 import com.riteshakya.ui.helpers.CustomClickableSpan
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up_teacher.*
+import javax.inject.Inject
 
 class SignUpFragment : BaseFragment() {
-    private var currentMode: Mode = Mode.TEACHER
+    @Inject
+    internal lateinit var navigator: LoginNavigator
+
+    @Inject
+    internal lateinit var signUpViewModel: SignUpViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -26,15 +33,34 @@ class SignUpFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        modeSwitch.addOnTabSelectedListener {
-            modeFlipper.displayedChild = (it)
-            currentMode = Mode.getMode(it)
+        addModeChangeListener()
+        addTeacherSwitchListener()
+        initializeFooter()
+        nextBtn.setOnClickListener {
+            navigateToPassword()
         }
+        initializeMode()
+    }
+
+    private fun addTeacherSwitchListener() {
         teacherSwitch.setOnCheckedChangeListener {
             teacherSpinnerLayout.visibility = if (it) VISIBLE else GONE
         }
+    }
 
-        initializeFooter()
+    private fun addModeChangeListener() {
+        modeSwitch.addOnTabSelectedListener {
+            modeFlipper.displayedChild = (it)
+            signUpViewModel.currentMode.value = SignUpViewModel.Mode.getMode(it)
+        }
+    }
+
+    private fun navigateToPassword() {
+        navigator.navigateToPassword(this)
+    }
+
+    private fun initializeMode() {
+        signUpViewModel.currentMode.value?.also { modeSwitch.setScrollPosition(it.mode) }
     }
 
     private fun initializeFooter() {
@@ -50,20 +76,5 @@ class SignUpFragment : BaseFragment() {
         )
         teacherFooterText.text = footerText
         teacherFooterText.addMovementMethod()
-    }
-
-
-    enum class Mode(val mode: Int) {
-        TEACHER(0), SCHOOL(1);
-
-        companion object {
-            @JvmStatic
-            fun getMode(position: Int): Mode {
-                for (f in values()) {
-                    if (f.mode == position) return f
-                }
-                return TEACHER
-            }
-        }
     }
 }

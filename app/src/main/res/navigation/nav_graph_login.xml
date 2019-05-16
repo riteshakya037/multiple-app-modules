@@ -27,5 +27,14 @@
         android:id="@+id/signUpFragment"
         android:name="com.riteshakya.teacher.feature.login.ui.signup.SignUpFragment"
         android:label="SignUpFragment"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUpFragment_to_passwordFragment"
+            app:destination="@id/passwordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="com.riteshakya.teacher.feature.login.ui.signup.password.PasswordFragment"
+        android:label="PasswordFragment"
+        tools:layout="@layout/fragment_password" />
 </navigation>

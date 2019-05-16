@@ -23,4 +23,10 @@ class LoginNavigator
         )
     }
 
+    fun navigateToPassword(fragment: BaseFragment) {
+        navigationController.navigateTo(
+                fragment, NavigationHelper(ActionOnlyNavDirections(R.id.passwordFragment))
+        )
+    }
+
 }
