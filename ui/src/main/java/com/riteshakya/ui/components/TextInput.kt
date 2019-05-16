@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.riteshakya.core.extension.getDimensionPixelSize
+import com.riteshakya.core.extension.setMaxLength
 import com.riteshakya.core.extension.setSelectivePadding
 import com.riteshakya.ui.R
 import com.riteshakya.ui.helpers.Status
@@ -59,6 +60,12 @@ class TextInput @JvmOverloads constructor(
             field = state
         }
 
+    var maxLength: Int = Integer.MAX_VALUE
+        set(value) {
+            inputTxt.setMaxLength(maxLength)
+            field = value
+        }
+
     init {
         init()
         initTypedArray(attrs)
@@ -71,6 +78,7 @@ class TextInput @JvmOverloads constructor(
         passwordEnabled = ta.getBoolean(R.styleable.TextInput_password, false)
         imeOptions = ta.getInt(R.styleable.TextInput_android_imeOptions, EditorInfo.IME_NULL)
         status = Status.fromId(ta.getInt(R.styleable.TextInput_status, Status.NONE.value))
+        maxLength = ta.getInt(R.styleable.TextInput_android_maxLength, Integer.MAX_VALUE)
         ta.recycle()
     }
 

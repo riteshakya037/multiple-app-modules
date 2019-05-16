@@ -9,11 +9,23 @@
         android:id="@+id/onBoardingFragment"
         android:name="com.riteshakya.teacher.feature.login.ui.onboarding.OnBoardingFragment"
         android:label="OnBoardingFragment"
-        tools:layout="@layout/fragment_on_boarding" />
+        tools:layout="@layout/fragment_on_boarding">
+        <action
+            android:id="@+id/action_onBoardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_onBoardingFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.riteshakya.teacher.feature.login.ui.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.riteshakya.teacher.feature.login.ui.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>

@@ -12,16 +12,16 @@ import com.riteshakya.ui.helpers.TypefaceSpan
 
 
 class CustomFontTextInputLayout(
-    context: Context,
-    attrs: AttributeSet? = null
+        context: Context,
+        attrs: AttributeSet? = null
 ) : TextInputLayout(context, attrs) {
     private val boldTypeFace = Typeface.create(
-        ResourcesCompat.getFont(context, R.font.montserrat_bold),
-        Typeface.NORMAL
+            ResourcesCompat.getFont(context, R.font.montserrat_bold),
+            Typeface.NORMAL
     )
     private val semiBoldTypeFace = Typeface.create(
-        ResourcesCompat.getFont(context, R.font.montserrat_semibold),
-        Typeface.NORMAL
+            ResourcesCompat.getFont(context, R.font.montserrat_semibold),
+            Typeface.NORMAL
     )
 
     override fun onFinishInflate() {
@@ -42,7 +42,9 @@ class CustomFontTextInputLayout(
     override fun setError(errorText: CharSequence?) {
         if (errorText != null) {
             val s = SpannableString(errorText)
-            s.setSpan(TypefaceSpan(semiBoldTypeFace), 0, s.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            s.setSpan(
+                    TypefaceSpan(semiBoldTypeFace), 0, s.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
             super.setError(s)
         } else {
             super.setError(errorText)
@@ -52,7 +54,9 @@ class CustomFontTextInputLayout(
     override fun setHelperText(helperText: CharSequence?) {
         if (helperText != null) {
             val s = SpannableString(helperText)
-            s.setSpan(TypefaceSpan(semiBoldTypeFace), 0, s.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            s.setSpan(
+                    TypefaceSpan(semiBoldTypeFace), 0, s.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
             super.setHelperText(s)
         } else {
             super.setHelperText(helperText)

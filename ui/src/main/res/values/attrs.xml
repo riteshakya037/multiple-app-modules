@@ -13,11 +13,22 @@
         <attr name="android:hint" format="string" />
         <attr name="android:imeOptions" format="integer" />
         <attr name="password" format="boolean" />
+        <attr name="android:maxLength" format="integer" />
         <attr name="android:inputType" format="integer" />
         <attr name="status" />
     </declare-styleable>
     <declare-styleable name="SelectInput">
         <attr name="android:hint" format="string" />
         <attr name="status" />
+    </declare-styleable>
+    <declare-styleable name="DoubleSidedSwitch">
+        <attr name="android:text" format="string" />
+        <attr name="android:textOn" format="string" />
+        <attr name="android:textOff" format="string" />
+
+    </declare-styleable>
+    <declare-styleable name="CustomSpinner">
+        <attr name="android:entries" format="reference"/>
+        <attr name="selectedTextAppearance" format="reference"/>
     </declare-styleable>
 </resources>

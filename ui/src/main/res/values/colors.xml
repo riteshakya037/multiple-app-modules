@@ -10,5 +10,7 @@
 
     // Solid Colors
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
     <color name="colorTransparent">@android:color/transparent</color>
+    <color name="colorBlue">#4247de</color>
 </resources>

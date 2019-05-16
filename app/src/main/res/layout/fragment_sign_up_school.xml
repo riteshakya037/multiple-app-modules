@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <com.riteshakya.ui.components.TextInput
+        android:id="@+id/nameOfAuthorityTxt"
+        style="@style/Widget.Form.Input"
+        android:hint="name of authority"
+        android:imeOptions="actionNext"
+        android:inputType="textCapWords"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.riteshakya.ui.components.TextInput
+        android:id="@+id/schoolNameTxt"
+        style="@style/Widget.Form.Input"
+        android:hint="school name"
+        android:imeOptions="actionNext"
+        android:inputType="textCapWords"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameOfAuthorityTxt" />
+
+    <com.riteshakya.ui.components.TextInput
+        android:id="@+id/schoolEmailTxt"
+        style="@style/Widget.Form.Input"
+        android:hint="school e-mail"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/schoolNameTxt" />
+
+    <com.riteshakya.ui.components.TextInput
+        android:id="@+id/schoolAreaPinTxt"
+        style="@style/Widget.Form.Input"
+        android:hint="school area pincode"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:maxLength="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/schoolEmailTxt" />
+
+    <com.riteshakya.ui.components.TextInput
+        android:id="@+id/cityNameTxt"
+        style="@style/Widget.Form.Input"
+        android:hint="city name"
+        android:imeOptions="actionDone"
+        android:inputType="textCapWords"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/schoolAreaPinTxt" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

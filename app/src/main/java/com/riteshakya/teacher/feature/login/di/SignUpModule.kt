@@ -6,39 +6,42 @@ import androidx.lifecycle.ViewModelProviders
 import com.riteshakya.core.di.PerFragment
 import com.riteshakya.core.di.ViewModelKey
 import com.riteshakya.core.exception.FailureMessageMapper
-import com.riteshakya.teacher.feature.login.ui.login.LoginFragment
+import com.riteshakya.teacher.feature.login.ui.signup.SignUpFragment
 import com.riteshakya.teacher.feature.login.vm.LoginViewModel
+import com.riteshakya.teacher.feature.login.vm.SignupViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
-@Module(includes = [LoginModule.ProvideViewModel::class])
-abstract class LoginModule {
+@Module(includes = [SignUpModule.ProvideViewModel::class])
+abstract class SignUpModule {
+
 
     @PerFragment
     @ContributesAndroidInjector(modules = [InjectViewModel::class])
-    abstract fun providesLoginModuleFragment(): LoginFragment
+    abstract fun providesSignUpFragment(): SignUpFragment
 
     @Module
     class ProvideViewModel {
 
         @Provides
         @IntoMap
-        @ViewModelKey(LoginViewModel::class)
-        fun provideLoginViewModel(
-            failureMessageMapper: FailureMessageMapper
-        ): ViewModel = LoginViewModel(failureMessageMapper)
+        @ViewModelKey(SignupViewModel::class)
+        fun provideSignUpViewModel(
+                failureMessageMapper: FailureMessageMapper
+        ): ViewModel = SignupViewModel(failureMessageMapper)
     }
 
     @Module
     class InjectViewModel {
 
         @Provides
-        fun provideLoginViewModel(
-            factory: ViewModelProvider.Factory,
-            target: LoginFragment
-        ): LoginViewModel =
-            ViewModelProviders.of(target, factory).get(LoginViewModel::class.java)
+        fun provideSignUpViewModel(
+                factory: ViewModelProvider.Factory,
+                target: SignUpFragment
+        ): SignupViewModel =
+                ViewModelProviders.of(target, factory).get(SignupViewModel::class.java)
     }
+
 }

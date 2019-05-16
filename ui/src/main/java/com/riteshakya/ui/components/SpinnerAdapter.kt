@@ -20,6 +20,12 @@ class SpinnerAdapter(
     private val inflater: LayoutInflater = LayoutInflater.from(applicationContext)
     private val items: ArrayList<SpinnerModel> = ArrayList()
 
+    internal var selectedTextAppearance: Int = 0
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     override fun getCount(): Int {
         return items.size
     }
@@ -67,6 +73,7 @@ class SpinnerAdapter(
             holder = output.tag as ViewHolder
         }
         holder.names.text = getItem(position).text
+        holder.names.setTextAppearance(context, selectedTextAppearance)
         return output
     }
 

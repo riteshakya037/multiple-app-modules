@@ -94,4 +94,36 @@
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:gravity">end|center_vertical</item>
     </style>
+
+    <style name="Widget.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_marginEnd">@dimen/horizontal_padding_medium</item>
+        <item name="android:layout_marginStart">@dimen/horizontal_padding_medium</item>
+        <item name="android:layout_marginBottom">@dimen/horizontal_padding_medium</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:backgroundTint">@color/colorTextDark</item>
+        <item name="android:textAppearance">@style/TextAppearance.Button</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="Widget.DividerTabLayout" parent="CoreAppTheme">
+        <item name="tabBackground">@drawable/mode_switch_layout</item>
+        <item name="tabGravity">center</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabPaddingEnd">@dimen/horizontal_padding_large</item>
+        <item name="tabPaddingStart">@dimen/horizontal_padding_large</item>
+        <item name="tabSelectedTextColor">@color/colorTextDark</item>
+        <item name="tabRippleColor">@null</item>
+        <item name="tabTextAppearance">@style/TextAppearance.TabLayout.Text</item>
+        <item name="tabTextColor">@color/colorTextDark</item>
+        <item name="android:background">@color/colorTransparent</item>
+        <item name="android:theme">@style/AppTheme.InputLayout.Text</item>
+    </style>
 </resources>

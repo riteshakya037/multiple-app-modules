@@ -4,29 +4,57 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.AdapterView
+import androidx.annotation.StyleRes
 import androidx.appcompat.widget.AppCompatSpinner
+import com.riteshakya.ui.R
+
 
 /**
  * @author Ritesh Shakya
  */
 
-class CustomSpinner : AppCompatSpinner, AdapterView.OnItemSelectedListener {
+class CustomSpinner @JvmOverloads constructor(
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
+) : AppCompatSpinner(context, attrs, defStyleAttr), AdapterView.OnItemSelectedListener {
+    @StyleRes
+    private var selectedTextAppearance: Int = R.style.TextAppearance_TextInput_Text
+        set(value) {
+            spinnerAdapter.selectedTextAppearance = (value)
+            field = value
+        }
+    private var entries: Array<out CharSequence>? = null
+        set(value) {
+            field = value
+            value?.also {
+                setItems(it.map { item -> item.toString() }.map { item ->
+                    SpinnerAdapter.SpinnerModel(
+                            item, item
+                    )
+                })
+            }
+        }
+
+
     var selectedValue: String? = null
     private var spinnerAdapter: SpinnerAdapter = SpinnerAdapter(context)
     private var selectedListener: ((String) -> Unit)? = null
 
-    constructor(context: Context) : super(context) {
+    init {
         init()
+        initTypedArray(attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init()
-    }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-            context, attrs, defStyleAttr
-    ) {
-        init()
+    private fun initTypedArray(attrs: AttributeSet?) {
+        val ta = context.theme.obtainStyledAttributes(attrs, R.styleable.CustomSpinner, 0, 0)
+        entries = ta.getTextArray(R.styleable.CustomSpinner_android_entries)
+        selectedTextAppearance = ta.getResourceId(
+                R.styleable.CustomSpinner_selectedTextAppearance,
+                R.style.TextAppearance_TextInput_Text
+        )
+        ta.recycle()
     }
 
     private fun init() {

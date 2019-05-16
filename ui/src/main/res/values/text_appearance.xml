@@ -46,13 +46,47 @@
         <item name="android:letterSpacing">0</item>
     </style>
 
+    <style name="TextAppearance.Switch.Text" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
+
+    <style name="TextAppearance.Switch.Status" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
+
+    <style name="TextAppearance.TabLayout.Text" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
+
+    <style name="TextAppearance.Button" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">23sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
 
     <style name="TextAppearance.TextInput.Hint" parent="TextAppearance.Montserrat.SemiBold">
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="TextAppearance.Footer" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
+
     <style name="TextAppearance.TextInput.Text" parent="TextAppearance.Montserrat.SemiBold">
         <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
+
+    <style name="TextAppearance.Spinner.Small" parent="TextAppearance.Montserrat.SemiBold">
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/colorTextDark</item>
     </style>
 </resources>

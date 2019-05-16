@@ -5,7 +5,7 @@ import com.riteshakya.core.platform.BaseViewModel
 import javax.inject.Singleton
 
 @Singleton
-class LoginViewModel(
+class SignupViewModel(
         val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
 

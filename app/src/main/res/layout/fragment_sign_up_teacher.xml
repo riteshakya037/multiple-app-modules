@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.riteshakya.ui.components.TextInput
+        android:id="@+id/firstNameTxt"
+        style="@style/Widget.Form.Input"
+        android:hint="first name."
+        android:imeOptions="actionNext"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.riteshakya.ui.components.TextInput
+        android:id="@+id/lastNameTxt"
+        style="@style/Widget.Form.Input"
+        android:hint="last name."
+        android:imeOptions="actionNext"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/firstNameTxt" />
+
+    <com.riteshakya.ui.components.SelectInput
+        android:id="@+id/schoolTxt"
+        style="@style/Widget.Form.Input"
+        android:hint="school"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lastNameTxt" />
+
+    <com.riteshakya.ui.components.DoubleSidedSwitch
+        android:id="@+id/teacherSwitch"
+        style="@style/Widget.Form.Input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="are you a class teacher?"
+        android:textOff="no"
+        android:textOn="yes"
+        app:layout_constraintTop_toBottomOf="@id/schoolTxt" />
+
+    <com.riteshakya.ui.components.CustomSpinner
+        android:id="@+id/classSpinner"
+        style="@style/SpinnerTheme"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="@dimen/horizontal_padding_large"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="@dimen/horizontal_padding_small"
+        android:background="@drawable/background_spinner_border"
+        android:entries="@array/classList"
+        android:paddingStart="@dimen/horizontal_padding_medium"
+        android:theme="@style/AppTheme.InputLayout.Text"
+        app:layout_constraintEnd_toStartOf="@id/sectionSpinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/teacherSwitch"
+        app:selectedTextAppearance="@style/TextAppearance.Spinner.Small" />
+
+    <com.riteshakya.ui.components.CustomSpinner
+        android:id="@+id/sectionSpinner"
+        style="@style/SpinnerTheme"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="@dimen/horizontal_padding_small"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="@dimen/horizontal_padding_large"
+        android:background="@drawable/background_spinner_border"
+        android:entries="@array/sectionList"
+        android:paddingStart="@dimen/horizontal_padding_medium"
+        android:theme="@style/AppTheme.InputLayout.Text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/classSpinner"
+        app:layout_constraintTop_toBottomOf="@id/teacherSwitch"
+        app:selectedTextAppearance="@style/TextAppearance.Spinner.Small" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/teacherSpinnerLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="classSpinner,sectionSpinner"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/teacherFooterText"
+        style="@style/Widget.Form.Input"
+        android:layout_marginTop="40dp"
+        android:text="school not listed? add here"
+        android:textAppearance="@style/TextAppearance.Footer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sectionSpinner" />
+</androidx.constraintlayout.widget.ConstraintLayout>

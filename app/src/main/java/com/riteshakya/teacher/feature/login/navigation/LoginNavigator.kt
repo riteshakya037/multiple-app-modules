@@ -18,7 +18,9 @@ class LoginNavigator
     }
 
     fun navigateToSignUp(fragment: BaseFragment) {
-
+        navigationController.navigateTo(
+                fragment, NavigationHelper(ActionOnlyNavDirections(R.id.signUpFragment))
+        )
     }
 
 }
