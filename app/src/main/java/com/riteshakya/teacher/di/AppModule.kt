@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.riteshakya.core.di.AppViewModelFactory
 import com.riteshakya.teacher.TeacherApp
+import com.riteshakya.teacher.imageloader.GlideLoader
+import com.riteshakya.teacher.imageloader.IImageLoader
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -22,6 +24,10 @@ abstract class AppModule {
         @Provides
         @Singleton
         fun provideContext(application: Application): Context = application
+
+        @Provides
+        @Singleton
+        fun provideImageLoader(glideLoader: GlideLoader): IImageLoader = glideLoader
 
         @Provides
         fun provideViewModelFactory(

@@ -18,7 +18,7 @@ class SpinnerAdapter(
         applicationContext: Context
 ) : ArrayAdapter<SpinnerAdapter.SpinnerModel>(applicationContext, R.layout.custom_spinner_items) {
     private val inflater: LayoutInflater = LayoutInflater.from(applicationContext)
-    private val items: ArrayList<SpinnerModel> = ArrayList()
+    internal val items: ArrayList<SpinnerModel> = ArrayList()
 
     internal var selectedTextAppearance: Int = 0
         set(value) {
@@ -90,6 +90,6 @@ class SpinnerAdapter(
         var names: TextView = view.textView
     }
 
-    class SpinnerModel(val value: String, val text: String)
+    open class SpinnerModel(val value: String, val text: String)
 
 }

@@ -28,11 +28,27 @@
         app:layout_constraintTop_toBottomOf="@id/titleTxt" />
 
     <ImageButton
+        android:id="@+id/addImgBtn"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:background="?selectableItemBackgroundBorderless"
         android:src="@drawable/ic_add_logo"
+        android:clickable="true"
+        android:focusable="true"
         android:theme="@style/AppTheme.InputLayout.Text"
+        app:layout_constraintBottom_toTopOf="@id/finishBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitleTxt" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:src="@color/colorTransparent"
+        android:visibility="gone"
+        app:civ_border_color="@color/colorBlack"
+        app:civ_border_width="6dp"
         app:layout_constraintBottom_toTopOf="@id/finishBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +58,7 @@
         android:id="@+id/finishBtn"
         style="@style/Widget.Button"
         android:text="Finish"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

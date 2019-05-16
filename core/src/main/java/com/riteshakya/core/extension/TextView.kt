@@ -5,7 +5,14 @@ import android.text.InputFilter
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.text.method.MovementMethod
+import android.widget.EditText
 import android.widget.TextView
+import com.jakewharton.rxbinding2.widget.RxTextView
+import com.riteshakya.core.validation.Validation
+import com.riteshakya.core.validation.ValidationResult
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 
 fun TextView.onTextChanged(function: (String) -> Unit) {
     addTextChangedListener(object : SimpleTextWatcher() {
@@ -18,6 +25,21 @@ fun TextView.onTextChanged(function: (String) -> Unit) {
             }
         }
     })
+}
+
+fun EditText.addValidity(
+    validation: Validation, changedText: (String) -> Unit = {}
+): Observable<Boolean> {
+    return RxTextView.textChanges(this)
+        .skipInitialValue()
+        .debounce(200, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .map {
+            changedText(it.toString())
+            validation.validate(it.toString())
+        }
+        .map { result: ValidationResult<Any> -> result.isValid }
+
 }
 
 abstract class SimpleTextWatcher : TextWatcher {

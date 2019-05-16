@@ -8,7 +8,7 @@
     <com.riteshakya.ui.components.TextInput
         android:id="@+id/nameOfAuthorityTxt"
         style="@style/Widget.Form.Input"
-        android:hint="name of authority"
+        android:hint="@string/txt_name_of_authority"
         android:imeOptions="actionNext"
         android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +18,7 @@
     <com.riteshakya.ui.components.TextInput
         android:id="@+id/schoolNameTxt"
         style="@style/Widget.Form.Input"
-        android:hint="school name"
+        android:hint="@string/txt_school_name"
         android:imeOptions="actionNext"
         android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
     <com.riteshakya.ui.components.TextInput
         android:id="@+id/schoolEmailTxt"
         style="@style/Widget.Form.Input"
-        android:hint="school e-mail"
+        android:hint="@string/txt_school_e_mail"
         android:imeOptions="actionNext"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
     <com.riteshakya.ui.components.TextInput
         android:id="@+id/schoolAreaPinTxt"
         style="@style/Widget.Form.Input"
-        android:hint="school area pincode"
+        android:hint="@string/txt_school_area_pincode"
         android:imeOptions="actionNext"
         android:inputType="number"
         android:maxLength="5"
@@ -49,7 +49,7 @@
     <com.riteshakya.ui.components.TextInput
         android:id="@+id/cityNameTxt"
         style="@style/Widget.Form.Input"
-        android:hint="city name"
+        android:hint="@string/txt_city_name"
         android:imeOptions="actionDone"
         android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"

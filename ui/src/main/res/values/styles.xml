@@ -33,7 +33,7 @@
         <item name="android:textAppearance">@style/TextAppearance.Button.Outline.Small</item>
         <item name="android:layout_marginStart">@dimen/horizontal_padding_large</item>
         <item name="android:layout_marginEnd">@dimen/horizontal_padding_large</item>
-        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:textColor">@color/button_background_tint_state</item>
     </style>
 
 
@@ -117,7 +117,7 @@
         <item name="android:insetTop">0dp</item>
         <item name="android:insetRight">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="android:backgroundTint">@color/colorTextDark</item>
+        <item name="android:backgroundTint">@color/button_background_tint_state</item>
         <item name="android:textAppearance">@style/TextAppearance.Button</item>
         <item name="cornerRadius">4dp</item>
         <item name="android:textColor">@color/colorWhite</item>
@@ -151,4 +151,20 @@
         <item name="android:background">@drawable/background_welcome_badge</item>
         <item name="android:textAppearance">@style/TextAppearance.Welcome.Badge</item>
     </style>
+
+    <style name="Navigation.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textAppearance">@style/TextAppearance.BottomSheet.Button</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
 </resources>

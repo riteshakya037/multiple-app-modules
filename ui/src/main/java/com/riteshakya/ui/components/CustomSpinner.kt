@@ -7,7 +7,9 @@ import android.widget.AdapterView
 import androidx.annotation.StyleRes
 import androidx.appcompat.widget.AppCompatSpinner
 import com.riteshakya.ui.R
-
+import com.riteshakya.ui.helpers.indexOf
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 
 /**
  * @author Ritesh Shakya
@@ -18,6 +20,8 @@ class CustomSpinner @JvmOverloads constructor(
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0
 ) : AppCompatSpinner(context, attrs, defStyleAttr), AdapterView.OnItemSelectedListener {
+    private var publishValidity = PublishSubject.create<Boolean>()
+
     @StyleRes
     private var selectedTextAppearance: Int = R.style.TextAppearance_TextInput_Text
         set(value) {
@@ -28,7 +32,7 @@ class CustomSpinner @JvmOverloads constructor(
         set(value) {
             field = value
             value?.also {
-                setItems(it.map { item -> item.toString() }.map { item ->
+                items = (it.map { item -> item.toString() }.map { item ->
                     SpinnerAdapter.SpinnerModel(
                             item, item
                     )
@@ -37,7 +41,18 @@ class CustomSpinner @JvmOverloads constructor(
         }
 
 
-    var selectedValue: String? = null
+    private var selectedValue: String? = null
+
+    var items: List<SpinnerAdapter.SpinnerModel> = ArrayList()
+        get() = spinnerAdapter.items
+        set(value) {
+            spinnerAdapter.setItems(value)
+            field = value
+            if (!selectedValue.isNullOrBlank()) {
+                setSelection(selectedValue)
+            }
+        }
+
     private var spinnerAdapter: SpinnerAdapter = SpinnerAdapter(context)
     private var selectedListener: ((String) -> Unit)? = null
 
@@ -66,16 +81,27 @@ class CustomSpinner @JvmOverloads constructor(
         this.selectedListener = selectedListener
     }
 
-    fun setItems(items: List<SpinnerAdapter.SpinnerModel>) {
-        spinnerAdapter.setItems(items)
-    }
-
     override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
         selectedValue = spinnerAdapter.getValue(i)
         selectedListener?.invoke(selectedValue!!)
+        publishValidity.onNext(true)
+    }
+
+    fun setSelection(item: String?) {
+        this.selectedValue = item
+        item?.let {
+            setSelection(items.indexOf(it))
+            publishValidity.onNext(true)
+        }
     }
 
     override fun onNothingSelected(adapterView: AdapterView<*>) {
 
+    }
+
+    fun addValidity(listener: (String) -> Unit = {}): Observable<Boolean> {
+        return publishValidity.doOnNext {
+            selectedValue?.let { listener(it) }
+        }
     }
 }

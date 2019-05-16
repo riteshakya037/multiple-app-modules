@@ -1,6 +1,8 @@
 package com.riteshakya.teacher.feature.login.di
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.riteshakya.core.di.PerFragment
 import com.riteshakya.core.di.ViewModelKey
 import com.riteshakya.core.exception.FailureMessageMapper
@@ -9,6 +11,7 @@ import com.riteshakya.teacher.feature.login.ui.signup.logoupload.LogoUploadFragm
 import com.riteshakya.teacher.feature.login.ui.signup.password.PasswordFragment
 import com.riteshakya.teacher.feature.login.ui.signup.phone.PhoneFragment
 import com.riteshakya.teacher.feature.login.ui.signup.profilepicture.ProfilePictureFragment
+import com.riteshakya.teacher.feature.login.vm.PhoneVerificationViewModel
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
 import dagger.Module
 import dagger.Provides
@@ -28,7 +31,7 @@ abstract class SignUpModule {
     abstract fun providesPasswordFragment(): PasswordFragment
 
     @PerFragment
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [InjectPhoneVerificationViewModel::class])
     abstract fun providesPhoneFragment(): PhoneFragment
 
     @PerFragment
@@ -49,5 +52,23 @@ abstract class SignUpModule {
         fun provideSignUpViewModel(
                 failureMessageMapper: FailureMessageMapper
         ): ViewModel = SignUpViewModel(failureMessageMapper)
+
+        @Provides
+        @IntoMap
+        @ViewModelKey(PhoneVerificationViewModel::class)
+        fun providePhoneVerificationViewModel(
+                failureMessageMapper: FailureMessageMapper
+        ): ViewModel = PhoneVerificationViewModel(failureMessageMapper)
+    }
+
+    @Module
+    class InjectPhoneVerificationViewModel {
+
+        @Provides
+        fun provideLoginViewModel(
+                factory: ViewModelProvider.Factory,
+                target: PhoneFragment
+        ): PhoneVerificationViewModel =
+                ViewModelProviders.of(target, factory).get(PhoneVerificationViewModel::class.java)
     }
 }

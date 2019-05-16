@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.riteshakya.core.platform.BaseFragment
+import com.riteshakya.core.validation.types.PasswordValidation
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
+import com.riteshakya.ui.helpers.EqualToOtherFieldValidation
 import kotlinx.android.synthetic.main.fragment_password.*
 import javax.inject.Inject
 
@@ -32,7 +34,26 @@ class PasswordFragment : BaseFragment() {
         nextBtn.setOnClickListener {
             navigateToPhone()
         }
+        initializeValidators()
+        passwordTxt.setText(signUpViewModel.password.value)
+        confirmPasswordTxt.setText(signUpViewModel.password.value)
     }
+
+
+    private fun initializeValidators() {
+        addValidationList(passwordTxt.addValidity(PasswordValidation()))
+        addValidationList(
+                confirmPasswordTxt.addValidity(
+                        EqualToOtherFieldValidation(passwordTxt),
+                        { signUpViewModel.password.value = it }
+                )
+        )
+    }
+
+    override fun setValidity(result: Boolean) {
+        nextBtn.isEnabled = result
+    }
+
 
     private fun navigateToPhone() {
         navigator.navigateToPhone(this)

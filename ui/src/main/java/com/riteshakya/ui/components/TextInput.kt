@@ -5,13 +5,19 @@ import android.text.InputType
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.riteshakya.core.extension.addValidity
 import com.riteshakya.core.extension.getDimensionPixelSize
 import com.riteshakya.core.extension.setMaxLength
 import com.riteshakya.core.extension.setSelectivePadding
+import com.riteshakya.core.validation.Validation
 import com.riteshakya.ui.R
 import com.riteshakya.ui.helpers.Status
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.custom_text_input.view.*
 
 
@@ -85,6 +91,41 @@ class TextInput @JvmOverloads constructor(
     private fun init() {
         LayoutInflater.from(context).inflate(R.layout.custom_text_input, this)
         inputTxt.imeOptions
+        inputTxt.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                val imm = context.getSystemService(
+                        Context.INPUT_METHOD_SERVICE
+                ) as InputMethodManager
+                imm.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT)
+            } else {
+            }
+        }
+    }
+
+    fun addValidity(
+            validation: Validation, changedText: (String) -> Unit = {}, showStatus: Boolean = true
+    ): Observable<Boolean> {
+        return inputTxt.addValidity(validation, changedText)
+                .doOnNext {
+                    status = if (showStatus && inputTxt.text.toString().isNotBlank()) {
+                        if (it) {
+                            Status.SUCCESS
+                        } else {
+                            Status.ERROR
+                        }
+                    } else {
+                        Status.NONE
+                    }
+                }
+
+    }
+
+    fun getEditText(): EditText {
+        return inputTxt
+    }
+
+    fun setText(it: String?) {
+        inputTxt.setText(it)
     }
 
 }

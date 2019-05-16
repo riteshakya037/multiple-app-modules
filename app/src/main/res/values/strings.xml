@@ -10,4 +10,34 @@
     // Login
     <string name="txt_login_title">login.</string>
     <string name="txt_login_subtitle">Welcome back.</string>
+
+    // Form Item
+    <string name="txt_contact_number">contact number</string>
+    <string name="txt_password">password</string>
+    <string name="txt_school">school</string>
+    <string name="txt_name_of_authority">name of authority</string>
+    <string name="txt_school_name">school name</string>
+    <string name="txt_school_e_mail">school e-mail</string>
+    <string name="txt_school_area_pincode">school area pincode</string>
+    <string name="txt_city_name">city name</string>
+    <string name="txt_first_name">first name.</string>
+    <string name="txt_last_name">last name.</string>
+
+    // Sign up
+    <string name="txt_are_you_a_class_teacher">are you a class teacher?</string>
+    <string name="txt_school_not_listed">school not listed? </string>
+    <string name="txt_add_here">add here</string>
+
+    // Phone
+    <string name="txt_what_s_your_number">What\'s your number?</string>
+    <string name="txt_send_code">Send Code</string>
+    <string name="txt_resend_code">Resend Code</string>
+    <string name="txt_verify_code">Verify Code</string>
+
+    // Common
+    <string name="txt_no">no</string>
+    <string name="txt_yes">yes</string>
+
+    // Form Button
+    <string name="txt_login">Login</string>
 </resources>

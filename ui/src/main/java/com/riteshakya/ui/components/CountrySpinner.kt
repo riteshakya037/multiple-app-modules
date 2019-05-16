@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.widget.AppCompatSpinner
 import com.mukesh.countrypicker.Country
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 
 /**
  * @author Ritesh Shakya
@@ -13,8 +15,14 @@ import com.mukesh.countrypicker.Country
 
 class CountrySpinner : AppCompatSpinner, AdapterView.OnItemSelectedListener {
     var dialCode: String = ""
+        set(value) {
+            field = value
+            setSelection(customAdapter.getPosition(getCountryFromDialCode(value)))
+            publishValidity.onNext(true)
+        }
+
     private var customAdapter: CountryAdapter = CountryAdapter(context)
-    private var selectedListener: ((String) -> Unit)? = null
+    private var publishValidity = PublishSubject.create<Boolean>()
 
     constructor(context: Context) : super(context) {
         init()
@@ -38,16 +46,20 @@ class CountrySpinner : AppCompatSpinner, AdapterView.OnItemSelectedListener {
         onItemSelectedListener = this
     }
 
-    fun onCodeChange(selectedListener: (dialCode: String) -> Unit) {
-        this.selectedListener = selectedListener
-    }
+    fun getCountryFromDialCode(value: String) =
+            Country.getAllCountries().first { it.dialCode == value }
+
 
     override fun onItemSelected(adapterView: AdapterView<*>, view: View?, i: Int, l: Long) {
         dialCode = customAdapter.getDialCode(i)
-        selectedListener?.invoke(dialCode)
+        publishValidity.onNext(true)
     }
 
     override fun onNothingSelected(adapterView: AdapterView<*>) {
 
+    }
+
+    fun addValidity(): Observable<Boolean> {
+        return publishValidity
     }
 }

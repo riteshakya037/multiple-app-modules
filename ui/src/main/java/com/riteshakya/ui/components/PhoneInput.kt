@@ -4,13 +4,17 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.riteshakya.core.extension.addValidity
 import com.riteshakya.core.extension.getDimensionPixelSize
 import com.riteshakya.core.extension.getViewWidth
-import com.riteshakya.core.extension.onTextChanged
 import com.riteshakya.core.extension.setSelectivePadding
+import com.riteshakya.core.validation.types.PhoneValidation
 import com.riteshakya.ui.R
 import com.riteshakya.ui.helpers.Status
+import io.reactivex.Observable
+import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.custom_phone_input.view.*
+import timber.log.Timber
 
 class PhoneInput @JvmOverloads constructor(
         context: Context,
@@ -18,7 +22,6 @@ class PhoneInput @JvmOverloads constructor(
         defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private var inputChangeListener: ((String, String) -> Unit)? = null
     var hint: String = ""
         set(value) {
             hintTxt.text = value
@@ -51,21 +54,34 @@ class PhoneInput @JvmOverloads constructor(
 
     private fun init() {
         LayoutInflater.from(context).inflate(R.layout.custom_phone_input, this)
-        countrySpinner.onCodeChange {
-            inputChangeListener?.invoke(it, inputTxt.text.toString())
-        }
-        inputTxt.onTextChanged {
-            inputChangeListener?.invoke(countrySpinner.dialCode, inputTxt.text.toString())
-        }
     }
 
-    fun onInputChanged(inputChangeListener: (dialCode: String, phoneNo: String) -> Unit) {
-        this.inputChangeListener = inputChangeListener
-    }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         countrySpinner.dropDownWidth = getViewWidth()
     }
+
+    fun addValidity(
+            listener: (PhoneModel) -> Unit = { }
+    ): Observable<Boolean> {
+        return Observable.combineLatest(
+                countrySpinner.addValidity(),
+                inputTxt.addValidity(PhoneValidation(8)),
+                BiFunction<Boolean, Boolean, Boolean> { dialValidity, phoneValidity ->
+                    dialValidity && phoneValidity
+                }).doOnNext {
+            listener(PhoneModel(countrySpinner.dialCode, inputTxt.text.toString()))
+        }
+    }
+
+    fun setValue(it: PhoneModel?) {
+        it?.apply {
+            countrySpinner.dialCode = dialCode
+            inputTxt.setText(phoneNo)
+        }
+    }
+
+    data class PhoneModel(val dialCode: String, val phoneNo: String)
 
 }

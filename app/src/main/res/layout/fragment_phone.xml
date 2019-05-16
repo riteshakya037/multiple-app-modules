@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/horizontal_padding"
                 android:layout_marginTop="60dp"
-                android:text="Signup."
+                android:text="@string/txt_on_boarding_signup"
                 android:textAppearance="@style/TextAppearance.SignUp.Title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/horizontal_padding_large"
                 android:layout_marginTop="@dimen/vertical_padding_medium"
-                android:text="What's your number?"
+                android:text="@string/txt_what_s_your_number"
                 android:textAppearance="@style/TextAppearance.Footer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/titleTxt" />
@@ -55,15 +55,32 @@
                 app:layout_constraintTop_toBottomOf="@id/phoneSelector"
                 app:length="6" />
 
+            <Button
+                android:id="@+id/getCodeBtn"
+                style="@style/Widget.Button.OutlinedButton.Small"
+                android:layout_marginTop="@dimen/vertical_padding_medium"
+                android:enabled="false"
+                android:text="@string/txt_send_code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/verificationCodeView" />
+
 
             <Button
                 android:id="@+id/resendBtn"
                 style="@style/Widget.Button.OutlinedButton.Small"
                 android:layout_marginTop="@dimen/vertical_padding_medium"
-                android:text="Resend Code"
+                android:text="@string/txt_resend_code"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/verificationCodeView" />
+                app:layout_constraintTop_toBottomOf="@id/getCodeBtn" />
+
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/waitingGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="resendBtn,verificationCodeView" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -73,6 +90,7 @@
     <Button
         android:id="@+id/nextBtn"
         style="@style/Widget.Button.Bottom"
+        android:enabled="false"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

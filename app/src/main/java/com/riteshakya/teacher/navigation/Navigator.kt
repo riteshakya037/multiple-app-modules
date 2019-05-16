@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class Navigator
 @Inject constructor() {
     fun showMain(context: Context) {
-        navigateToMain(context)
+        navigateToLogin(context)
     }
 
     private fun navigateToLogin(context: Context) = context.startActivity(

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.widget.Checkable
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.riteshakya.ui.R
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.custom_double_sided_switch.view.*
 
 class DoubleSidedSwitch @JvmOverloads constructor(
@@ -13,6 +15,11 @@ class DoubleSidedSwitch @JvmOverloads constructor(
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr), Checkable {
+
+    private var publishValidity = PublishSubject.create<Boolean>().also {
+        it.onNext(true)
+    }
+    private var listener: ((Boolean) -> Unit)? = null
 
 
     private var text: String = ""
@@ -40,6 +47,10 @@ class DoubleSidedSwitch @JvmOverloads constructor(
 
     private fun init() {
         LayoutInflater.from(context).inflate(R.layout.custom_double_sided_switch, this)
+        switchBtn.setOnCheckedChangeListener { _, isChecked ->
+            listener?.invoke(isChecked)
+            publishValidity.onNext(true)
+        }
     }
 
     private fun initTypedArray(attrs: AttributeSet?) {
@@ -51,9 +62,7 @@ class DoubleSidedSwitch @JvmOverloads constructor(
     }
 
     fun setOnCheckedChangeListener(listener: (Boolean) -> Unit) {
-        switchBtn.setOnCheckedChangeListener { _, isChecked ->
-            listener(isChecked)
-        }
+        this.listener = listener
     }
 
     override fun isChecked(): Boolean {
@@ -66,6 +75,13 @@ class DoubleSidedSwitch @JvmOverloads constructor(
 
     override fun setChecked(checked: Boolean) {
         switchBtn.isChecked = !checked
+        publishValidity.onNext(true)
+    }
+
+    fun addValidity(listener: (Boolean) -> Unit = {}): Observable<Boolean> {
+        return publishValidity.doOnNext {
+            listener(isChecked)
+        }
     }
 
 }

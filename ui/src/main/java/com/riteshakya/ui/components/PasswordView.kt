@@ -4,11 +4,13 @@ import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View.OnFocusChangeListener
 import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.riteshakya.core.extension.changeLayoutParams
 import com.riteshakya.core.extension.onTextChanged
 import com.riteshakya.ui.R
+import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.custom_password_view.view.*
 import java.util.*
@@ -78,11 +80,21 @@ class PasswordView @JvmOverloads constructor(
         }
     }
 
+    override fun performClick(): Boolean {
+        super.performClick()
+        return hiddenEditView.requestFocus()
+    }
+
 
     private fun init() {
         LayoutInflater.from(context).inflate(R.layout.custom_password_view, this)
         hiddenEditView.onTextChanged {
             onTextChanged(it)
+        }
+        hiddenEditView.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                hiddenEditView.setSelection(hiddenEditView.text.length)
+            }
         }
     }
 
@@ -107,5 +119,11 @@ class PasswordView @JvmOverloads constructor(
 
     fun clear() {
         hiddenEditView.setText("")
+    }
+
+    fun addValidity(function: (String) -> Unit): Observable<Boolean> {
+        return count.doOnNext {
+            function(hiddenEditView.text.toString())
+        }.map { it == length }
     }
 }

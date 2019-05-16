@@ -18,6 +18,7 @@
         <attr name="status" />
     </declare-styleable>
     <declare-styleable name="SelectInput">
+        <attr name="android:entries" />
         <attr name="android:hint" format="string" />
         <attr name="status" />
     </declare-styleable>
@@ -28,7 +29,7 @@
 
     </declare-styleable>
     <declare-styleable name="CustomSpinner">
-        <attr name="android:entries" format="reference"/>
+        <attr name="android:entries" />
         <attr name="selectedTextAppearance" format="reference"/>
     </declare-styleable>
     <declare-styleable name="PasswordView">
