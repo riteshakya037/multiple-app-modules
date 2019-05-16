@@ -32,7 +32,9 @@ class CountrySpinner : AppCompatSpinner, AdapterView.OnItemSelectedListener {
 
     private fun init() {
         adapter = customAdapter
-        setSelection(customAdapter.getPosition(Country.getCountryFromSIM(context)))
+        if (!isInEditMode) {
+            setSelection(customAdapter.getPosition(Country.getCountryFromSIM(context)))
+        }
         onItemSelectedListener = this
     }
 
