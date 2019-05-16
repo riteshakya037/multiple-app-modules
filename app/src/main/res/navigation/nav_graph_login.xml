@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_login.xml"
-    app:startDestination="@+id/phoneFragment">
+    app:startDestination="@+id/onBoardingFragment">
 
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -45,5 +45,23 @@
         android:id="@+id/phoneFragment"
         android:name="com.riteshakya.teacher.feature.login.ui.signup.phone.PhoneFragment"
         android:label="PhoneFragment"
-        tools:layout="@layout/fragment_phone" />
+        tools:layout="@layout/fragment_phone">
+        <action
+            android:id="@+id/action_phoneFragment_to_profilePictureFragment"
+            app:destination="@id/profilePictureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilePictureFragment"
+        android:name="com.riteshakya.teacher.feature.login.ui.signup.profilepicture.ProfilePictureFragment"
+        android:label="ProfilePictureFragment"
+        tools:layout="@layout/fragment_profile_picture">
+        <action
+            android:id="@+id/action_profilePictureFragment_to_logoUploadFragment"
+            app:destination="@id/logoUploadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logoUploadFragment"
+        android:name="com.riteshakya.teacher.feature.login.ui.signup.logoupload.LogoUploadFragment"
+        android:label="LogoUploadFragment"
+        tools:layout="@layout/fragment_logo_upload" />
 </navigation>

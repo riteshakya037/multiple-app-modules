@@ -1,4 +1,4 @@
-package com.riteshakya.teacher.feature.login.ui.signup.phone
+package com.riteshakya.teacher.feature.login.ui.signup.logoupload
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import com.riteshakya.core.platform.BaseFragment
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
-import kotlinx.android.synthetic.main.fragment_phone.*
+import kotlinx.android.synthetic.main.fragment_logo_upload.*
 import javax.inject.Inject
 
-class PhoneFragment : BaseFragment() {
+class LogoUploadFragment : BaseFragment() {
 
     @Inject
     internal lateinit var signUpViewModel: SignUpViewModel
@@ -23,17 +23,14 @@ class PhoneFragment : BaseFragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.fragment_phone, container, false)
+    ): View = inflater.inflate(R.layout.fragment_logo_upload, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        nextBtn.setOnClickListener {
-            navigateToProfilePicture()
+        finishBtn.setOnClickListener {
+            signUpViewModel.signUpUser()
         }
-    }
 
-    private fun navigateToProfilePicture() {
-        navigator.navigateToProfilePicture(this)
     }
 }

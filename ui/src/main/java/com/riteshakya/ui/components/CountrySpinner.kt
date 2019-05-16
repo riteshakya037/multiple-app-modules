@@ -42,7 +42,7 @@ class CountrySpinner : AppCompatSpinner, AdapterView.OnItemSelectedListener {
         this.selectedListener = selectedListener
     }
 
-    override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
+    override fun onItemSelected(adapterView: AdapterView<*>, view: View?, i: Int, l: Long) {
         dialCode = customAdapter.getDialCode(i)
         selectedListener?.invoke(dialCode)
     }

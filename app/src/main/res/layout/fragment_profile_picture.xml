@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/titleTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_padding"
+        android:layout_marginTop="60dp"
+        android:text="Signup."
+        android:textAppearance="@style/TextAppearance.SignUp.Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitleTxt"
+        style="@style/Widget.Form.Input"
+        android:layout_marginStart="@dimen/horizontal_padding_large"
+        android:layout_marginTop="@dimen/vertical_padding_medium"
+        android:text="Great. we are almost done, now just upload your photo."
+        android:textAppearance="@style/TextAppearance.Footer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTxt" />
+
+    <ImageButton
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_add_profile_pic"
+        android:theme="@style/AppTheme.InputLayout.Text"
+        app:layout_constraintBottom_toTopOf="@id/finishBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitleTxt" />
+
+    <Button
+        android:id="@+id/finishBtn"
+        style="@style/Widget.Button"
+        android:text="Finish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

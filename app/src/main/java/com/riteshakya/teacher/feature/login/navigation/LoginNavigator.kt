@@ -35,4 +35,16 @@ class LoginNavigator
         )
     }
 
+    fun navigateToProfilePicture(fragment: BaseFragment) {
+        navigationController.navigateTo(
+                fragment, NavigationHelper(ActionOnlyNavDirections(R.id.profilePictureFragment))
+        )
+    }
+
+    fun navigateToLogoUpload(fragment: BaseFragment) {
+        navigationController.navigateTo(
+                fragment, NavigationHelper(ActionOnlyNavDirections(R.id.logoUploadFragment))
+        )
+    }
+
 }

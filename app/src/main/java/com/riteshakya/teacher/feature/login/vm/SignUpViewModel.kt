@@ -3,7 +3,6 @@ package com.riteshakya.teacher.feature.login.vm
 import androidx.lifecycle.MutableLiveData
 import com.riteshakya.core.exception.FailureMessageMapper
 import com.riteshakya.core.platform.BaseViewModel
-import javax.inject.Singleton
 
 class SignUpViewModel(
         val failureMessageMapper: FailureMessageMapper
@@ -27,5 +26,10 @@ class SignUpViewModel(
                 return TEACHER
             }
         }
+    }
+
+
+    fun signUpUser() {
+
     }
 }
