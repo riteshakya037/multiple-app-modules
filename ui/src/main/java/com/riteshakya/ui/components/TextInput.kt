@@ -90,7 +90,6 @@ class TextInput @JvmOverloads constructor(
 
     private fun init() {
         LayoutInflater.from(context).inflate(R.layout.custom_text_input, this)
-        inputTxt.imeOptions
         inputTxt.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 val imm = context.getSystemService(

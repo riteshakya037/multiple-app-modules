@@ -54,6 +54,7 @@
             <ViewFlipper
                 android:id="@+id/modeFlipper"
                 android:layout_width="match_parent"
+                android:measureAllChildren="false"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/modeSwitch">
 
