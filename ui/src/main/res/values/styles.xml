@@ -27,6 +27,16 @@
         <item name="rippleColor">@color/colorTextLight</item>
     </style>
 
+    <style name="Widget.Button.OutlinedButton.Small" parent="Widget.Button.OutlinedButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Button.Outline.Small</item>
+        <item name="android:layout_marginStart">@dimen/horizontal_padding_large</item>
+        <item name="android:layout_marginEnd">@dimen/horizontal_padding_large</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
+
+
     <style name="AppTheme.InputLayout.Text" parent="Theme.MaterialComponents.Light">
         <!-- Inactive underline color-->
         <item name="colorControlNormal">@color/colorTextLight</item>

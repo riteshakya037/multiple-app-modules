@@ -3,6 +3,7 @@ package com.riteshakya.core.extension
 import android.content.Context
 import android.graphics.Point
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 
 
@@ -50,4 +51,11 @@ fun View.setSelectivePadding(
         bottom: Int = paddingBottom
 ) {
     setPadding(left, top, right, bottom)
+}
+
+fun View.changeLayoutParams(body: (layoutParams: ViewGroup.LayoutParams) -> Unit): View {
+    val layoutParams = this.layoutParams
+    body(layoutParams)
+    this.layoutParams = layoutParams
+    return this
 }

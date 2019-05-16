@@ -29,4 +29,10 @@ class LoginNavigator
         )
     }
 
+    fun navigateToPhone(fragment: BaseFragment) {
+        navigationController.navigateTo(
+                fragment, NavigationHelper(ActionOnlyNavDirections(R.id.phoneFragment))
+        )
+    }
+
 }

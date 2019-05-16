@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_login.xml"
-    app:startDestination="@+id/onBoardingFragment">
+    app:startDestination="@+id/phoneFragment">
 
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -36,5 +36,14 @@
         android:id="@+id/passwordFragment"
         android:name="com.riteshakya.teacher.feature.login.ui.signup.password.PasswordFragment"
         android:label="PasswordFragment"
-        tools:layout="@layout/fragment_password" />
+        tools:layout="@layout/fragment_password">
+        <action
+            android:id="@+id/action_passwordFragment_to_phoneFragment"
+            app:destination="@id/phoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneFragment"
+        android:name="com.riteshakya.teacher.feature.login.ui.signup.phone.PhoneFragment"
+        android:label="PhoneFragment"
+        tools:layout="@layout/fragment_phone" />
 </navigation>

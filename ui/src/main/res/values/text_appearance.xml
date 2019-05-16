@@ -13,6 +13,10 @@
         <item name="android:fontFamily">@font/montserrat_semibold</item>
     </style>
 
+    <style name="TextAppearance.Montserrat.Bold" parent="TextAppearance.Montserrat">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
     <style name="TextAppearance.Title" parent="TextAppearance.Montserrat.SemiBold">
         <item name="android:textSize">70sp</item>
         <item name="android:letterSpacing">0</item>
@@ -38,6 +42,13 @@
     <style name="TextAppearance.Button.Outline" parent="TextAppearance.Montserrat.SemiBold">
         <item name="android:textSize">44sp</item>
         <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Button.Outline.Small" parent="TextAppearance.Montserrat.Bold">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="TextAppearance.Button.Bottom" parent="TextAppearance.Montserrat.SemiBold">

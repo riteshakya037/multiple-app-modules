@@ -31,4 +31,8 @@
         <attr name="android:entries" format="reference"/>
         <attr name="selectedTextAppearance" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="PasswordView">
+        <attr name="length" format="integer" />
+        <attr name="android:inputType" />
+    </declare-styleable>
 </resources>
