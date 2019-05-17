@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.riteshakya.ui.R
+import com.riteshakya.ui.imageloaders.GlideLoader
 import kotlinx.android.synthetic.main.custom_spinner_items_drop_down.view.*
 
 /**
@@ -19,7 +20,7 @@ class SpinnerAdapter(
 ) : ArrayAdapter<SpinnerAdapter.SpinnerModel>(applicationContext, R.layout.custom_spinner_items) {
     private val inflater: LayoutInflater = LayoutInflater.from(applicationContext)
     internal val items: ArrayList<SpinnerModel> = ArrayList()
-
+    private val glideLoader = GlideLoader(context)
     internal var selectedTextAppearance: Int = 0
         set(value) {
             field = value
@@ -59,6 +60,7 @@ class SpinnerAdapter(
             holder = output.tag as DropDownViewHolder
         }
         holder.names.text = getItem(position).text
+        glideLoader.loadImage(getItem(position).icon, holder.icon)
         return output
     }
 
@@ -90,6 +92,6 @@ class SpinnerAdapter(
         var names: TextView = view.textView
     }
 
-    open class SpinnerModel(val value: String, val text: String)
+    open class SpinnerModel(val value: String, val text: String, val icon: String = "")
 
 }

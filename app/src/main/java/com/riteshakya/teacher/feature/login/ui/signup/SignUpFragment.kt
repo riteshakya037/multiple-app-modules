@@ -17,6 +17,7 @@ import com.riteshakya.core.validation.types.NameValidation
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
+import com.riteshakya.ui.components.SpinnerAdapter
 import com.riteshakya.ui.helpers.CustomClickableSpan
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up_school.*
@@ -45,6 +46,17 @@ class SignUpFragment : BaseFragment() {
         }
         initializeMode()
         initializeValidators()
+        initializeSchools()
+    }
+
+    private fun initializeSchools() {
+        signUpViewModel.schools
+            .addLoading()
+            .subscribe({
+                schoolSelect.items =
+                    it.map { school -> SpinnerAdapter.SpinnerModel(school.id, school.schoolName, school.schoolLogo) }
+            }, {})
+            .untilStop()
     }
 
     private fun addModeChangeListener() {
@@ -59,6 +71,10 @@ class SignUpFragment : BaseFragment() {
         teacherSwitch.setOnCheckedChangeListener {
             signUpViewModel.teacher.value = it
             teacherSpinnerLayout.visibility = if (it) VISIBLE else GONE
+            if (!it) {
+                signUpViewModel.classValue.value = null
+                signUpViewModel.sectionValue.value = null
+            }
         }
     }
 

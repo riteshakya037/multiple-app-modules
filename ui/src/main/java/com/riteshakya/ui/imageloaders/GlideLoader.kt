@@ -1,4 +1,4 @@
-package com.riteshakya.teacher.imageloader
+package com.riteshakya.ui.imageloaders
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -8,11 +8,13 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * @author Ritesh Shakya
  */
 
+@Singleton
 class GlideLoader @Inject constructor(val context: Context) : IImageLoader {
 
     override fun loadImage(

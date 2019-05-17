@@ -13,6 +13,9 @@ import com.riteshakya.teacher.feature.login.ui.signup.phone.PhoneFragment
 import com.riteshakya.teacher.feature.login.ui.signup.profilepicture.ProfilePictureFragment
 import com.riteshakya.teacher.feature.login.vm.PhoneVerificationViewModel
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
+import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
+import com.riteshakya.teacher.interactor.signup.SignUpSchoolInteractor
+import com.riteshakya.teacher.interactor.signup.SignUpTeacherInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -50,8 +53,16 @@ abstract class SignUpModule {
         @IntoMap
         @ViewModelKey(SignUpViewModel::class)
         fun provideSignUpViewModel(
-                failureMessageMapper: FailureMessageMapper
-        ): ViewModel = SignUpViewModel(failureMessageMapper)
+            signUpSchoolInteractor: SignUpSchoolInteractor,
+            signUpTeacherInteractor: SignUpTeacherInteractor,
+            getSchoolsInteractor: GetSchoolsInteractor,
+            failureMessageMapper: FailureMessageMapper
+        ): ViewModel = SignUpViewModel(
+            signUpSchoolInteractor,
+            signUpTeacherInteractor,
+            getSchoolsInteractor,
+            failureMessageMapper
+        )
 
         @Provides
         @IntoMap

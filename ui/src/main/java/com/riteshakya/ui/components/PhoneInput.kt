@@ -8,13 +8,13 @@ import com.riteshakya.core.extension.addValidity
 import com.riteshakya.core.extension.getDimensionPixelSize
 import com.riteshakya.core.extension.getViewWidth
 import com.riteshakya.core.extension.setSelectivePadding
+import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.validation.types.PhoneValidation
 import com.riteshakya.ui.R
 import com.riteshakya.ui.helpers.Status
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.custom_phone_input.view.*
-import timber.log.Timber
 
 class PhoneInput @JvmOverloads constructor(
         context: Context,
@@ -81,7 +81,4 @@ class PhoneInput @JvmOverloads constructor(
             inputTxt.setText(phoneNo)
         }
     }
-
-    data class PhoneModel(val dialCode: String, val phoneNo: String)
-
 }

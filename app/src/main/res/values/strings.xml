@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Teacher</string>
-
     // Onboarding
     <string name="txt_on_boarding_title">testapp.</string>
     <string name="txt_on_boarding_subtitle">teachers/school</string>

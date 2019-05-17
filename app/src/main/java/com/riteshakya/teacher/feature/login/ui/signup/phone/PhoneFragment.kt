@@ -57,18 +57,18 @@ class PhoneFragment : BaseFragment() {
     private fun initializeModeChanges() {
         phoneViewModel.currentMode.observe(this, Observer {
             when (it) {
-                PhoneVerificationViewModel.Mode.PHONE -> {
+                PhoneVerificationViewModel.PHONE -> {
                     getCodeBtn.isEnabled = true
                     getCodeBtn.text = getString(R.string.txt_send_code)
                     waitingGroup.visibility = GONE
                 }
-                PhoneVerificationViewModel.Mode.WAITING_CODE -> {
+                PhoneVerificationViewModel.WAITING_CODE -> {
                     verificationCodeView.performClick()
                     getCodeBtn.isEnabled = false
                     getCodeBtn.text = getString(R.string.txt_verify_code)
                     waitingGroup.visibility = VISIBLE
                 }
-                PhoneVerificationViewModel.Mode.VERIFIED -> {
+                PhoneVerificationViewModel.VERIFIED -> {
                     getCodeBtn.isEnabled = true
                     getCodeBtn.text = getString(R.string.txt_send_code)
                     waitingGroup.visibility = GONE

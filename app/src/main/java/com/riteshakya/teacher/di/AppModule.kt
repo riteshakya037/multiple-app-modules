@@ -6,15 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.riteshakya.core.di.AppViewModelFactory
 import com.riteshakya.teacher.TeacherApp
-import com.riteshakya.teacher.imageloader.GlideLoader
-import com.riteshakya.teacher.imageloader.IImageLoader
+import com.riteshakya.teacher.data.datasource.auth.AuthModule
+import com.riteshakya.teacher.data.datasource.image.ImageModule
+import com.riteshakya.teacher.data.datasource.school.SchoolModule
+import com.riteshakya.teacher.data.datasource.teacher.TeacherModule
+import com.riteshakya.teacher.data.datasource.user.UserModule
+import com.riteshakya.ui.imageloaders.GlideLoader
+import com.riteshakya.ui.imageloaders.IImageLoader
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Provider
 import javax.inject.Singleton
 
-@Module(includes = [AppModule.Supporting::class])
+@Module(includes = [AppModule.Supporting::class, AppModule.Repository::class])
 abstract class AppModule {
     @Binds
     abstract fun bindApplication(app: TeacherApp): Application
@@ -35,4 +40,15 @@ abstract class AppModule {
         ): ViewModelProvider.Factory =
             AppViewModelFactory(providers)
     }
+
+    @Module(
+        includes = [
+            SchoolModule.Repositories::class,
+            UserModule.Repositories::class,
+            TeacherModule.Repositories::class,
+            ImageModule.Repositories::class,
+            AuthModule.Repositories::class
+        ]
+    )
+    class Repository
 }

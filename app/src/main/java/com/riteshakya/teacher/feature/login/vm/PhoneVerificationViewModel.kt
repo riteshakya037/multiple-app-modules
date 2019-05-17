@@ -1,9 +1,10 @@
 package com.riteshakya.teacher.feature.login.vm
 
+import androidx.annotation.IntDef
 import androidx.lifecycle.MutableLiveData
 import com.riteshakya.core.exception.FailureMessageMapper
+import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.platform.BaseViewModel
-import com.riteshakya.ui.components.PhoneInput
 import io.reactivex.Observable
 import javax.inject.Singleton
 
@@ -12,14 +13,14 @@ class PhoneVerificationViewModel(
     val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
 
-    val currentMode = MutableLiveData<Mode>().also {
-        it.value = Mode.NONE
+    val currentMode = MutableLiveData<@Mode Int>().also {
+        it.value = NONE
     }
 
-    val phoneNo = MutableLiveData<PhoneInput.PhoneModel>()
+    val phoneNo = MutableLiveData<PhoneModel>()
     val code = MutableLiveData<String>()
 
-    val isVerified = MutableLiveData<Boolean>().also {
+    private val isVerified = MutableLiveData<Boolean>().also {
         it.value = false
     }
 
@@ -30,7 +31,7 @@ class PhoneVerificationViewModel(
     }
 
     fun requestOrSubmitCode() {
-        if (currentMode.value == Mode.WAITING_CODE) {
+        if (currentMode.value == WAITING_CODE) {
             verifyCode()
         } else {
             requestCode()
@@ -38,35 +39,31 @@ class PhoneVerificationViewModel(
     }
 
     private fun verifyCode() {
-        currentMode.value = Mode.VERIFIED
+        currentMode.value = VERIFIED
         isVerified.value = true
     }
 
     private fun requestCode() {
-        currentMode.value = Mode.WAITING_CODE
+        currentMode.value = WAITING_CODE
         isVerified.value = false
     }
 
     fun enableRequestCode(it: Boolean?) {
-        currentMode.value = if (it == true) Mode.PHONE else Mode.NONE
+        currentMode.value = if (it == true) PHONE else NONE
     }
 
     fun resendCode() {
 
     }
 
+    companion object {
 
-    enum class Mode(val mode: Int) {
-        NONE(0), PHONE(1), WAITING_CODE(1), VERIFIED(3);
+        @IntDef(NONE, PHONE, WAITING_CODE, VERIFIED)
+        annotation class Mode
 
-        companion object {
-            @JvmStatic
-            fun getMode(position: Int): Mode {
-                for (f in values()) {
-                    if (f.mode == position) return f
-                }
-                return NONE
-            }
-        }
+        const val NONE = 0
+        const val PHONE = 1
+        const val WAITING_CODE = 2
+        const val VERIFIED = 3
     }
 }

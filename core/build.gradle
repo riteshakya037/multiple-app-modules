@@ -66,5 +66,4 @@ dependencies {
     // Permission Helper
     api 'com.karumi:dexter:5.0.0'
 
-
 }

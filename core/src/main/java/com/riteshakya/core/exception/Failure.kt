@@ -2,7 +2,6 @@ package com.riteshakya.core.exception
 
 import android.content.Context
 import com.riteshakya.core.R
-import np.com.riteshakya.asteroidrecruitment.core.exception.NoConnectivityException
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import javax.inject.Inject

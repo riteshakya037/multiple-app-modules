@@ -1,4 +1,4 @@
-package np.com.riteshakya.asteroidrecruitment.core.exception
+package com.riteshakya.core.exception
 
 import java.io.IOException
 

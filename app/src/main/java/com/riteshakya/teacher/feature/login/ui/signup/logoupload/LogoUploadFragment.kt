@@ -12,8 +12,9 @@ import com.riteshakya.teacher.BuildConfig
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
-import com.riteshakya.teacher.imageloader.IImageLoader
 import com.riteshakya.ui.components.MenuBottomSheet
+import com.riteshakya.ui.imageloaders.IImageLoader
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_logo_upload.*
 import javax.inject.Inject
 
@@ -48,11 +49,18 @@ class LogoUploadFragment : PhotoFragment() {
 
     private fun initializeClickListeners() {
         finishBtn.setOnClickListener {
-            signUpViewModel.signUpUser()
+            signUpUser()
         }
         addImgBtn.setOnClickListener {
             showPhotoOptions()
         }
+    }
+
+    private fun signUpUser() {
+        signUpViewModel.signUpUser()
+            .addLoading()
+            .subscribe()
+            .untilStop()
     }
 
     private fun initializeModeChanges() {

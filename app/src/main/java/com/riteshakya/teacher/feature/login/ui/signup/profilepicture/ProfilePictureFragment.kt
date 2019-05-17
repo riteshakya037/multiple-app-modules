@@ -12,8 +12,8 @@ import com.riteshakya.teacher.BuildConfig
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
-import com.riteshakya.teacher.imageloader.IImageLoader
 import com.riteshakya.ui.components.MenuBottomSheet
+import com.riteshakya.ui.imageloaders.IImageLoader
 import kotlinx.android.synthetic.main.fragment_profile_picture.*
 import javax.inject.Inject
 
@@ -92,7 +92,7 @@ class ProfilePictureFragment : PhotoFragment() {
                     SignUpViewModel.Mode.TEACHER -> {
                         finishBtn.text = "Finish"
                         finishBtn.setOnClickListener {
-                            signUpViewModel.signUpUser()
+                            signUpUser()
                         }
                     }
                     SignUpViewModel.Mode.SCHOOL -> {
@@ -104,6 +104,13 @@ class ProfilePictureFragment : PhotoFragment() {
                 }
             }
         })
+    }
+
+    private fun signUpUser() {
+        signUpViewModel.signUpUser()
+            .addLoading()
+            .subscribe()
+            .untilStop()
     }
 
     override fun setUpImage(currentPhotoPath: String) {

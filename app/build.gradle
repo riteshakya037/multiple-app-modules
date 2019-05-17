@@ -5,6 +5,21 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
+enum BuildType {
+    DEBUG,
+    RELEASE,
+}
+
+static def getAppName(BuildType buildType) {
+    String APP_NAME = "Teacher"
+    switch (buildType) {
+        case BuildType.DEBUG:
+            return APP_NAME + " - " + BuildType.DEBUG.name()
+        case BuildType.RELEASE:
+            return APP_NAME
+    }
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -15,10 +30,28 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        debug {
+            def keystorePropertiesFile = file("keystore/debug.keystore.properties")
+            def keystoreProperties = new Properties()
+            keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+            storeFile file(keystoreProperties['store.file'])
+            storePassword keystoreProperties['key.store.password']
+            keyAlias keystoreProperties['key.alias']
+            keyPassword keystoreProperties['key.alias.password']
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "app_name", getAppName(BuildType.RELEASE)
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".debug"
+            resValue "string", "app_name", getAppName(BuildType.DEBUG)
         }
     }
     compileOptions {
@@ -44,10 +77,15 @@ dependencies {
     api "android.arch.navigation:navigation-fragment-ktx:$navigation_version"
     api "android.arch.navigation:navigation-ui-ktx:$navigation_version"
 
-    implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-firestore:19.0.0'
+    implementation 'com.google.firebase:firebase-storage:17.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
+apply plugin: 'com.google.gms.google-services'

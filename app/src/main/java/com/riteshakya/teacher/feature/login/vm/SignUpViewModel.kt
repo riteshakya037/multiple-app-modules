@@ -2,18 +2,32 @@ package com.riteshakya.teacher.feature.login.vm
 
 import androidx.lifecycle.MutableLiveData
 import com.riteshakya.core.exception.FailureMessageMapper
+import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.platform.BaseViewModel
-import com.riteshakya.ui.components.PhoneInput
+import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
+import com.riteshakya.teacher.interactor.signup.SignUpSchoolInteractor
+import com.riteshakya.teacher.interactor.signup.SignUpTeacherInteractor
+import com.riteshakya.teacher.repository.school.model.SchoolModel
+import com.riteshakya.teacher.repository.teacher.model.TeacherModel
+import io.reactivex.Completable
+import io.reactivex.subjects.PublishSubject
+import javax.inject.Inject
 
-class SignUpViewModel(
-        val failureMessageMapper: FailureMessageMapper
+
+class SignUpViewModel
+@Inject constructor(
+    val signUpSchoolInteractor: SignUpSchoolInteractor,
+    val signUpTeacherInteractor: SignUpTeacherInteractor,
+    val getSchoolInteractor: GetSchoolsInteractor,
+    val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
     val currentMode = MutableLiveData<Mode>().also {
         it.value = Mode.TEACHER
     }
 
-    // Password Screen
-    val password = MutableLiveData<String>()
+    private val schoolsSubject by lazy {
+        PublishSubject.create<Boolean>()
+    }
 
     // SignUp teacher screen
     val firstName = MutableLiveData<String>()
@@ -24,14 +38,36 @@ class SignUpViewModel(
     val sectionValue = MutableLiveData<String>()
 
     // SignUp school screen
-    val nameOfAuthority = MutableLiveData<String>()
-    val schoolName = MutableLiveData<String>()
+    val nameOfAuthority = MutableLiveData<String>().also {
+        it.value = "Ritesh Shakya"
+    }
+    val schoolName = MutableLiveData<String>().also {
+        it.value = "Sambotta"
+    }
+
     val schoolEmail = MutableLiveData<String>()
+        .also {
+            it.value = "ritesh@sambotta.com"
+        }
     val schoolAreaCode = MutableLiveData<String>()
+        .also {
+            it.value = "12345"
+        }
     val schoolCity = MutableLiveData<String>()
+        .also {
+            it.value = "Kathmandu"
+        }
+
+    // Password Screen
+    val password = MutableLiveData<String>().also {
+        it.value = "paperPC1"
+    }
 
     // Phone
-    val phoneNo = MutableLiveData<PhoneInput.PhoneModel>()
+    val phoneNo = MutableLiveData<PhoneModel>()
+        .also {
+            it.value = PhoneModel("+977", "9841814809")
+        }
 
     // Profile Photo
     val profilePhoto = MutableLiveData<String>()
@@ -39,23 +75,55 @@ class SignUpViewModel(
     // School logo
     val schoolLogo = MutableLiveData<String>()
 
-    fun signUpUser() {
-        when (currentMode.value) {
+    fun signUpUser(): Completable {
+        return when (currentMode.value!!) {
             Mode.TEACHER -> signUpTeacher()
             Mode.SCHOOL -> signUpSchool()
-            else -> {
-
-            }
         }
-
     }
 
-    private fun signUpSchool() {
+    val schools = schoolsSubject
+        .startWith(true)
+        .flatMapSingle { getSchoolInteractor() }
+        .replay()
+        .autoConnect(1)
 
+    fun loadSchools() {
+        schoolsSubject.onNext(true)
     }
 
-    private fun signUpTeacher() {
+    private fun signUpSchool(): Completable {
+        val schoolModel = SchoolModel(
+                nameOfAuthority.value ?: "",
+                schoolName.value ?: "",
+                schoolEmail.value ?: "",
+                schoolAreaCode.value ?: "",
+                schoolCity.value ?: "",
+                phoneNo.value ?: PhoneModel(),
+                profilePhoto.value ?: "",
+                schoolLogo.value ?: "",
+                password.value ?: ""
+        )
+        return signUpSchoolInteractor(
+                schoolModel
+        )
+    }
 
+    private fun signUpTeacher(): Completable {
+        val teacherModel = TeacherModel(
+            firstName.value ?: "",
+            lastName.value ?: "",
+            school.value ?: "",
+            teacher.value ?: false,
+            classValue.value ?: "",
+            sectionValue.value ?: "",
+            phoneNo.value ?: PhoneModel(),
+            profilePhoto.value ?: "",
+            password.value ?: ""
+        )
+        return signUpTeacherInteractor(
+            teacherModel
+        )
     }
 
 

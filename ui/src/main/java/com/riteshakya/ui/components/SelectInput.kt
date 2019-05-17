@@ -76,8 +76,10 @@ class SelectInput @JvmOverloads constructor(
     fun setSelection(item: String?) {
         this.selectedValue = item
         item?.let {
-            spinner.setSelection(spinner.items.indexOf(it))
-            publishValidity.onNext(true)
+            if (!items.isNullOrEmpty()) {
+                spinner.setSelection(spinner.items.indexOf(it))
+                publishValidity.onNext(true)
+            }
         }
     }
 

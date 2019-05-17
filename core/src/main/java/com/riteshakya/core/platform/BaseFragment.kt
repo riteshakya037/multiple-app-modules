@@ -8,9 +8,12 @@ import com.riteshakya.core.extension.combineLatest
 import com.riteshakya.core.rx.DisposeOnLifecycleFragment
 import com.riteshakya.core.rx.LifecycleDisposables
 import dagger.android.support.DaggerFragment
+import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 abstract class BaseFragment : DaggerFragment(), BackPressConsumer, DisposeOnLifecycleFragment {
@@ -89,6 +92,42 @@ abstract class BaseFragment : DaggerFragment(), BackPressConsumer, DisposeOnLife
 
     open fun setValidity(result: Boolean) {}
 
+    private var progressDialog: LoadingUiHelper.ProgressDialogFragment? = null
+
+    fun showLoading(type: LoadingUiHelper.Type = LoadingUiHelper.Type.DIALOG) {
+        if (progressDialog == null) {
+            progressDialog = LoadingUiHelper.showProgress(fragmentManager!!, type)
+        }
+    }
+
+    fun <T> Single<T>.addLoading(): Single<T> {
+        return doOnSubscribe {
+            showLoading()
+        }.doOnSuccess {
+            hideLoading()
+        }.subscribeOn(Schedulers.io())
+    }
+
+    fun Completable.addLoading(): Completable {
+        return doOnSubscribe {
+            showLoading()
+        }.doOnComplete {
+            hideLoading()
+        }.subscribeOn(Schedulers.io())
+    }
+
+    fun <T> Observable<T>.addLoading(): Observable<T> {
+        return doOnSubscribe {
+            showLoading()
+        }.doOnNext {
+            hideLoading()
+        }.subscribeOn(Schedulers.io())
+    }
+
+    fun hideLoading() {
+        progressDialog?.dismiss()
+        progressDialog = null
+    }
 
     override fun consumeBackPressed(): Boolean {
         return when {
