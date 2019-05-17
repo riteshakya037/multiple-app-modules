@@ -18,37 +18,37 @@ import javax.inject.Singleton
 class GlideLoader @Inject constructor(val context: Context) : IImageLoader {
 
     override fun loadImage(
-        url: String,
-        holder: ImageView,
-        onLoadSuccess: (Drawable) -> Unit,
-        onLoadFail: (GlideException) -> Unit
+            url: String,
+            holder: ImageView,
+            onLoadSuccess: (Drawable) -> Unit,
+            onLoadFail: (GlideException) -> Unit
     ) {
         if (url.isBlank()) return
         GlideApp.with(context)
-            .load(url)
-            .listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(
-                    e: GlideException?,
-                    model: Any,
-                    target: Target<Drawable>,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    onLoadFail(e!!)
-                    return false
-                }
+                .load(url)
+                .listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                            e: GlideException?,
+                            model: Any,
+                            target: Target<Drawable>,
+                            isFirstResource: Boolean
+                    ): Boolean {
+                        onLoadFail(e!!)
+                        return false
+                    }
 
-                override fun onResourceReady(
-                    resource: Drawable,
-                    model: Any,
-                    target: Target<Drawable>,
-                    dataSource: DataSource?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    onLoadSuccess(resource)
-                    return false
-                }
-            })
-            .into(holder)
+                    override fun onResourceReady(
+                            resource: Drawable,
+                            model: Any,
+                            target: Target<Drawable>,
+                            dataSource: DataSource?,
+                            isFirstResource: Boolean
+                    ): Boolean {
+                        onLoadSuccess(resource)
+                        return false
+                    }
+                })
+                .into(holder)
     }
 
 

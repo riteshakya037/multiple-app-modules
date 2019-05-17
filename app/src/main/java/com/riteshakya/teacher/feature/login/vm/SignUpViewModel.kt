@@ -16,10 +16,10 @@ import javax.inject.Inject
 
 class SignUpViewModel
 @Inject constructor(
-    val signUpSchoolInteractor: SignUpSchoolInteractor,
-    val signUpTeacherInteractor: SignUpTeacherInteractor,
-    val getSchoolInteractor: GetSchoolsInteractor,
-    val failureMessageMapper: FailureMessageMapper
+        val signUpSchoolInteractor: SignUpSchoolInteractor,
+        val signUpTeacherInteractor: SignUpTeacherInteractor,
+        val getSchoolInteractor: GetSchoolsInteractor,
+        val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
     val currentMode = MutableLiveData<Mode>().also {
         it.value = Mode.TEACHER
@@ -38,36 +38,17 @@ class SignUpViewModel
     val sectionValue = MutableLiveData<String>()
 
     // SignUp school screen
-    val nameOfAuthority = MutableLiveData<String>().also {
-        it.value = "Ritesh Shakya"
-    }
-    val schoolName = MutableLiveData<String>().also {
-        it.value = "Sambotta"
-    }
-
+    val nameOfAuthority = MutableLiveData<String>()
+    val schoolName = MutableLiveData<String>()
     val schoolEmail = MutableLiveData<String>()
-        .also {
-            it.value = "ritesh@sambotta.com"
-        }
     val schoolAreaCode = MutableLiveData<String>()
-        .also {
-            it.value = "12345"
-        }
     val schoolCity = MutableLiveData<String>()
-        .also {
-            it.value = "Kathmandu"
-        }
 
     // Password Screen
-    val password = MutableLiveData<String>().also {
-        it.value = "paperPC1"
-    }
+    val password = MutableLiveData<String>()
 
     // Phone
     val phoneNo = MutableLiveData<PhoneModel>()
-        .also {
-            it.value = PhoneModel("+977", "9841814809")
-        }
 
     // Profile Photo
     val profilePhoto = MutableLiveData<String>()
@@ -83,10 +64,10 @@ class SignUpViewModel
     }
 
     val schools = schoolsSubject
-        .startWith(true)
-        .flatMapSingle { getSchoolInteractor() }
-        .replay()
-        .autoConnect(1)
+            .startWith(true)
+            .flatMapSingle { getSchoolInteractor() }
+            .replay()
+            .autoConnect(1)
 
     fun loadSchools() {
         schoolsSubject.onNext(true)
@@ -111,18 +92,18 @@ class SignUpViewModel
 
     private fun signUpTeacher(): Completable {
         val teacherModel = TeacherModel(
-            firstName.value ?: "",
-            lastName.value ?: "",
-            school.value ?: "",
-            teacher.value ?: false,
-            classValue.value ?: "",
-            sectionValue.value ?: "",
-            phoneNo.value ?: PhoneModel(),
-            profilePhoto.value ?: "",
-            password.value ?: ""
+                firstName.value ?: "",
+                lastName.value ?: "",
+                school.value ?: "",
+                teacher.value ?: false,
+                classValue.value ?: "",
+                sectionValue.value ?: "",
+                phoneNo.value ?: PhoneModel(),
+                profilePhoto.value ?: "",
+                password.value ?: ""
         )
         return signUpTeacherInteractor(
-            teacherModel
+                teacherModel
         )
     }
 

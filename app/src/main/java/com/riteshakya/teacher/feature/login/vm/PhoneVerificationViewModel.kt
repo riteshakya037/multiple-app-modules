@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 class PhoneVerificationViewModel(
-    val failureMessageMapper: FailureMessageMapper
+        val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
 
     val currentMode = MutableLiveData<@Mode Int>().also {

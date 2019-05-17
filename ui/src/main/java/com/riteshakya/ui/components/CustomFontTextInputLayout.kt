@@ -17,14 +17,14 @@ class CustomFontTextInputLayout(
 ) : TextInputLayout(context, attrs) {
     private val boldTypeFace by lazy {
         Typeface.create(
-            ResourcesCompat.getFont(context, R.font.montserrat_bold),
-            Typeface.NORMAL
+                ResourcesCompat.getFont(context, R.font.montserrat_bold),
+                Typeface.NORMAL
         )
     }
     private val semiBoldTypeFace by lazy {
         Typeface.create(
-            ResourcesCompat.getFont(context, R.font.montserrat_semibold),
-            Typeface.NORMAL
+                ResourcesCompat.getFont(context, R.font.montserrat_semibold),
+                Typeface.NORMAL
         )
     }
 

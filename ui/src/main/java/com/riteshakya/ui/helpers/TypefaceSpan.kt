@@ -5,7 +5,9 @@ import android.graphics.Typeface
 import android.text.TextPaint
 import android.text.style.MetricAffectingSpan
 
-class TypefaceSpan(private val typeface: Typeface, private val color: Int = -1) : MetricAffectingSpan() {
+class TypefaceSpan(
+        private val typeface: Typeface, private val color: Int = -1
+) : MetricAffectingSpan() {
 
     override fun updateDrawState(tp: TextPaint) {
         tp.typeface = typeface

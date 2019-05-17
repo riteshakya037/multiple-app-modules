@@ -6,9 +6,9 @@ import com.bumptech.glide.load.engine.GlideException
 
 interface IImageLoader {
     fun loadImage(
-        url: String,
-        holder: ImageView,
-        onLoadSuccess: (Drawable) -> Unit = {},
-        onLoadFail: (GlideException) -> Unit = {}
+            url: String,
+            holder: ImageView,
+            onLoadSuccess: (Drawable) -> Unit = {},
+            onLoadFail: (GlideException) -> Unit = {}
     )
 }

@@ -12,9 +12,9 @@ import com.riteshakya.teacher.BuildConfig
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
+import com.riteshakya.teacher.navigation.Navigator
 import com.riteshakya.ui.components.MenuBottomSheet
 import com.riteshakya.ui.imageloaders.IImageLoader
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_logo_upload.*
 import javax.inject.Inject
 
@@ -29,6 +29,8 @@ class LogoUploadFragment : PhotoFragment() {
     @Inject
     lateinit var navigator: LoginNavigator
 
+    @Inject
+    internal lateinit var mainNavigator: Navigator
     private lateinit var mediaPickerBottomSheet: MenuBottomSheet
 
     override fun onCreateView(
@@ -58,9 +60,12 @@ class LogoUploadFragment : PhotoFragment() {
 
     private fun signUpUser() {
         signUpViewModel.signUpUser()
-            .addLoading()
-            .subscribe()
-            .untilStop()
+                .addLoading()
+                .subscribe({
+                    mainNavigator.showMain(context!!)
+                    activity?.finishAffinity()
+                }, {})
+                .untilStop()
     }
 
     private fun initializeModeChanges() {

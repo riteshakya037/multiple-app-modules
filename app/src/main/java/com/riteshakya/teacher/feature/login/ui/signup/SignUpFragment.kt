@@ -51,12 +51,16 @@ class SignUpFragment : BaseFragment() {
 
     private fun initializeSchools() {
         signUpViewModel.schools
-            .addLoading()
-            .subscribe({
-                schoolSelect.items =
-                    it.map { school -> SpinnerAdapter.SpinnerModel(school.id, school.schoolName, school.schoolLogo) }
-            }, {})
-            .untilStop()
+                .addLoading()
+                .subscribe({
+                    schoolSelect.items =
+                            it.map { school ->
+                                SpinnerAdapter.SpinnerModel(
+                                        school.id, school.schoolName, school.schoolLogo
+                                )
+                            }
+                }, {})
+                .untilStop()
     }
 
     private fun addModeChangeListener() {

@@ -17,31 +17,33 @@ import javax.inject.Singleton
 @Singleton
 class FirestoreTeacherRepository
 @Inject constructor(
-    private val authRepository: AuthRepository,
-    private val userRepository: UserRepository,
-    private val imageRepository: ImageRepository
+        private val authRepository: AuthRepository,
+        private val userRepository: UserRepository,
+        private val imageRepository: ImageRepository
 
 ) : TeacherRepository {
 
-    private val teachersCollection by lazy { FirebaseFirestore.getInstance().collection(DatabaseName.TABLE_TEACHERS) }
+    private val teachersCollection by lazy {
+        FirebaseFirestore.getInstance().collection(
+                DatabaseName.TABLE_TEACHERS
+        )
+    }
 
     override fun createTeacher(teacher: TeacherModel): Completable {
         val document = teachersCollection.document()
-        return authRepository.createAuth(teacher.phoneNo.fullNumber, teacher.school, teacher.password)
-            .flatMapCompletable { userId ->
-                uploadImage(teacher, userId)
-                    .flatMapCompletable { schoolDto ->
-                        userRepository.createUser(userId, schoolDto)
-                            .andThen {
-                                val data = mapOf(
-                                    DatabaseName.FIELD_USER_ID to userId,
-                                    DatabaseName.FIELD_SCHOOL_ID to teacher.school
-                                )
-                                document.set(data)
-                                it.onComplete()
+        return authRepository.createAuth(
+                teacher.phoneNo.fullNumber, teacher.school, teacher.password
+        )
+                .flatMapCompletable { userId ->
+                    uploadImage(teacher, userId)
+                            .flatMapCompletable { teacherDto ->
+                                userRepository.createUser(userId, teacherDto)
+                                        .andThen {
+                                            document.set(teacherDto.transform(userId, document.id))
+                                            it.onComplete()
+                                        }
                             }
-                    }
-            }
+                }
     }
 
     private fun uploadImage(teacher: TeacherModel, userId: String): Single<TeacherDto> {

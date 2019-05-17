@@ -1,9 +1,9 @@
 package com.riteshakya.core.validation.types
 
 
+import android.widget.EditText
 import com.riteshakya.core.validation.Validation
 import com.riteshakya.core.validation.ValidationResult
-import android.widget.EditText
 
 /**
  * @author Ritesh Shakya

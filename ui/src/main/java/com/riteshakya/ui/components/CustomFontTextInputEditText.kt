@@ -7,8 +7,8 @@ import com.google.android.material.textfield.TextInputEditText
 
 
 class CustomFontTextInputEditText(
-    context: Context,
-    attrs: AttributeSet? = null
+        context: Context,
+        attrs: AttributeSet? = null
 ) : TextInputEditText(context, attrs) {
 
     override fun onAttachedToWindow() {

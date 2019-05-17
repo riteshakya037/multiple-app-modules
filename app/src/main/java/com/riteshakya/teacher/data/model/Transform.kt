@@ -3,11 +3,11 @@ package com.riteshakya.teacher.data.model
 import com.riteshakya.core.model.PhoneModel
 
 fun PhoneDto.transform() = PhoneModel(
-    dial_code,
-    phone_no
+        dial_code,
+        phone_no
 )
 
 fun PhoneModel.transform() = PhoneDto(
-    dialCode,
-    phoneNo
+        dialCode,
+        phoneNo
 )

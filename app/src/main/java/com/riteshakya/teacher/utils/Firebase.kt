@@ -13,14 +13,15 @@ fun StorageReference.upload(path: String): Single<String> {
     } else {
         val file = Uri.fromFile(java.io.File(path))
         return Single.create {
-            putFile(file).continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-                if (!task.isSuccessful) {
-                    task.exception?.let { exception ->
-                        it.onError(exception)
-                    }
-                }
-                return@Continuation downloadUrl
-            }).addOnCompleteListener { task ->
+            putFile(file).continueWithTask(
+                    Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+                        if (!task.isSuccessful) {
+                            task.exception?.let { exception ->
+                                it.onError(exception)
+                            }
+                        }
+                        return@Continuation downloadUrl
+                    }).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     it.onSuccess(task.result!!.toString())
                 } else {

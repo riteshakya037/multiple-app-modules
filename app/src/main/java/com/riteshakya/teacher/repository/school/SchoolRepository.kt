@@ -7,4 +7,5 @@ import io.reactivex.Single
 interface SchoolRepository {
     fun createSchool(school: SchoolModel): Completable
     fun getSchoolList(): Single<List<SchoolModel>>
+    fun getSchool(schoolId: String): Single<SchoolModel>
 }

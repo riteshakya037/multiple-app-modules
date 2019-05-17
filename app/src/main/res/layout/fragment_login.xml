@@ -70,8 +70,8 @@
     <Button
         android:id="@+id/loginBtn"
         style="@style/Widget.Button.Bottom"
-        android:text="@string/txt_login"
         android:enabled="false"
+        android:text="@string/txt_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

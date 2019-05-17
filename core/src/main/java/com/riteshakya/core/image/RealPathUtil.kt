@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class RealPathUtil
 @Inject constructor(
-    private val context: Context
+        private val context: Context
 ) {
 
     fun getRealPath(fileUri: Uri): String {
@@ -50,7 +50,9 @@ class RealPathUtil
     }
 
     @Throws(IOException::class)
-    private fun createTemporalFileFrom(inputStream: InputStream?, lastPathSegment: String?, type: String?): File? {
+    private fun createTemporalFileFrom(
+            inputStream: InputStream?, lastPathSegment: String?, type: String?
+    ): File? {
         var targetFile: File? = null
 
         if (inputStream != null) {
@@ -71,6 +73,9 @@ class RealPathUtil
     }
 
     private fun createTemporalFile(lastPathSegment: String?, type: String?): File {
-        return File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "tempFile$lastPathSegment.$type")
+        return File(
+                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+                "tempFile$lastPathSegment.$type"
+        )
     }
 }

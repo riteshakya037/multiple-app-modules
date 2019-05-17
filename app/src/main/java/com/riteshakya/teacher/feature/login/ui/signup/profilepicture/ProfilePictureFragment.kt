@@ -12,6 +12,7 @@ import com.riteshakya.teacher.BuildConfig
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
+import com.riteshakya.teacher.navigation.Navigator
 import com.riteshakya.ui.components.MenuBottomSheet
 import com.riteshakya.ui.imageloaders.IImageLoader
 import kotlinx.android.synthetic.main.fragment_profile_picture.*
@@ -25,6 +26,9 @@ class ProfilePictureFragment : PhotoFragment() {
     lateinit var imageLoader: IImageLoader
     @Inject
     lateinit var navigator: LoginNavigator
+    @Inject
+    internal lateinit var mainNavigator: Navigator
+
     private lateinit var mediaPickerBottomSheet: MenuBottomSheet
 
     override fun onCreateView(
@@ -108,9 +112,12 @@ class ProfilePictureFragment : PhotoFragment() {
 
     private fun signUpUser() {
         signUpViewModel.signUpUser()
-            .addLoading()
-            .subscribe()
-            .untilStop()
+                .addLoading()
+                .subscribe({
+                    mainNavigator.showMain(context!!)
+                    activity?.finishAffinity()
+                }, {})
+                .untilStop()
     }
 
     override fun setUpImage(currentPhotoPath: String) {

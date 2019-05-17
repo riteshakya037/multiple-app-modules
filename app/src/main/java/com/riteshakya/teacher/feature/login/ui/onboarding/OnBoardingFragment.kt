@@ -15,9 +15,9 @@ class OnBoardingFragment : BaseFragment() {
     internal lateinit var navigator: LoginNavigator
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_on_boarding, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

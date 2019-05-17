@@ -10,7 +10,9 @@ class TeacherModule {
     @Module
     class Repositories {
         @Provides
-        fun provideTeacherRepository(repository: FirestoreTeacherRepository): TeacherRepository = repository
+        fun provideTeacherRepository(
+                repository: FirestoreTeacherRepository
+        ): TeacherRepository = repository
     }
 }
 

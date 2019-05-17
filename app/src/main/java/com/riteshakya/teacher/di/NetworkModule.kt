@@ -27,32 +27,32 @@ class NetworkModule {
     @Provides
     @Singleton
     internal fun providesGson() = GsonBuilder()
-        .enableComplexMapKeySerialization()
-        .serializeNulls()
-        .setPrettyPrinting()
-        .setVersion(1.0)
-        .create()
+            .enableComplexMapKeySerialization()
+            .serializeNulls()
+            .setPrettyPrinting()
+            .setVersion(1.0)
+            .create()
 
 
     @Provides
     @Singleton
     internal fun providesOkHttpClient(context: Context) =
-        OkHttpClient.Builder().apply {
-            addInterceptor(ConnectionInterceptor(context))
-            connectTimeout(10, TimeUnit.SECONDS)
-            readTimeout(15, TimeUnit.SECONDS)
-            if (BuildConfig.DEBUG) {
-                addInterceptor(interceptor)
-            }
-        }.build()
+            OkHttpClient.Builder().apply {
+                addInterceptor(ConnectionInterceptor(context))
+                connectTimeout(10, TimeUnit.SECONDS)
+                readTimeout(15, TimeUnit.SECONDS)
+                if (BuildConfig.DEBUG) {
+                    addInterceptor(interceptor)
+                }
+            }.build()
 
 
     @Provides
     @Singleton
     fun provideRetrofit(httpClient: OkHttpClient, gson: Gson): Retrofit = Retrofit.Builder()
-        .baseUrl(API_BASE_URL)
-        .client(httpClient)
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .build()
+            .baseUrl(API_BASE_URL)
+            .client(httpClient)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
 }

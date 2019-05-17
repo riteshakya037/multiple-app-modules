@@ -31,7 +31,7 @@ abstract class BaseListAdapter<T : BaseModel, H : BindableViewHolder<T>> : BaseA
         }
         mFactoryResolver.registerFactory(type, factory)
 
-        manage(publish.filter { it.javaClass.kotlin == type }.map { it ->
+        manage(publish.filter { it.javaClass.kotlin == type }.map {
             @Suppress("UNCHECKED_CAST")
             it as K
         }.subscribe {

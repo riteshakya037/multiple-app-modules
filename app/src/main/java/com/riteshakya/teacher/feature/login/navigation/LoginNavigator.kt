@@ -11,10 +11,12 @@ import javax.inject.Singleton
 @Singleton
 class LoginNavigator
 @Inject constructor(
-    private val navigationController: NavigationController
+        private val navigationController: NavigationController
 ) {
     fun navigateToLogin(baseFragment: BaseFragment) {
-        navigationController.navigateTo(baseFragment, NavigationHelper(ActionOnlyNavDirections(R.id.loginFragment)))
+        navigationController.navigateTo(
+                baseFragment, NavigationHelper(ActionOnlyNavDirections(R.id.loginFragment))
+        )
     }
 
     fun navigateToSignUp(fragment: BaseFragment) {

@@ -32,9 +32,9 @@
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:background="?selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_add_logo"
         android:clickable="true"
         android:focusable="true"
+        android:src="@drawable/ic_add_logo"
         android:theme="@style/AppTheme.InputLayout.Text"
         app:layout_constraintBottom_toTopOf="@id/finishBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,8 +57,8 @@
     <Button
         android:id="@+id/finishBtn"
         style="@style/Widget.Button"
-        android:text="Finish"
         android:enabled="false"
+        android:text="Finish"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

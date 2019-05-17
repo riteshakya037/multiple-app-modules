@@ -16,12 +16,14 @@ import javax.inject.Inject
 
 class PermissionHelper
 @Inject constructor(
-    private val context: Context
+        private val context: Context
 ) {
     private var listener: PermissionListener? = null
     private var activity: Activity? = null
 
-    fun checkPermission(permission: String, title: String, message: String, permissionGrant: PermissionGrant) {
+    fun checkPermission(
+            permission: String, title: String, message: String, permissionGrant: PermissionGrant
+    ) {
         listener = object : PermissionListener {
             override fun onPermissionGranted(response: PermissionGrantedResponse) {
                 permissionGrant.permissionGranted()
@@ -30,14 +32,16 @@ class PermissionHelper
 
             override fun onPermissionDenied(response: PermissionDeniedResponse) {
                 DialogOnDeniedPermissionListener.Builder.withContext(context)
-                    .withTitle(title)
-                    .withMessage(message)
-                    .withButtonText(android.R.string.ok)
-                    .build()
+                        .withTitle(title)
+                        .withMessage(message)
+                        .withButtonText(android.R.string.ok)
+                        .build()
                 listener = null
             }
 
-            override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest, token: PermissionToken) {
+            override fun onPermissionRationaleShouldBeShown(
+                    permission: PermissionRequest, token: PermissionToken
+            ) {
                 showPermissionRationale(token, title, message)
                 listener = null
             }
@@ -53,13 +57,13 @@ class PermissionHelper
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private fun showPermissionRationale(token: PermissionToken, title: String, message: String) {
         AlertDialog.Builder(activity!!).setTitle(title).setMessage(message)
-            .setNegativeButton(android.R.string.cancel) { dialog, _ ->
-                dialog.dismiss()
-                token.cancelPermissionRequest()
-            }.setPositiveButton(android.R.string.ok) { dialog, _ ->
-                dialog.dismiss()
-                token.continuePermissionRequest()
-            }.setOnDismissListener { token.cancelPermissionRequest() }.show()
+                .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                    dialog.dismiss()
+                    token.cancelPermissionRequest()
+                }.setPositiveButton(android.R.string.ok) { dialog, _ ->
+                    dialog.dismiss()
+                    token.continuePermissionRequest()
+                }.setOnDismissListener { token.cancelPermissionRequest() }.show()
     }
 
     interface PermissionGrant {

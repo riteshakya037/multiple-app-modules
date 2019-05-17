@@ -36,19 +36,19 @@ abstract class AppModule {
 
         @Provides
         fun provideViewModelFactory(
-            providers: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
+                providers: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
         ): ViewModelProvider.Factory =
-            AppViewModelFactory(providers)
+                AppViewModelFactory(providers)
     }
 
     @Module(
-        includes = [
-            SchoolModule.Repositories::class,
-            UserModule.Repositories::class,
-            TeacherModule.Repositories::class,
-            ImageModule.Repositories::class,
-            AuthModule.Repositories::class
-        ]
+            includes = [
+                SchoolModule.Repositories::class,
+                UserModule.Repositories::class,
+                TeacherModule.Repositories::class,
+                ImageModule.Repositories::class,
+                AuthModule.Repositories::class
+            ]
     )
     class Repository
 }

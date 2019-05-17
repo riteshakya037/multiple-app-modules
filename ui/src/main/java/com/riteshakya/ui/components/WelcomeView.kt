@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.riteshakya.ui.R
 import kotlinx.android.synthetic.main.custom_welcome_view.view.*
@@ -15,13 +16,13 @@ class WelcomeView @JvmOverloads constructor(
         defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private var title: String = ""
+    var title: String = ""
         set(value) {
             field = value
             titleTxt.text = value
         }
 
-    private var subtitle: String = ""
+    var subtitle: String = ""
         set(value) {
             field = value
             subtitleTxt.text = value
@@ -31,12 +32,12 @@ class WelcomeView @JvmOverloads constructor(
             field = value
             profileImage.setImageResource(value)
         }
-    private var showBadge: Boolean = false
+    var showBadge: Boolean = false
         set(value) {
             field = value
             profileBadge.visibility = if (value) View.VISIBLE else View.GONE
         }
-    private var badgeText: String = ""
+    var badgeText: String = ""
         set(value) {
             field = value
             profileBadge.text = value
@@ -46,6 +47,8 @@ class WelcomeView @JvmOverloads constructor(
         init()
         initTypedArray(attrs)
     }
+
+    val image: ImageView by lazy { profileImage }
 
     private fun initTypedArray(attrs: AttributeSet?) {
         val ta = context.theme.obtainStyledAttributes(attrs, R.styleable.WelcomeView, 0, 0)

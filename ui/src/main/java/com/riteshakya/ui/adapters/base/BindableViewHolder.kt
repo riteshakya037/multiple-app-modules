@@ -10,7 +10,9 @@ import io.reactivex.disposables.Disposable
  * @author Ritesh Shakya
  */
 
-abstract class BindableViewHolder<T : Any>(itemView: View, val context: Context = itemView.context) : RecyclerView.ViewHolder(itemView) {
+abstract class BindableViewHolder<T : Any>(
+        itemView: View, val context: Context = itemView.context
+) : RecyclerView.ViewHolder(itemView) {
     private val disposables = CompositeDisposable()
     var listSize: Int = 0
 

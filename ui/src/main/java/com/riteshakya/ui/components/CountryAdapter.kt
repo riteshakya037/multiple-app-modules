@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.custom_spinner_items_drop_down.view.*
  */
 
 class CountryAdapter(
-    applicationContext: Context
+        applicationContext: Context
 ) : ArrayAdapter<Country>(applicationContext, R.layout.custom_spinner_items) {
     private val inflater: LayoutInflater = LayoutInflater.from(applicationContext)
     private val countries = Country.getAllCountries()

@@ -4,18 +4,39 @@ import androidx.lifecycle.MutableLiveData
 import com.riteshakya.core.exception.FailureMessageMapper
 import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.platform.BaseViewModel
-import timber.log.Timber
+import com.riteshakya.teacher.interactor.login.LoginUserInteractor
+import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
+import io.reactivex.Completable
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Singleton
 
 @Singleton
 class LoginViewModel(
+        val loginUserInteractor: LoginUserInteractor,
+        val getSchoolInteractor: GetSchoolsInteractor,
         val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
-    fun loginUser() {
-        Timber.e("${phoneNo.value} ${password.value} ${school.value}")
-    }
 
     val phoneNo = MutableLiveData<PhoneModel>()
     val password = MutableLiveData<String>()
     val school = MutableLiveData<String>()
+
+    private val schoolsSubject by lazy {
+        PublishSubject.create<Boolean>()
+    }
+
+    val schools = schoolsSubject
+            .startWith(true)
+            .flatMapSingle { getSchoolInteractor() }
+            .replay()
+            .autoConnect(1)
+
+    fun loginUser(): Completable {
+        return loginUserInteractor(
+                phoneNo.value!!.fullNumber,
+                school.value ?: "",
+                password.value ?: ""
+        )
+    }
+
 }

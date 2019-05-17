@@ -54,8 +54,8 @@
             <ViewFlipper
                 android:id="@+id/modeFlipper"
                 android:layout_width="match_parent"
-                android:measureAllChildren="false"
                 android:layout_height="wrap_content"
+                android:measureAllChildren="false"
                 app:layout_constraintTop_toBottomOf="@id/modeSwitch">
 
                 <include layout="@layout/fragment_sign_up_teacher" />
@@ -69,8 +69,8 @@
     <Button
         android:id="@+id/nextBtn"
         style="@style/Widget.Button"
-        android:text="Next"
         android:enabled="false"
+        android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

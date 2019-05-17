@@ -14,7 +14,7 @@ fun SchoolModel.transform(): SchoolDto = SchoolDto(
         schoolLogo
 )
 
-fun SchoolDto.transform(userId: String) = SchoolModel(
+fun SchoolDto.transform() = SchoolModel(
         name_of_authority,
         name,
         email,
@@ -22,7 +22,20 @@ fun SchoolDto.transform(userId: String) = SchoolModel(
         city,
         phone_no.transform(),
         profile_photo,
-        logo,
-        "",
-        userId
+        logo
+)
+
+fun SchoolDto.transform(
+        userId: String, schoolId: String
+): SchoolCollectionDto = SchoolCollectionDto(
+        userId,
+        schoolId,
+        name,
+        logo
+)
+
+fun SchoolCollectionDto.transform() = SchoolModel(
+        schoolName = name,
+        schoolLogo = logo,
+        id = school_id
 )

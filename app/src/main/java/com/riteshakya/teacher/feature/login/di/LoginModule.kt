@@ -8,6 +8,8 @@ import com.riteshakya.core.di.ViewModelKey
 import com.riteshakya.core.exception.FailureMessageMapper
 import com.riteshakya.teacher.feature.login.ui.login.LoginFragment
 import com.riteshakya.teacher.feature.login.vm.LoginViewModel
+import com.riteshakya.teacher.interactor.login.LoginUserInteractor
+import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -27,8 +29,14 @@ abstract class LoginModule {
         @IntoMap
         @ViewModelKey(LoginViewModel::class)
         fun provideLoginViewModel(
-            failureMessageMapper: FailureMessageMapper
-        ): ViewModel = LoginViewModel(failureMessageMapper)
+                loginUserInteractor: LoginUserInteractor,
+                getSchoolsInteractor: GetSchoolsInteractor,
+                failureMessageMapper: FailureMessageMapper
+        ): ViewModel = LoginViewModel(
+                loginUserInteractor,
+                getSchoolsInteractor,
+                failureMessageMapper
+        )
     }
 
     @Module
@@ -36,9 +44,9 @@ abstract class LoginModule {
 
         @Provides
         fun provideLoginViewModel(
-            factory: ViewModelProvider.Factory,
-            target: LoginFragment
+                factory: ViewModelProvider.Factory,
+                target: LoginFragment
         ): LoginViewModel =
-            ViewModelProviders.of(target, factory).get(LoginViewModel::class.java)
+                ViewModelProviders.of(target, factory).get(LoginViewModel::class.java)
     }
 }

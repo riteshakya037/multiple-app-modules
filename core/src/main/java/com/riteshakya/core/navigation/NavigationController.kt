@@ -8,13 +8,13 @@ import javax.inject.Inject
 class NavigationController @Inject constructor() {
 
     fun navigateTo(
-        fragment: BaseFragment,
-        navigationHelper: NavigationHelper,
-        navBuilder: NavOptions.Builder = defaultNavOptions()
+            fragment: BaseFragment,
+            navigationHelper: NavigationHelper,
+            navBuilder: NavOptions.Builder = defaultNavOptions()
     ) {
         NavHostFragment.findNavController(fragment).navigate(
-            navigationHelper.navigationDirection,
-            navBuilder.build()
+                navigationHelper.navigationDirection,
+                navBuilder.build()
         )
     }
 }

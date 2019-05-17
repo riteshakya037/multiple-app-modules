@@ -6,9 +6,9 @@ import androidx.navigation.NavOptions
 import com.riteshakya.core.R
 
 class NavigationHelper(
-    val navigationDirection: NavDirections,
-    val args: Bundle = Bundle(),
-    val navBuilder: NavOptions.Builder = defaultNavOptions()
+        val navigationDirection: NavDirections,
+        val args: Bundle = Bundle(),
+        val navBuilder: NavOptions.Builder = defaultNavOptions()
 )
 
 fun defaultNavOptions(): NavOptions.Builder {

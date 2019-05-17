@@ -9,7 +9,7 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
 
     override fun onBackPressed() {
         val baseFragment = navHost?.childFragmentManager?.primaryNavigationFragment
-            ?: super.onBackPressed()
+                ?: super.onBackPressed()
         if (baseFragment is BaseFragment) {
             if (!baseFragment.consumeBackPressed()) {
                 super.onBackPressed()

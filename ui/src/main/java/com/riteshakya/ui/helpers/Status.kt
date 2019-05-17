@@ -1,4 +1,4 @@
-package com.riteshakya.ui.helpers;
+package com.riteshakya.ui.helpers
 
 enum class Status(val value: Int) {
     NONE(0), SUCCESS(1), ERROR(2);

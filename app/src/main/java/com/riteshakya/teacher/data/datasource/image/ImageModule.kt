@@ -10,7 +10,9 @@ class ImageModule {
     @Module
     class Repositories {
         @Provides
-        fun provideImageRepository(repository: FirebaseStorageImageRepository): ImageRepository = repository
+        fun provideImageRepository(
+                repository: FirebaseStorageImageRepository
+        ): ImageRepository = repository
     }
 }
 

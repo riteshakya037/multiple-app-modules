@@ -53,15 +53,15 @@ abstract class SignUpModule {
         @IntoMap
         @ViewModelKey(SignUpViewModel::class)
         fun provideSignUpViewModel(
-            signUpSchoolInteractor: SignUpSchoolInteractor,
-            signUpTeacherInteractor: SignUpTeacherInteractor,
-            getSchoolsInteractor: GetSchoolsInteractor,
-            failureMessageMapper: FailureMessageMapper
+                signUpSchoolInteractor: SignUpSchoolInteractor,
+                signUpTeacherInteractor: SignUpTeacherInteractor,
+                getSchoolsInteractor: GetSchoolsInteractor,
+                failureMessageMapper: FailureMessageMapper
         ): ViewModel = SignUpViewModel(
-            signUpSchoolInteractor,
-            signUpTeacherInteractor,
-            getSchoolsInteractor,
-            failureMessageMapper
+                signUpSchoolInteractor,
+                signUpTeacherInteractor,
+                getSchoolsInteractor,
+                failureMessageMapper
         )
 
         @Provides

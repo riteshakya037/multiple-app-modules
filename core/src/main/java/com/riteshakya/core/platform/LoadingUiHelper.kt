@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ProgressBar
+import androidx.fragment.app.DialogFragment
 import com.riteshakya.core.extension.toPixels
-import timber.log.Timber
 
 object LoadingUiHelper {
 
@@ -19,8 +19,8 @@ object LoadingUiHelper {
     }
 
     fun showProgress(
-        fragmentManager: androidx.fragment.app.FragmentManager,
-        type: Type = LoadingUiHelper.Type.FULL_SCREEN
+            fragmentManager: androidx.fragment.app.FragmentManager,
+            type: Type = LoadingUiHelper.Type.FULL_SCREEN
     ): ProgressDialogFragment {
         return ProgressDialogFragment().apply {
             arguments = Bundle().apply {
@@ -30,13 +30,13 @@ object LoadingUiHelper {
         }
     }
 
-    class ProgressDialogFragment : androidx.fragment.app.DialogFragment() {
+    class ProgressDialogFragment : DialogFragment() {
 
         private var type: Type? = null
 
         companion object {
-            var KEY_TYPE = "KEY_TYPE"
-            val TAG = "ProgressDialogFragment"
+            const val KEY_TYPE = "KEY_TYPE"
+            const val TAG = "ProgressDialogFragment"
         }
 
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,20 +44,26 @@ object LoadingUiHelper {
             isCancelable = false
         }
 
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            Timber.d("onCreateView ${arguments?.getSerializable(KEY_TYPE)}")
+        override fun onCreateView(
+                inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        ): View? {
             type =
-                savedInstanceState?.getSerializable(KEY_TYPE) as Type? ?: arguments?.getSerializable(
-                    KEY_TYPE
-                ) as Type?
-                        ?: LoadingUiHelper.Type.FULL_SCREEN
+                    savedInstanceState?.getSerializable(KEY_TYPE) as Type?
+                            ?: arguments?.getSerializable(
+                                    KEY_TYPE
+                            ) as Type?
+                                    ?: LoadingUiHelper.Type.FULL_SCREEN
 
             val frameLayout = FrameLayout(context!!)
-            var lp = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            var lp = FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
+            )
             frameLayout.layoutParams = lp
 
             val progressBar = ProgressBar(context)
-            lp = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            lp = FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+            )
             lp.gravity = Gravity.CENTER
             val margin = context!!.toPixels(16)
             lp.setMargins(margin, margin, margin, margin)

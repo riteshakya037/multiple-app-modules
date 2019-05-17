@@ -9,6 +9,8 @@ import com.riteshakya.core.validation.types.PasswordValidation
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.LoginViewModel
+import com.riteshakya.teacher.navigation.Navigator
+import com.riteshakya.ui.components.SpinnerAdapter
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
@@ -18,11 +20,13 @@ class LoginFragment : BaseFragment() {
     lateinit var loginViewModel: LoginViewModel
     @Inject
     lateinit var navigator: LoginNavigator
+    @Inject
+    internal lateinit var mainNavigator: Navigator
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_login, container, false)
 
 
@@ -31,8 +35,35 @@ class LoginFragment : BaseFragment() {
         initializeValidators()
         initializeInputsFromVM()
         loginBtn.setOnClickListener {
-            loginViewModel.loginUser()
+            loginUser()
         }
+        initializeSchools()
+    }
+
+    private fun loginUser() {
+        loginViewModel.loginUser()
+                .addLoading()
+                .subscribe({
+                    mainNavigator.showMain(context!!)
+                    activity?.finishAffinity()
+                }, {
+                    it.printStackTrace()
+                })
+                .untilStop()
+    }
+
+    private fun initializeSchools() {
+        loginViewModel.schools
+                .addLoading()
+                .subscribe({
+                    schoolSelect.items =
+                            it.map { school ->
+                                SpinnerAdapter.SpinnerModel(
+                                        school.id, school.schoolName, school.schoolLogo
+                                )
+                            }
+                }, {})
+                .untilStop()
     }
 
     private fun initializeInputsFromVM() {

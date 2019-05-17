@@ -1,10 +1,9 @@
 package com.riteshakya.teacher
 
+import com.riteshakya.teacher.di.DaggerAppComponent
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
-import com.riteshakya.teacher.di.DaggerAppComponent
-
 import timber.log.Timber
 
 class TeacherApp : DaggerApplication() {

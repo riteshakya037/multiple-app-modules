@@ -5,7 +5,6 @@ import android.net.ConnectivityManager
 import android.util.TypedValue
 
 
-
 val Context.isConnected: Boolean
     get() =
         connectivityManager.activeNetworkInfo.let {

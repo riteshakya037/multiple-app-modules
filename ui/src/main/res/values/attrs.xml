@@ -30,7 +30,7 @@
     </declare-styleable>
     <declare-styleable name="CustomSpinner">
         <attr name="android:entries" />
-        <attr name="selectedTextAppearance" format="reference"/>
+        <attr name="selectedTextAppearance" format="reference" />
     </declare-styleable>
     <declare-styleable name="PasswordView">
         <attr name="length" format="integer" />

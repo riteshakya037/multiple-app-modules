@@ -28,17 +28,17 @@ fun TextView.onTextChanged(function: (String) -> Unit) {
 }
 
 fun EditText.addValidity(
-    validation: Validation, changedText: (String) -> Unit = {}
+        validation: Validation, changedText: (String) -> Unit = {}
 ): Observable<Boolean> {
     return RxTextView.textChanges(this)
-        .skipInitialValue()
-        .debounce(200, TimeUnit.MILLISECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .map {
-            changedText(it.toString())
-            validation.validate(it.toString())
-        }
-        .map { result: ValidationResult<Any> -> result.isValid }
+            .skipInitialValue()
+            .debounce(200, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .map {
+                changedText(it.toString())
+                validation.validate(it.toString())
+            }
+            .map { result: ValidationResult<Any> -> result.isValid }
 
 }
 

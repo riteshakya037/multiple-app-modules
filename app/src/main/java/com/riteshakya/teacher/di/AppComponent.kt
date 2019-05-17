@@ -10,13 +10,14 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [
-        AppModule::class,
-        AndroidSupportInjectionModule::class,
-        ActivityBuilderModule::class,
-        NetworkModule::class
-    ]
-)interface AppComponent : AndroidInjector<TeacherApp> {
+        modules = [
+            AppModule::class,
+            AndroidSupportInjectionModule::class,
+            ActivityBuilderModule::class,
+            NetworkModule::class
+        ]
+)
+interface AppComponent : AndroidInjector<TeacherApp> {
 
     @Component.Builder
     abstract class Builder : AndroidInjector.Builder<TeacherApp>()

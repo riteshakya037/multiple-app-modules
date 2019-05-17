@@ -1,9 +1,9 @@
 package com.riteshakya.core.validation.types
 
 
+import android.text.TextUtils
 import com.riteshakya.core.validation.Validation
 import com.riteshakya.core.validation.ValidationResult
-import android.text.TextUtils
 
 /**
  * @author Ritesh Shakya

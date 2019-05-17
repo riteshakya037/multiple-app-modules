@@ -7,10 +7,10 @@ import javax.inject.Inject
 
 class SignUpTeacherInteractor
 @Inject constructor(
-    private val repository: TeacherRepository
+        private val repository: TeacherRepository
 ) {
     operator fun invoke(
-        teacher: TeacherModel
+            teacher: TeacherModel
     ): Completable {
         return repository.createTeacher(teacher)
     }

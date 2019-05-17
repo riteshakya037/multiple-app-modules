@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <inset xmlns:android="http://schemas.android.com/apk/res/android">
-    <selector >
+    <selector>
         <item>
             <layer-list>
                 <item>
                     <shape>
-                        <padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp"/>
+                        <padding
+                            android:bottom="3dp"
+                            android:left="3dp"
+                            android:right="3dp"
+                            android:top="3dp" />
                     </shape>
                 </item>
                 <item android:right="5dp">
-                    <bitmap android:gravity="center_vertical|right" android:src="@drawable/ic_spinner_arrow"/>
+                    <bitmap
+                        android:gravity="center_vertical|right"
+                        android:src="@drawable/ic_spinner_arrow" />
                 </item>
             </layer-list>
         </item>

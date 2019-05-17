@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class GetSchoolsInteractor
 @Inject constructor(
-    private val repository: SchoolRepository
+        private val repository: SchoolRepository
 ) {
     operator fun invoke(
     ): Single<List<SchoolModel>> {

@@ -8,14 +8,16 @@ import javax.inject.Inject
 
 class FailureMessageMapper
 @Inject constructor(
-    val context: Context
+        val context: Context
 ) {
     operator fun invoke(throwable: Throwable): String =
-        context.resources.let {
-            when (throwable) {
-                is HttpException -> it.getString(R.string.error_response)
-                is NoConnectivityException, is SocketTimeoutException -> it.getString(R.string.error_no_connection)
-                else -> it.getString(R.string.error_unknown)
+            context.resources.let {
+                when (throwable) {
+                    is HttpException -> it.getString(R.string.error_response)
+                    is NoConnectivityException, is SocketTimeoutException -> it.getString(
+                            R.string.error_no_connection
+                    )
+                    else -> it.getString(R.string.error_unknown)
+                }
             }
-        }
 }

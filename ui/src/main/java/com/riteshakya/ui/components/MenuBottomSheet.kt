@@ -1,8 +1,5 @@
 package com.riteshakya.ui.components
 
-import com.riteshakya.ui.adapters.base.BindableViewHolder
-import com.riteshakya.ui.adapters.base.GenericListAdapter
-import com.riteshakya.ui.components.base.BaseBottomSheet
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
@@ -19,6 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.riteshakya.core.model.BaseModel
 import com.riteshakya.ui.R
+import com.riteshakya.ui.adapters.base.BindableViewHolder
+import com.riteshakya.ui.adapters.base.GenericListAdapter
+import com.riteshakya.ui.components.base.BaseBottomSheet
 import kotlinx.android.synthetic.main.custom_menu_bottom_sheet.view.*
 import kotlinx.android.synthetic.main.item_list_popup_menu.view.*
 
