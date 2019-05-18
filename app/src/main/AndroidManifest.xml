@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.riteshakya.teacher">
 
-    <uses-permission android:name="android.permission.CAMERA" />
-
     <application
         android:name=".TeacherApp"
         android:allowBackup="true"
