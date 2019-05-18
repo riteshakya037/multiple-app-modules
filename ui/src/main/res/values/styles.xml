@@ -137,6 +137,21 @@
         <item name="android:theme">@style/AppTheme.InputLayout.Text</item>
     </style>
 
+    <style name="Widget.TabAsSwitch" parent="CoreAppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="tabIndicatorHeight">40dp</item>
+        <item name="tabGravity">center</item>
+        <item name="tabPaddingEnd">@dimen/horizontal_padding_large</item>
+        <item name="tabPaddingStart">@dimen/horizontal_padding_large</item>
+        <item name="tabSelectedTextColor">@color/colorWhite</item>
+        <item name="tabRippleColor">@null</item>
+        <item name="tabTextAppearance">@style/TextAppearance.TabLayout.Text</item>
+        <item name="tabTextColor">@color/colorTextDark</item>
+        <item name="android:background">@drawable/background_gender_switch</item>
+        <item name="tabIndicatorColor">@color/colorBlack</item>
+    </style>
+
     <style name="Widget.HomeTabLayout" parent="CoreAppTheme">
         <item name="android:layout_height">50dp</item>
         <item name="tabIndicatorHeight">0dp</item>
@@ -145,11 +160,17 @@
     </style>
 
     <style name="Widget.Welcome.Badge" parent="CoreAppTheme">
-        <item name="android:padding">6dp</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:background">@drawable/background_welcome_badge</item>
         <item name="android:textAppearance">@style/TextAppearance.Welcome.Badge</item>
+    </style>
+
+    <style name="Widget.Welcome.Badge.Light" parent="Widget.Welcome.Badge">
+        <item name="android:background">@drawable/background_welcome_badge_light</item>
+        <item name="android:textAppearance">@style/TextAppearance.Welcome.Badge.Light</item>
     </style>
 
     <style name="Navigation.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">

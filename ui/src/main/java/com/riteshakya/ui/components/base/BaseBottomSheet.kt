@@ -10,11 +10,6 @@ open class BaseBottomSheet : BottomSheetDialogFragment() {
 
     private val mDisposables = ArrayList<Disposable>()
 
-    protected fun manage(Disposable: Disposable) {
-        mDisposables.add(Disposable)
-    }
-
-
     fun show(fragmentManager: FragmentManager?) {
         if (!isAdded && fragmentManager != null) {
             val ft = fragmentManager.beginTransaction()

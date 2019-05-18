@@ -37,7 +37,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/countrySpinner"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
 
     <ViewFlipper
         android:id="@+id/inputStatus"
@@ -49,16 +50,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView style="@style/Widget.TextInput.Status.Icon" />
+        <ImageView
+            style="@style/Widget.TextInput.Status.Icon"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             style="@style/Widget.TextInput.Status.Icon"
-            app:srcCompat="@drawable/ic_success" />
+            app:srcCompat="@drawable/ic_success"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             style="@style/Widget.TextInput.Status.Icon"
             android:padding="2dp"
-            app:srcCompat="@drawable/ic_error" />
+            app:srcCompat="@drawable/ic_error"
+            tools:ignore="ContentDescription" />
     </ViewFlipper>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

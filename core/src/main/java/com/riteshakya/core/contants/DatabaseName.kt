@@ -5,11 +5,8 @@ class DatabaseName {
         // Tables
         const val TABLE_SCHOOLS = "schools"
         const val TABLE_TEACHERS = "teachers"
+        const val TABLE_STUDENTS = "students"
         const val TABLE_USERS = "users"
-
-        // Fields
-        const val FIELD_USER_ID = "user_id"
-        const val FIELD_SCHOOL_ID = "school_id"
 
         // Storage
         const val STORAGE_PROFILE_UPLOADS = "profile_pictures"

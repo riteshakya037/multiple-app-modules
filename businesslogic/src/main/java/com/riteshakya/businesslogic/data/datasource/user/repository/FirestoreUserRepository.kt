@@ -4,16 +4,15 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.riteshakya.businesslogic.data.datasource.school.model.SchoolDto
 import com.riteshakya.businesslogic.data.datasource.school.model.transform
+import com.riteshakya.businesslogic.data.datasource.student.model.StudentDto
+import com.riteshakya.businesslogic.data.datasource.student.model.transform
 import com.riteshakya.businesslogic.data.datasource.teacher.model.TeacherDto
 import com.riteshakya.businesslogic.data.datasource.teacher.model.transform
 import com.riteshakya.businesslogic.data.model.BaseUserDto
 import com.riteshakya.businesslogic.repository.school.SchoolRepository
 import com.riteshakya.businesslogic.repository.user.UserRepository
 import com.riteshakya.core.contants.DatabaseName
-import com.riteshakya.core.model.BaseUser
-import com.riteshakya.core.model.ERROR
-import com.riteshakya.core.model.SCHOOL
-import com.riteshakya.core.model.TEACHER
+import com.riteshakya.core.model.*
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.SingleEmitter
@@ -62,6 +61,13 @@ class FirestoreUserRepository
             }
             SCHOOL -> {
                 Single.just(documentSnapshot.toObject(SchoolDto::class.java)!!.transform())
+            }
+            STUDENT -> {
+                val studentModel = documentSnapshot.toObject(StudentDto::class.java)!!.transform()
+                schoolRepository.get().getSchool(studentModel.school).map {
+                    studentModel.schoolModel = it
+                    studentModel
+                }
             }
             else -> {
                 Single.just(BaseUser(ERROR))

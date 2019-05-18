@@ -19,5 +19,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Demo" />
+        tools:text="Demo"
+        tools:ignore="RtlSymmetry" />
 </androidx.constraintlayout.widget.ConstraintLayout>

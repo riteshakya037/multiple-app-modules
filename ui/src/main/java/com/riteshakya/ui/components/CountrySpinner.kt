@@ -33,7 +33,7 @@ class CountrySpinner : AppCompatSpinner, AdapterView.OnItemSelectedListener {
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-            context, attrs, defStyleAttr
+        context, attrs, defStyleAttr
     ) {
         init()
     }
@@ -46,8 +46,8 @@ class CountrySpinner : AppCompatSpinner, AdapterView.OnItemSelectedListener {
         onItemSelectedListener = this
     }
 
-    fun getCountryFromDialCode(value: String) =
-            Country.getAllCountries().first { it.dialCode == value }
+    private fun getCountryFromDialCode(value: String): Country =
+        Country.getAllCountries().first { it.dialCode == value }
 
 
     override fun onItemSelected(adapterView: AdapterView<*>, view: View?, i: Int, l: Long) {

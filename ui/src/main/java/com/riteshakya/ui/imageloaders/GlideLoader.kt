@@ -50,9 +50,4 @@ class GlideLoader @Inject constructor(val context: Context) : IImageLoader {
                 })
                 .into(holder)
     }
-
-
-    private fun clear(holder: ImageView) {
-        holder.setImageDrawable(null)
-    }
 }

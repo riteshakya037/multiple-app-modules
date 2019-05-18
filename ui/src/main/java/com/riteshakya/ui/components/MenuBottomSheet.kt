@@ -43,20 +43,21 @@ class MenuBottomSheet : BaseBottomSheet() {
     override fun setupDialog(dialog: Dialog, style: Int) {
         contentView = View.inflate(context, R.layout.custom_menu_bottom_sheet, null)
         dialog.setContentView(contentView)
-        val layoutParams = (contentView.parent as View).layoutParams as CoordinatorLayout.LayoutParams
+        val layoutParams =
+            (contentView.parent as View).layoutParams as CoordinatorLayout.LayoutParams
         val behavior = layoutParams.behavior
         if (behavior is BottomSheetBehavior<*>) {
             behavior.setBottomSheetCallback(mBottomSheetBehaviorCallback)
             behavior.peekHeight = resources.getDimensionPixelSize(R.dimen.bottomsheet_peek_height)
         }
         (contentView.parent as View).setBackgroundColor(
-                ContextCompat.getColor(context!!, android.R.color.transparent)
+            ContextCompat.getColor(context!!, android.R.color.transparent)
         )
         setRecyclerView()
         setTitle(builder.title)
     }
 
-    fun setTitle(title: String) {
+    private fun setTitle(title: String) {
         if (title.isEmpty()) {
             contentView.titleTxt.visibility = GONE
         } else {
@@ -76,12 +77,12 @@ class MenuBottomSheet : BaseBottomSheet() {
             this.adapter = menuAdapter
         }
         menuAdapter.registerViewHolderFactory(
-                type = MenuItem::class,
-                layout = R.layout.item_list_popup_menu,
-                bindViewHolder = { itemView, _ -> MenuViewHolder(itemView) },
-                onClick = { item ->
-                    complete(item.id)
-                }
+            type = MenuItem::class,
+            layout = R.layout.item_list_popup_menu,
+            bindViewHolder = { itemView, _ -> MenuViewHolder(itemView) },
+            onClick = { item ->
+                complete(item.id)
+            }
         )
     }
 
@@ -96,13 +97,6 @@ class MenuBottomSheet : BaseBottomSheet() {
 
     override fun dismiss() {
         builder.onMenuSelectedListener!!.onDismiss()
-    }
-
-    fun changeMenuState(actionId: Int, isEnabled: Boolean) {
-        val menuItem = builder.items.find { item -> item.itemId == actionId } ?: return
-        menuItem.enabled = isEnabled
-        menus = ArrayList(builder.items.filter { it.enabled })
-        menuAdapter.setItems(menus)
     }
 
     interface MenuSelectedListener {
@@ -144,7 +138,7 @@ class MenuBottomSheet : BaseBottomSheet() {
 
             if (onMenuSelectedListener == null) {
                 throw RuntimeException(
-                        "You have to use setOnMenuSelectedListener() for receive menu events"
+                    "You have to use setOnMenuSelectedListener() for receive menu events"
                 )
             }
 
@@ -155,8 +149,8 @@ class MenuBottomSheet : BaseBottomSheet() {
         }
     }
 
-    class MenuItem(val itemId: Int, val title: String, var enabled: Boolean = true) : BaseModel(
-            itemId.toString()
+    class MenuItem(itemId: Int, val title: String, var enabled: Boolean = true) : BaseModel(
+        itemId.toString()
     )
 
 
