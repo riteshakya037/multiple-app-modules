@@ -19,9 +19,9 @@ import java.util.*
  * author riteshakya037
  */
 class PasswordView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private var viewList: MutableList<PasswordCharacterView> = ArrayList()
@@ -54,7 +54,7 @@ class PasswordView @JvmOverloads constructor(
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.PasswordView)
         length = typedArray.getInt(R.styleable.PasswordView_length, 4)
         inputType = typedArray.getInt(
-            R.styleable.PasswordView_android_inputType, InputType.TYPE_CLASS_NUMBER
+                R.styleable.PasswordView_android_inputType, InputType.TYPE_CLASS_NUMBER
         )
         typedArray.recycle()
     }

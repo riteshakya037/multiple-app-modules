@@ -3,11 +3,11 @@ package com.riteshakya.teacher.feature.main.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.riteshakya.businesslogic.interactor.user.GetCurrentUserInteractor
 import com.riteshakya.core.di.PerFragment
 import com.riteshakya.core.di.ViewModelKey
 import com.riteshakya.teacher.feature.main.ui.home.HomeFragment
 import com.riteshakya.teacher.feature.main.vm.HomeViewModel
-import com.riteshakya.businesslogic.interactor.user.GetCurrentUserInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

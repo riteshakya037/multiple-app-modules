@@ -30,7 +30,6 @@ abstract class SignUpModule {
     @ContributesAndroidInjector
     abstract fun providesSignUpFragment(): SignUpFragment
 
-
     @PerFragment
     @ContributesAndroidInjector
     abstract fun providesPasswordFragment(): PasswordFragment
@@ -47,7 +46,6 @@ abstract class SignUpModule {
     @ContributesAndroidInjector
     abstract fun providesLogoUploadFragment(): LogoUploadFragment
 
-
     @Module
     class ProvideViewModel {
 
@@ -55,26 +53,25 @@ abstract class SignUpModule {
         @IntoMap
         @ViewModelKey(SignUpViewModel::class)
         fun provideSignUpViewModel(
-            signUpSchoolInteractor: SignUpSchoolInteractor,
-            signUpTeacherInteractor: SignUpTeacherInteractor,
-            getSchoolsInteractor: GetSchoolsInteractor,
-            getCityNameInteractor: GetCityNameInteractor,
-            failureMessageMapper: FailureMessageMapper
+                signUpSchoolInteractor: SignUpSchoolInteractor,
+                signUpTeacherInteractor: SignUpTeacherInteractor,
+                getSchoolsInteractor: GetSchoolsInteractor,
+                getCityNameInteractor: GetCityNameInteractor,
+                failureMessageMapper: FailureMessageMapper
         ): ViewModel = SignUpViewModel(
-            signUpSchoolInteractor,
-            signUpTeacherInteractor,
-            getSchoolsInteractor,
-            getCityNameInteractor,
-            failureMessageMapper
+                signUpSchoolInteractor,
+                signUpTeacherInteractor,
+                getSchoolsInteractor,
+                getCityNameInteractor,
+                failureMessageMapper
         )
 
         @Provides
         @IntoMap
         @ViewModelKey(PhoneVerificationViewModel::class)
         fun providePhoneVerificationViewModel(
-            failureMessageMapper: FailureMessageMapper,
-            phoneRepository: PhoneRepository
-        ): ViewModel = PhoneVerificationViewModel(phoneRepository, failureMessageMapper)
+                phoneRepository: PhoneRepository
+        ): ViewModel = PhoneVerificationViewModel(phoneRepository)
     }
 
     @Module
@@ -82,9 +79,9 @@ abstract class SignUpModule {
 
         @Provides
         fun provideLoginViewModel(
-            factory: ViewModelProvider.Factory,
-            target: PhoneFragment
+                factory: ViewModelProvider.Factory,
+                target: PhoneFragment
         ): PhoneVerificationViewModel =
-            ViewModelProviders.of(target, factory).get(PhoneVerificationViewModel::class.java)
+                ViewModelProviders.of(target, factory).get(PhoneVerificationViewModel::class.java)
     }
 }

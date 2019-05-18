@@ -23,11 +23,11 @@ import javax.inject.Singleton
 @Singleton
 class FirestoreUserRepository
 @Inject constructor(
-    private var schoolRepository: Provider<SchoolRepository>
+        private var schoolRepository: Provider<SchoolRepository>
 ) : UserRepository {
     private val userCollection by lazy {
         FirebaseFirestore.getInstance().collection(
-            DatabaseName.TABLE_USERS
+                DatabaseName.TABLE_USERS
         )
     }
 

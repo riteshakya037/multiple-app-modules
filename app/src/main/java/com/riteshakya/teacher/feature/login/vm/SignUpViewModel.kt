@@ -20,11 +20,11 @@ import javax.inject.Inject
 
 class SignUpViewModel
 @Inject constructor(
-    val signUpSchoolInteractor: SignUpSchoolInteractor,
-    val signUpTeacherInteractor: SignUpTeacherInteractor,
-    val getSchoolInteractor: GetSchoolsInteractor,
-    val getCityNameInteractor: GetCityNameInteractor,
-    val failureMessageMapper: FailureMessageMapper
+        val signUpSchoolInteractor: SignUpSchoolInteractor,
+        val signUpTeacherInteractor: SignUpTeacherInteractor,
+        val getSchoolInteractor: GetSchoolsInteractor,
+        val getCityNameInteractor: GetCityNameInteractor,
+        val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
     val currentMode = MutableLiveData<Mode>().also {
         it.value = Mode.TEACHER
@@ -75,23 +75,23 @@ class SignUpViewModel
     val cityNameState: BehaviorSubject<ResultState> = BehaviorSubject.create()
 
     val schools = schoolsSubject
-        .startWith(true)
-        .flatMapSingle { getSchoolInteractor() }
-        .replay()
-        .autoConnect(1)
+            .startWith(true)
+            .flatMapSingle { getSchoolInteractor() }
+            .replay()
+            .autoConnect(1)
 
     val cityNameObserver = postalCodeSubject
-        .filter { it.length == 5 }
-        .flatMapSingle {
-            getCityNameInteractor(it)
-                .observeOn(AndroidSchedulers.mainThread())
-                .onErrorReturn {
-                    cityNameState.onNext(ResultState.Error(failureMessageMapper(it)))
-                    ""
-                }
-        }
-        .replay()
-        .autoConnect(1)
+            .filter { it.length == 5 }
+            .flatMapSingle {
+                getCityNameInteractor(it)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .onErrorReturn { e ->
+                            cityNameState.onNext(ResultState.Error(failureMessageMapper(e)))
+                            ""
+                        }
+            }
+            .replay()
+            .autoConnect(1)
 
     fun loadSchools() {
         schoolsSubject.onNext(true)
@@ -103,35 +103,35 @@ class SignUpViewModel
 
     private fun signUpSchool(): Completable {
         val schoolModel = SchoolModel(
-            nameOfAuthority.value ?: "",
-            schoolName.value ?: "",
-            schoolEmail.value ?: "",
-            schoolAreaCode.value ?: "",
-            schoolCity.value ?: "",
-            phoneNo.value ?: PhoneModel(),
-            profilePhoto.value ?: "",
-            schoolLogo.value ?: "",
-            password.value ?: ""
+                nameOfAuthority.value ?: "",
+                schoolName.value ?: "",
+                schoolEmail.value ?: "",
+                schoolAreaCode.value ?: "",
+                schoolCity.value ?: "",
+                phoneNo.value ?: PhoneModel(),
+                profilePhoto.value ?: "",
+                schoolLogo.value ?: "",
+                password.value ?: ""
         )
         return signUpSchoolInteractor(
-            schoolModel
+                schoolModel
         )
     }
 
     private fun signUpTeacher(): Completable {
         val teacherModel = TeacherModel(
-            firstName.value ?: "",
-            lastName.value ?: "",
-            school.value ?: "",
-            teacher.value ?: false,
-            classValue.value ?: "",
-            sectionValue.value ?: "",
-            phoneNo.value ?: PhoneModel(),
-            profilePhoto.value ?: "",
-            password.value ?: ""
+                firstName.value ?: "",
+                lastName.value ?: "",
+                school.value ?: "",
+                teacher.value ?: false,
+                classValue.value ?: "",
+                sectionValue.value ?: "",
+                phoneNo.value ?: PhoneModel(),
+                profilePhoto.value ?: "",
+                password.value ?: ""
         )
         return signUpTeacherInteractor(
-            teacherModel
+                teacherModel
         )
     }
 

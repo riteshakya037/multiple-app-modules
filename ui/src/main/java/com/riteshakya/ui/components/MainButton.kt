@@ -12,9 +12,9 @@ import kotlinx.android.synthetic.main.custom_main_button.view.*
  * author riteshakya037
  */
 class MainButton @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     var text: String = ""

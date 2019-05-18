@@ -17,33 +17,33 @@ import javax.inject.Singleton
 @Singleton
 class FirestoreStudentRepository
 @Inject constructor(
-    private val authRepository: AuthRepository,
-    private val userRepository: UserRepository,
-    private val imageRepository: ImageRepository
+        private val authRepository: AuthRepository,
+        private val userRepository: UserRepository,
+        private val imageRepository: ImageRepository
 
 ) : StudentRepository {
 
     private val studentsCollection by lazy {
         FirebaseFirestore.getInstance().collection(
-            DatabaseName.TABLE_STUDENTS
+                DatabaseName.TABLE_STUDENTS
         )
     }
 
     override fun createStudent(student: StudentModel): Completable {
         val document = studentsCollection.document()
         return authRepository.createAuth(
-            student.phoneNo.fullNumber, student.school, student.password
+                student.phoneNo.fullNumber, student.school, student.password
         )
-            .flatMapCompletable { userId ->
-                uploadImage(student, userId)
-                    .flatMapCompletable { studentDto ->
-                        userRepository.createUser(userId, studentDto)
-                            .andThen {
-                                document.set(studentDto.transform(userId, document.id))
-                                it.onComplete()
+                .flatMapCompletable { userId ->
+                    uploadImage(student, userId)
+                            .flatMapCompletable { studentDto ->
+                                userRepository.createUser(userId, studentDto)
+                                        .andThen {
+                                            document.set(studentDto.transform(userId, document.id))
+                                            it.onComplete()
+                                        }
                             }
-                    }
-            }
+                }
     }
 
     private fun uploadImage(student: StudentModel, userId: String): Single<StudentDto> {

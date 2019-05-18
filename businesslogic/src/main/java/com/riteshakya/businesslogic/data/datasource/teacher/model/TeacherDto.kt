@@ -1,8 +1,8 @@
 package com.riteshakya.businesslogic.data.datasource.teacher.model
 
-import com.riteshakya.core.model.TEACHER
 import com.riteshakya.businesslogic.data.model.BaseUserDto
 import com.riteshakya.businesslogic.data.model.PhoneDto
+import com.riteshakya.core.model.TEACHER
 
 data class TeacherDto(
         var first_name: String = "",

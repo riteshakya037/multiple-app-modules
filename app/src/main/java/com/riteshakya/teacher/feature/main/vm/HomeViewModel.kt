@@ -1,8 +1,8 @@
 package com.riteshakya.teacher.feature.main.vm
 
+import com.riteshakya.businesslogic.interactor.user.GetCurrentUserInteractor
 import com.riteshakya.core.model.BaseUser
 import com.riteshakya.core.platform.BaseViewModel
-import com.riteshakya.businesslogic.interactor.user.GetCurrentUserInteractor
 import io.reactivex.Single
 import javax.inject.Singleton
 

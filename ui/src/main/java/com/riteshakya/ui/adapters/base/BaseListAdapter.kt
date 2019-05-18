@@ -16,10 +16,10 @@ abstract class BaseListAdapter<T : BaseModel, H : BindableViewHolder<T>> : BaseA
     private val publishList: PublishSubject<List<T>> = PublishSubject.create()
 
     open fun <K : T> registerViewHolderFactory(
-        type: KClass<K>,
-        layout: Int,
-        bindViewHolder: (View, ViewGroup) -> BindableViewHolder<K>,
-        onClick: (K) -> Unit = {}
+            type: KClass<K>,
+            layout: Int,
+            bindViewHolder: (View, ViewGroup) -> BindableViewHolder<K>,
+            onClick: (K) -> Unit = {}
     ) {
         val factory = object : ViewHolderFactory<BindableViewHolder<K>>(layout) {
             override fun createView(itemView: View, parent: ViewGroup): BindableViewHolder<K> {
@@ -37,8 +37,8 @@ abstract class BaseListAdapter<T : BaseModel, H : BindableViewHolder<T>> : BaseA
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+            parent: ViewGroup,
+            viewType: Int
     ): H {
         @Suppress("UNCHECKED_CAST")
         return mFactoryResolver.getFactoryForId(viewType).create(parent) as H

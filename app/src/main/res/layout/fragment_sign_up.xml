@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/horizontal_padding"
                 android:layout_marginTop="60dp"
-                android:text="Signup."
+                android:text="@string/txt_on_boarding_signup"
                 android:textAppearance="@style/TextAppearance.SignUp.Title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,12 +42,12 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="teachers" />
+                    android:text="@string/txt_mode_teachers" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="school" />
+                    android:text="@string/txt_mode_school" />
 
             </com.riteshakya.ui.components.DividerTabLayout>
 
@@ -70,7 +70,7 @@
         android:id="@+id/nextBtn"
         style="@style/Widget.Button"
         android:enabled="false"
-        android:text="Next"
+        android:text="@string/txt_next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

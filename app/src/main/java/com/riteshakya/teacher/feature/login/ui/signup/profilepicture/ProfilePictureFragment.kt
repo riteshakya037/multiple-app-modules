@@ -94,13 +94,13 @@ class ProfilePictureFragment : PhotoFragment() {
             it?.apply {
                 when (this) {
                     SignUpViewModel.Mode.TEACHER -> {
-                        finishBtn.text = "Finish"
+                        finishBtn.text = getString(R.string.txt_finish)
                         finishBtn.setOnClickListener {
                             signUpUser()
                         }
                     }
                     SignUpViewModel.Mode.SCHOOL -> {
-                        finishBtn.text = "Next"
+                        finishBtn.text = getString(R.string.txt_next)
                         finishBtn.setOnClickListener {
                             navigateToLogoUpload()
                         }

@@ -10,7 +10,7 @@ class GeocodeModule {
     class Repositories {
         @Provides
         fun provideGeoCodeRepository(
-            repository: GoogleGeocodeRepository
+                repository: GoogleGeocodeRepository
         ): GeocodeRepository = repository
     }
 }

@@ -91,7 +91,7 @@
         android:id="@+id/nextBtn"
         style="@style/Widget.Button.Bottom"
         android:enabled="false"
-        android:text="Next"
+        android:text="@string/txt_next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

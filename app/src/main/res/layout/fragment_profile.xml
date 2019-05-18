@@ -9,7 +9,7 @@
     <Button
         android:id="@+id/logoutBtn"
         style="@style/Widget.Button"
-        android:text="Logout"
+        android:text="@string/txt_logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

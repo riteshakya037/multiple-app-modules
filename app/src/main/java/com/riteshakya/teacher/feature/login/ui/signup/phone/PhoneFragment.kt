@@ -30,9 +30,9 @@ class PhoneFragment : BaseFragment() {
     lateinit var navigator: LoginNavigator
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_phone, container, false)
 
 
@@ -51,15 +51,15 @@ class PhoneFragment : BaseFragment() {
 
         getCodeBtn.setOnClickListener {
             phoneViewModel.requestOrSubmitCode()
-                .addLoading()
-                .subscribe({}, {})
-                .untilStop()
+                    .addLoading()
+                    .subscribe({}, {})
+                    .untilStop()
         }
         resendBtn.setOnClickListener {
             phoneViewModel.resendCode()
-                .addLoading()
-                .subscribe({}, {})
-                .untilStop()
+                    .addLoading()
+                    .subscribe({}, {})
+                    .untilStop()
         }
     }
 

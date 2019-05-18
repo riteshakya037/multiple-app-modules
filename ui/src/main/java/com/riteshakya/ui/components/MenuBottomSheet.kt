@@ -44,14 +44,14 @@ class MenuBottomSheet : BaseBottomSheet() {
         contentView = View.inflate(context, R.layout.custom_menu_bottom_sheet, null)
         dialog.setContentView(contentView)
         val layoutParams =
-            (contentView.parent as View).layoutParams as CoordinatorLayout.LayoutParams
+                (contentView.parent as View).layoutParams as CoordinatorLayout.LayoutParams
         val behavior = layoutParams.behavior
         if (behavior is BottomSheetBehavior<*>) {
             behavior.setBottomSheetCallback(mBottomSheetBehaviorCallback)
             behavior.peekHeight = resources.getDimensionPixelSize(R.dimen.bottomsheet_peek_height)
         }
         (contentView.parent as View).setBackgroundColor(
-            ContextCompat.getColor(context!!, android.R.color.transparent)
+                ContextCompat.getColor(context!!, android.R.color.transparent)
         )
         setRecyclerView()
         setTitle(builder.title)
@@ -77,12 +77,12 @@ class MenuBottomSheet : BaseBottomSheet() {
             this.adapter = menuAdapter
         }
         menuAdapter.registerViewHolderFactory(
-            type = MenuItem::class,
-            layout = R.layout.item_list_popup_menu,
-            bindViewHolder = { itemView, _ -> MenuViewHolder(itemView) },
-            onClick = { item ->
-                complete(item.id)
-            }
+                type = MenuItem::class,
+                layout = R.layout.item_list_popup_menu,
+                bindViewHolder = { itemView, _ -> MenuViewHolder(itemView) },
+                onClick = { item ->
+                    complete(item.id)
+                }
         )
     }
 
@@ -138,7 +138,7 @@ class MenuBottomSheet : BaseBottomSheet() {
 
             if (onMenuSelectedListener == null) {
                 throw RuntimeException(
-                    "You have to use setOnMenuSelectedListener() for receive menu events"
+                        "You have to use setOnMenuSelectedListener() for receive menu events"
                 )
             }
 
@@ -150,7 +150,7 @@ class MenuBottomSheet : BaseBottomSheet() {
     }
 
     class MenuItem(itemId: Int, val title: String, var enabled: Boolean = true) : BaseModel(
-        itemId.toString()
+            itemId.toString()
     )
 
 

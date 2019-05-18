@@ -6,7 +6,6 @@ import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.NO
 import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.PHONE
 import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.VERIFIED
 import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.WAITING_CODE
-import com.riteshakya.core.exception.FailureMessageMapper
 import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.platform.BaseViewModel
 import io.reactivex.Completable
@@ -15,8 +14,7 @@ import javax.inject.Singleton
 
 @Singleton
 class PhoneVerificationViewModel(
-        val phoneRepository: PhoneRepository,
-        val failureMessageMapper: FailureMessageMapper
+        private val phoneRepository: PhoneRepository
 ) : BaseViewModel() {
 
     val currentMode = MutableLiveData<@PhoneRepository.Companion.Mode Int>().also {

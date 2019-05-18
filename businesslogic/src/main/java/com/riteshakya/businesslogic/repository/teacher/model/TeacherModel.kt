@@ -1,9 +1,9 @@
 package com.riteshakya.businesslogic.repository.teacher.model
 
+import com.riteshakya.businesslogic.repository.school.model.SchoolModel
 import com.riteshakya.core.model.BaseUser
 import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.model.TEACHER
-import com.riteshakya.businesslogic.repository.school.model.SchoolModel
 
 data class TeacherModel(
         val firstName: String = "",

@@ -1,8 +1,8 @@
 package com.riteshakya.businesslogic.data.datasource.school.model
 
-import com.riteshakya.core.model.SCHOOL
 import com.riteshakya.businesslogic.data.model.BaseUserDto
 import com.riteshakya.businesslogic.data.model.PhoneDto
+import com.riteshakya.core.model.SCHOOL
 
 data class SchoolDto(
         var name_of_authority: String = "",

@@ -11,7 +11,7 @@ class StudentModule {
     class Repositories {
         @Provides
         fun provideStudentRepository(
-            repository: FirestoreStudentRepository
+                repository: FirestoreStudentRepository
         ): StudentRepository = repository
     }
 }

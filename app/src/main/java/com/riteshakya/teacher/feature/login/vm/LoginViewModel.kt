@@ -1,14 +1,14 @@
 package com.riteshakya.teacher.feature.login.vm
 
 import androidx.lifecycle.MutableLiveData
-import com.riteshakya.core.exception.FailureMessageMapper
-import com.riteshakya.core.model.BaseUser
-import com.riteshakya.core.model.PhoneModel
-import com.riteshakya.core.platform.BaseViewModel
 import com.riteshakya.businesslogic.interactor.login.LoginUserInteractor
 import com.riteshakya.businesslogic.interactor.login.LogoutUserInteractor
 import com.riteshakya.businesslogic.interactor.school.GetSchoolsInteractor
 import com.riteshakya.businesslogic.interactor.user.GetCurrentUserInteractor
+import com.riteshakya.core.exception.FailureMessageMapper
+import com.riteshakya.core.model.BaseUser
+import com.riteshakya.core.model.PhoneModel
+import com.riteshakya.core.platform.BaseViewModel
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.subjects.PublishSubject

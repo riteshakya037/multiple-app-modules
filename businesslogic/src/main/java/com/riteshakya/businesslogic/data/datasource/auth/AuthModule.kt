@@ -15,7 +15,9 @@ class AuthModule {
         fun provideAuthRepository(repository: FirebaseAuthRepository): AuthRepository = repository
 
         @Provides
-        fun providePhoneRepository(repository: FirebasePhoneRepository): PhoneRepository = repository
+        fun providePhoneRepository(
+                repository: FirebasePhoneRepository
+        ): PhoneRepository = repository
     }
 }
 

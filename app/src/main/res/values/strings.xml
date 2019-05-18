@@ -12,6 +12,7 @@
     // Form Item
     <string name="txt_contact_number">contact number</string>
     <string name="txt_password">password</string>
+    <string name="txt_confirm_password">confirm password</string>
     <string name="txt_school">school</string>
     <string name="txt_name_of_authority">name of authority</string>
     <string name="txt_school_name">school name</string>
@@ -25,6 +26,8 @@
     <string name="txt_are_you_a_class_teacher">are you a class teacher?</string>
     <string name="txt_school_not_listed">school not listed? </string>
     <string name="txt_add_here">add here</string>
+    <string name="txt_mode_teachers">teachers</string>
+    <string name="txt_mode_school">school</string>
 
     // Phone
     <string name="txt_what_s_your_number">What\'s your number?</string>
@@ -32,10 +35,24 @@
     <string name="txt_resend_code">Resend Code</string>
     <string name="txt_verify_code">Verify Code</string>
 
+    // Password
+    <string name="txt_password_subtitle">Set a password.</string>
+
+    // Profile
+    <string name="txt_profile_subtitle">Great. we are almost done, now just upload your photo.</string>
+
+    // Logo
+    <string name="txt_logo_subtitle">Finally, the last step. Upload the logo of your school.</string>
+
     // Common
     <string name="txt_no">no</string>
     <string name="txt_yes">yes</string>
 
     // Form Button
     <string name="txt_login">Login</string>
+    <string name="txt_finish">Finish</string>
+    <string name="txt_next">next</string>
+    <string name="txt_logout">Logout</string>
+    <string name="txt_choose_photo">Choose Photo</string>
+    <string name="txt_take_photo">Take Photo</string>
 </resources>

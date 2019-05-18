@@ -1,12 +1,12 @@
 package com.riteshakya.businesslogic.data.datasource.auth.repository
 
 import com.google.firebase.auth.FirebaseAuth
+import com.riteshakya.businesslogic.repository.auth.AuthRepository
+import com.riteshakya.businesslogic.repository.user.UserRepository
 import com.riteshakya.core.exception.AuthenticationException
 import com.riteshakya.core.exception.SignUpException
 import com.riteshakya.core.exception.UserNotAuthenticatedException
 import com.riteshakya.core.model.BaseUser
-import com.riteshakya.businesslogic.repository.auth.AuthRepository
-import com.riteshakya.businesslogic.repository.user.UserRepository
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject

@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.riteshakya.ui"/>
+<manifest package="com.riteshakya.ui" />

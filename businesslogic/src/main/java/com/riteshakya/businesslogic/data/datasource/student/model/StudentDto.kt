@@ -6,12 +6,12 @@ import com.riteshakya.businesslogic.repository.student.model.MALE
 import com.riteshakya.core.model.STUDENT
 
 data class StudentDto(
-    var first_name: String = "",
-    var last_name: String = "",
-    var school: String = "",
-    var gender: String = MALE,
-    var class_name: String = "",
-    var section: String = "",
-    var phone_no: PhoneDto = PhoneDto(),
-    var profile_picture: String = ""
+        var first_name: String = "",
+        var last_name: String = "",
+        var school: String = "",
+        var gender: String = MALE,
+        var class_name: String = "",
+        var section: String = "",
+        var phone_no: PhoneDto = PhoneDto(),
+        var profile_picture: String = ""
 ) : BaseUserDto(STUDENT)

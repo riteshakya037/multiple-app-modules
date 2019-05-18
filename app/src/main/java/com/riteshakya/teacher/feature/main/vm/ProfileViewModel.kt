@@ -1,7 +1,7 @@
 package com.riteshakya.teacher.feature.main.vm
 
-import com.riteshakya.core.platform.BaseViewModel
 import com.riteshakya.businesslogic.interactor.login.LogoutUserInteractor
+import com.riteshakya.core.platform.BaseViewModel
 import io.reactivex.Completable
 import javax.inject.Singleton
 

@@ -11,9 +11,9 @@ import kotlinx.android.synthetic.main.custom_welcome_view.view.*
 
 
 class WelcomeView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     var title: String = ""
@@ -47,9 +47,9 @@ class WelcomeView @JvmOverloads constructor(
         set(value) {
             field = value
             val textAppearance =
-                if (value) R.style.TextAppearance_Welcome_Badge_Light else R.style.TextAppearance_Welcome_Badge
+                    if (value) R.style.TextAppearance_Welcome_Badge_Light else R.style.TextAppearance_Welcome_Badge
             val background =
-                if (value) R.drawable.background_welcome_badge_light else R.drawable.background_welcome_badge
+                    if (value) R.drawable.background_welcome_badge_light else R.drawable.background_welcome_badge
             profileBadge.setTextAppearance(context, textAppearance)
             profileBadge.setBackgroundResource(background)
         }
@@ -70,8 +70,8 @@ class WelcomeView @JvmOverloads constructor(
         showBadge = ta.getBoolean(R.styleable.WelcomeView_showBadge, false)
         badgeText = ta.getString(R.styleable.WelcomeView_badgeText) ?: ""
         badgeIsLight = ta.getBoolean(
-            R.styleable.WelcomeView_badgeIsLight,
-            false
+                R.styleable.WelcomeView_badgeIsLight,
+                false
         )
         ta.recycle()
     }
