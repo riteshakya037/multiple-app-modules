@@ -12,6 +12,9 @@ import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.PhoneVerificationViewModel
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
+import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.PHONE
+import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.VERIFIED
+import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.WAITING_CODE
 import kotlinx.android.synthetic.main.fragment_phone.*
 import javax.inject.Inject
 
@@ -48,27 +51,33 @@ class PhoneFragment : BaseFragment() {
 
         getCodeBtn.setOnClickListener {
             phoneViewModel.requestOrSubmitCode()
+                    .addLoading()
+                    .subscribe({}, {})
+                    .untilStop()
         }
         resendBtn.setOnClickListener {
             phoneViewModel.resendCode()
+                    .addLoading()
+                    .subscribe({}, {})
+                    .untilStop()
         }
     }
 
     private fun initializeModeChanges() {
         phoneViewModel.currentMode.observe(this, Observer {
             when (it) {
-                PhoneVerificationViewModel.PHONE -> {
+                PHONE -> {
                     getCodeBtn.isEnabled = true
                     getCodeBtn.text = getString(R.string.txt_send_code)
                     waitingGroup.visibility = GONE
                 }
-                PhoneVerificationViewModel.WAITING_CODE -> {
+                WAITING_CODE -> {
                     verificationCodeView.performClick()
                     getCodeBtn.isEnabled = false
                     getCodeBtn.text = getString(R.string.txt_verify_code)
                     waitingGroup.visibility = VISIBLE
                 }
-                PhoneVerificationViewModel.VERIFIED -> {
+                VERIFIED -> {
                     getCodeBtn.isEnabled = true
                     getCodeBtn.text = getString(R.string.txt_send_code)
                     waitingGroup.visibility = GONE

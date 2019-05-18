@@ -17,6 +17,7 @@ import com.riteshakya.teacher.interactor.geocode.GetCityNameInteractor
 import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
 import com.riteshakya.teacher.interactor.signup.SignUpSchoolInteractor
 import com.riteshakya.teacher.interactor.signup.SignUpTeacherInteractor
+import com.riteshakya.teacher.repository.auth.PhoneRepository
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -71,8 +72,9 @@ abstract class SignUpModule {
         @IntoMap
         @ViewModelKey(PhoneVerificationViewModel::class)
         fun providePhoneVerificationViewModel(
-                failureMessageMapper: FailureMessageMapper
-        ): ViewModel = PhoneVerificationViewModel(failureMessageMapper)
+                failureMessageMapper: FailureMessageMapper,
+                phoneRepository: PhoneRepository
+        ): ViewModel = PhoneVerificationViewModel(phoneRepository, failureMessageMapper)
     }
 
     @Module

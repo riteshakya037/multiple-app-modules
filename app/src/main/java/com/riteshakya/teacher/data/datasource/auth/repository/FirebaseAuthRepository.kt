@@ -43,14 +43,14 @@ class FirebaseAuthRepository
             auth.createUserWithEmailAndPassword(createEmail(phoneNo, school), password)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                            auth.currentUser?.let { user ->
-                                emitter.onSuccess(user.uid)
+                            it.result?.let { result ->
+                                emitter.onSuccess(result.user.uid)
                             }
                         } else {
                             emitter.onError(SignUpException())
                         }
                     }
-        }.flatMap { getUser() }.map { auth.currentUser!!.uid }
+        }
     }
 
     override fun loginUser(phoneNo: String, school: String, password: String): Completable {

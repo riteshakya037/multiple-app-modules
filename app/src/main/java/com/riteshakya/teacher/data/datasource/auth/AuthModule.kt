@@ -1,7 +1,9 @@
 package com.riteshakya.teacher.data.datasource.auth
 
 import com.riteshakya.teacher.data.datasource.auth.repository.FirebaseAuthRepository
+import com.riteshakya.teacher.data.datasource.auth.repository.FirebasePhoneRepository
 import com.riteshakya.teacher.repository.auth.AuthRepository
+import com.riteshakya.teacher.repository.auth.PhoneRepository
 import dagger.Module
 import dagger.Provides
 
@@ -11,6 +13,9 @@ class AuthModule {
     class Repositories {
         @Provides
         fun provideAuthRepository(repository: FirebaseAuthRepository): AuthRepository = repository
+
+        @Provides
+        fun providePhoneRepository(repository: FirebasePhoneRepository): PhoneRepository = repository
     }
 }
 

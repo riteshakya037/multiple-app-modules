@@ -14,7 +14,6 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 
 abstract class BaseFragment : DaggerFragment(), BackPressConsumer, DisposeOnLifecycleFragment {
     override val lifecycleDisposables = LifecycleDisposables()
@@ -35,6 +34,7 @@ abstract class BaseFragment : DaggerFragment(), BackPressConsumer, DisposeOnLife
     }
 
     override fun onDestroyView() {
+        hideLoading()
         super<DaggerFragment>.onDestroyView()
         super<DisposeOnLifecycleFragment>.onDestroy()
     }

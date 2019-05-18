@@ -31,6 +31,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         viewPager.adapter = mainPagerAdapter
+        viewPager.offscreenPageLimit = 4
         tabLayout.setupWithViewPager(viewPager)
 
         addNecessaryTabs()

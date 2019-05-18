@@ -1,19 +1,25 @@
 package com.riteshakya.teacher.feature.login.vm
 
-import androidx.annotation.IntDef
 import androidx.lifecycle.MutableLiveData
 import com.riteshakya.core.exception.FailureMessageMapper
 import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.platform.BaseViewModel
+import com.riteshakya.teacher.repository.auth.PhoneRepository
+import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.NONE
+import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.PHONE
+import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.VERIFIED
+import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.WAITING_CODE
+import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Singleton
 
 @Singleton
 class PhoneVerificationViewModel(
+        val phoneRepository: PhoneRepository,
         val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
 
-    val currentMode = MutableLiveData<@Mode Int>().also {
+    val currentMode = MutableLiveData<@PhoneRepository.Companion.Mode Int>().also {
         it.value = NONE
     }
 
@@ -30,40 +36,36 @@ class PhoneVerificationViewModel(
         }
     }
 
-    fun requestOrSubmitCode() {
-        if (currentMode.value == WAITING_CODE) {
+    fun requestOrSubmitCode(): Completable {
+        return if (currentMode.value == WAITING_CODE) {
             verifyCode()
         } else {
             requestCode()
         }
     }
 
-    private fun verifyCode() {
-        currentMode.value = VERIFIED
-        isVerified.value = true
+    private fun verifyCode(): Completable {
+        return phoneRepository.submitCode(code.value!!).doOnSuccess {
+            currentMode.value = it
+            isVerified.value = it == VERIFIED
+        }.ignoreElement()
     }
 
-    private fun requestCode() {
-        currentMode.value = WAITING_CODE
-        isVerified.value = false
+    private fun requestCode(): Completable {
+        return phoneRepository.requestCode(phoneNo.value!!.fullNumber).doOnSuccess {
+            currentMode.value = it
+            isVerified.value = it == VERIFIED
+        }.ignoreElement()
     }
 
     fun enableRequestCode(it: Boolean?) {
         currentMode.value = if (it == true) PHONE else NONE
     }
 
-    fun resendCode() {
-
-    }
-
-    companion object {
-
-        @IntDef(NONE, PHONE, WAITING_CODE, VERIFIED)
-        annotation class Mode
-
-        const val NONE = 0
-        const val PHONE = 1
-        const val WAITING_CODE = 2
-        const val VERIFIED = 3
+    fun resendCode(): Completable {
+        return phoneRepository.resendToken(phoneNo.value!!.fullNumber).doOnSuccess {
+            currentMode.value = it
+            isVerified.value = it == VERIFIED
+        }.ignoreElement()
     }
 }
