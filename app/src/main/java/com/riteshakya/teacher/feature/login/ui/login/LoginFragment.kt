@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.riteshakya.core.model.SCHOOL
+import com.riteshakya.core.model.TEACHER
 import com.riteshakya.core.platform.BaseFragment
 import com.riteshakya.core.validation.types.PasswordValidation
 import com.riteshakya.teacher.R
@@ -44,12 +46,34 @@ class LoginFragment : BaseFragment() {
         loginViewModel.loginUser()
                 .addLoading()
                 .subscribe({
-                    mainNavigator.showMain(context!!)
-                    activity?.finishAffinity()
+                    getUserObject()
                 }, {
                     it.printStackTrace()
                 })
                 .untilStop()
+    }
+
+    private fun getUserObject() {
+        loginViewModel.getCurrentUser()
+                .addLoading()
+                .subscribe({
+                    if (!arrayListOf(TEACHER, SCHOOL).contains(it.role)) {
+                        roleNotSupported()
+                    } else {
+                        mainNavigator.showMain(context!!)
+                        activity?.finishAffinity()
+                    }
+                }, {})
+                .untilStop()
+    }
+
+    private fun roleNotSupported() {
+        showMessage("User role not supported by app. Please use the student app.")
+        loginViewModel.logout()
+                .addLoading()
+                .subscribe {
+
+                }.untilStop()
     }
 
     private fun initializeSchools() {

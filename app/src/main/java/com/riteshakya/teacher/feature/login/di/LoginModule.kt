@@ -9,7 +9,9 @@ import com.riteshakya.core.exception.FailureMessageMapper
 import com.riteshakya.teacher.feature.login.ui.login.LoginFragment
 import com.riteshakya.teacher.feature.login.vm.LoginViewModel
 import com.riteshakya.teacher.interactor.login.LoginUserInteractor
+import com.riteshakya.teacher.interactor.login.LogoutUserInteractor
 import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
+import com.riteshakya.teacher.interactor.user.GetCurrentUserInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -31,10 +33,14 @@ abstract class LoginModule {
         fun provideLoginViewModel(
                 loginUserInteractor: LoginUserInteractor,
                 getSchoolsInteractor: GetSchoolsInteractor,
+                getCurrentUserInteractor: GetCurrentUserInteractor,
+                logoutUserInteractor: LogoutUserInteractor,
                 failureMessageMapper: FailureMessageMapper
         ): ViewModel = LoginViewModel(
                 loginUserInteractor,
                 getSchoolsInteractor,
+                getCurrentUserInteractor,
+                logoutUserInteractor,
                 failureMessageMapper
         )
     }

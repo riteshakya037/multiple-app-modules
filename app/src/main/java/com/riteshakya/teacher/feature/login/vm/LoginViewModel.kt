@@ -2,11 +2,15 @@ package com.riteshakya.teacher.feature.login.vm
 
 import androidx.lifecycle.MutableLiveData
 import com.riteshakya.core.exception.FailureMessageMapper
+import com.riteshakya.core.model.BaseUser
 import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.platform.BaseViewModel
 import com.riteshakya.teacher.interactor.login.LoginUserInteractor
+import com.riteshakya.teacher.interactor.login.LogoutUserInteractor
 import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
+import com.riteshakya.teacher.interactor.user.GetCurrentUserInteractor
 import io.reactivex.Completable
+import io.reactivex.Single
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Singleton
 
@@ -14,6 +18,8 @@ import javax.inject.Singleton
 class LoginViewModel(
         val loginUserInteractor: LoginUserInteractor,
         val getSchoolInteractor: GetSchoolsInteractor,
+        val getCurrentUserInteractor: GetCurrentUserInteractor,
+        val logoutUserInteractor: LogoutUserInteractor,
         val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
 
@@ -37,6 +43,14 @@ class LoginViewModel(
                 school.value ?: "",
                 password.value ?: ""
         )
+    }
+
+    fun getCurrentUser(): Single<BaseUser> {
+        return getCurrentUserInteractor()
+    }
+
+    fun logout(): Completable {
+        return logoutUserInteractor()
     }
 
 }

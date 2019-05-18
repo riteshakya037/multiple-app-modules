@@ -71,8 +71,12 @@ class HomeFragment : BaseFragment() {
                         profileImage = user.profilePhoto
                 )
             }
+            else -> {
+
+            }
         }
     }
+
 
     private fun showWelcome(
             title: String, subtitle: String, showBadge: Boolean, badgeText: String,
