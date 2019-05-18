@@ -7,7 +7,7 @@ import com.riteshakya.core.di.PerFragment
 import com.riteshakya.core.di.ViewModelKey
 import com.riteshakya.teacher.feature.main.ui.profile.ProfileFragment
 import com.riteshakya.teacher.feature.main.vm.ProfileViewModel
-import com.riteshakya.teacher.interactor.login.LogoutUserInteractor
+import com.riteshakya.businesslogic.interactor.login.LogoutUserInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

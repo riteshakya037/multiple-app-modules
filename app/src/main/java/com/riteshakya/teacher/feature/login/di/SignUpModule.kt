@@ -3,6 +3,10 @@ package com.riteshakya.teacher.feature.login.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.riteshakya.businesslogic.interactor.school.GetSchoolsInteractor
+import com.riteshakya.businesslogic.interactor.signup.SignUpSchoolInteractor
+import com.riteshakya.businesslogic.interactor.signup.SignUpTeacherInteractor
+import com.riteshakya.businesslogic.repository.auth.PhoneRepository
 import com.riteshakya.core.di.PerFragment
 import com.riteshakya.core.di.ViewModelKey
 import com.riteshakya.core.exception.FailureMessageMapper
@@ -14,10 +18,6 @@ import com.riteshakya.teacher.feature.login.ui.signup.profilepicture.ProfilePict
 import com.riteshakya.teacher.feature.login.vm.PhoneVerificationViewModel
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
 import com.riteshakya.teacher.interactor.geocode.GetCityNameInteractor
-import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
-import com.riteshakya.teacher.interactor.signup.SignUpSchoolInteractor
-import com.riteshakya.teacher.interactor.signup.SignUpTeacherInteractor
-import com.riteshakya.teacher.repository.auth.PhoneRepository
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -55,25 +55,25 @@ abstract class SignUpModule {
         @IntoMap
         @ViewModelKey(SignUpViewModel::class)
         fun provideSignUpViewModel(
-                signUpSchoolInteractor: SignUpSchoolInteractor,
-                signUpTeacherInteractor: SignUpTeacherInteractor,
-                getSchoolsInteractor: GetSchoolsInteractor,
-                getCityNameInteractor: GetCityNameInteractor,
-                failureMessageMapper: FailureMessageMapper
+            signUpSchoolInteractor: SignUpSchoolInteractor,
+            signUpTeacherInteractor: SignUpTeacherInteractor,
+            getSchoolsInteractor: GetSchoolsInteractor,
+            getCityNameInteractor: GetCityNameInteractor,
+            failureMessageMapper: FailureMessageMapper
         ): ViewModel = SignUpViewModel(
-                signUpSchoolInteractor,
-                signUpTeacherInteractor,
-                getSchoolsInteractor,
-                getCityNameInteractor,
-                failureMessageMapper
+            signUpSchoolInteractor,
+            signUpTeacherInteractor,
+            getSchoolsInteractor,
+            getCityNameInteractor,
+            failureMessageMapper
         )
 
         @Provides
         @IntoMap
         @ViewModelKey(PhoneVerificationViewModel::class)
         fun providePhoneVerificationViewModel(
-                failureMessageMapper: FailureMessageMapper,
-                phoneRepository: PhoneRepository
+            failureMessageMapper: FailureMessageMapper,
+            phoneRepository: PhoneRepository
         ): ViewModel = PhoneVerificationViewModel(phoneRepository, failureMessageMapper)
     }
 
@@ -82,9 +82,9 @@ abstract class SignUpModule {
 
         @Provides
         fun provideLoginViewModel(
-                factory: ViewModelProvider.Factory,
-                target: PhoneFragment
+            factory: ViewModelProvider.Factory,
+            target: PhoneFragment
         ): PhoneVerificationViewModel =
-                ViewModelProviders.of(target, factory).get(PhoneVerificationViewModel::class.java)
+            ViewModelProviders.of(target, factory).get(PhoneVerificationViewModel::class.java)
     }
 }

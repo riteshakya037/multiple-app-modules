@@ -8,14 +8,14 @@ import javax.inject.Inject
 
 class GoogleGeocodeRepository
 @Inject constructor(
-        private var geocodeService: GeocodeService
+    private var geocodeService: GeocodeService
 ) : GeocodeRepository {
 
     override fun getCityName(postalCode: String): Single<String> {
         return geocodeService.getCityName(postalCode)
-                .subscribeOn(Schedulers.io())
-                .map {
-                    it.formattedAddress
-                }
+            .subscribeOn(Schedulers.io())
+            .map {
+                it.formattedAddress
+            }
     }
 }

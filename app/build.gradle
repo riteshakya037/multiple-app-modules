@@ -68,6 +68,7 @@ dependencies {
 
     implementation project(':core')
     implementation project(':ui')
+    implementation project(':businesslogic')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
@@ -78,11 +79,6 @@ dependencies {
     api "android.arch.navigation:navigation-ui-ktx:$navigation_version"
 
     kapt "com.github.bumptech.glide:compiler:$glide_version"
-
-    // Firebase
-    implementation 'com.google.firebase:firebase-auth:17.0.0'
-    implementation 'com.google.firebase:firebase-firestore:19.0.0'
-    implementation 'com.google.firebase:firebase-storage:17.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'

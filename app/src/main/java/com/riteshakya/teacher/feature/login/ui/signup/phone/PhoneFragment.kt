@@ -7,14 +7,14 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.PHONE
+import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.VERIFIED
+import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.WAITING_CODE
 import com.riteshakya.core.platform.BaseFragment
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.PhoneVerificationViewModel
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
-import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.PHONE
-import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.VERIFIED
-import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.WAITING_CODE
 import kotlinx.android.synthetic.main.fragment_phone.*
 import javax.inject.Inject
 
@@ -30,9 +30,9 @@ class PhoneFragment : BaseFragment() {
     lateinit var navigator: LoginNavigator
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_phone, container, false)
 
 
@@ -51,15 +51,15 @@ class PhoneFragment : BaseFragment() {
 
         getCodeBtn.setOnClickListener {
             phoneViewModel.requestOrSubmitCode()
-                    .addLoading()
-                    .subscribe({}, {})
-                    .untilStop()
+                .addLoading()
+                .subscribe({}, {})
+                .untilStop()
         }
         resendBtn.setOnClickListener {
             phoneViewModel.resendCode()
-                    .addLoading()
-                    .subscribe({}, {})
-                    .untilStop()
+                .addLoading()
+                .subscribe({}, {})
+                .untilStop()
         }
     }
 
@@ -94,6 +94,8 @@ class PhoneFragment : BaseFragment() {
         addValidationList(phoneSelector.addValidity {
             phoneViewModel.phoneNo.value = it
             signUpViewModel.phoneNo.value = it
+            phoneViewModel.isVerified.value = false
+            phoneViewModel.code.value = ""
         }.doOnNext {
             phoneViewModel.enableRequestCode(it)
         })

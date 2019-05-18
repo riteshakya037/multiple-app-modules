@@ -8,10 +8,10 @@ import com.riteshakya.core.di.ViewModelKey
 import com.riteshakya.core.exception.FailureMessageMapper
 import com.riteshakya.teacher.feature.login.ui.login.LoginFragment
 import com.riteshakya.teacher.feature.login.vm.LoginViewModel
-import com.riteshakya.teacher.interactor.login.LoginUserInteractor
-import com.riteshakya.teacher.interactor.login.LogoutUserInteractor
-import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
-import com.riteshakya.teacher.interactor.user.GetCurrentUserInteractor
+import com.riteshakya.businesslogic.interactor.login.LoginUserInteractor
+import com.riteshakya.businesslogic.interactor.login.LogoutUserInteractor
+import com.riteshakya.businesslogic.interactor.school.GetSchoolsInteractor
+import com.riteshakya.businesslogic.interactor.user.GetCurrentUserInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

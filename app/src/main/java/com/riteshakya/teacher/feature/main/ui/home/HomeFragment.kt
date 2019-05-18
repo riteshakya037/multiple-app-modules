@@ -10,8 +10,8 @@ import com.riteshakya.core.platform.BaseFragment
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.main.vm.HomeViewModel
 import com.riteshakya.teacher.navigation.Navigator
-import com.riteshakya.teacher.repository.school.model.SchoolModel
-import com.riteshakya.teacher.repository.teacher.model.TeacherModel
+import com.riteshakya.businesslogic.repository.school.model.SchoolModel
+import com.riteshakya.businesslogic.repository.teacher.model.TeacherModel
 import com.riteshakya.ui.imageloaders.IImageLoader
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_home.*

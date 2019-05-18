@@ -1,16 +1,16 @@
 package com.riteshakya.teacher.feature.login.vm
 
 import androidx.lifecycle.MutableLiveData
+import com.riteshakya.businesslogic.interactor.school.GetSchoolsInteractor
+import com.riteshakya.businesslogic.interactor.signup.SignUpSchoolInteractor
+import com.riteshakya.businesslogic.interactor.signup.SignUpTeacherInteractor
+import com.riteshakya.businesslogic.repository.school.model.SchoolModel
+import com.riteshakya.businesslogic.repository.teacher.model.TeacherModel
 import com.riteshakya.core.exception.FailureMessageMapper
 import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.platform.BaseViewModel
 import com.riteshakya.core.platform.ResultState
 import com.riteshakya.teacher.interactor.geocode.GetCityNameInteractor
-import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
-import com.riteshakya.teacher.interactor.signup.SignUpSchoolInteractor
-import com.riteshakya.teacher.interactor.signup.SignUpTeacherInteractor
-import com.riteshakya.teacher.repository.school.model.SchoolModel
-import com.riteshakya.teacher.repository.teacher.model.TeacherModel
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.BehaviorSubject
@@ -20,11 +20,11 @@ import javax.inject.Inject
 
 class SignUpViewModel
 @Inject constructor(
-        val signUpSchoolInteractor: SignUpSchoolInteractor,
-        val signUpTeacherInteractor: SignUpTeacherInteractor,
-        val getSchoolInteractor: GetSchoolsInteractor,
-        val getCityNameInteractor: GetCityNameInteractor,
-        val failureMessageMapper: FailureMessageMapper
+    val signUpSchoolInteractor: SignUpSchoolInteractor,
+    val signUpTeacherInteractor: SignUpTeacherInteractor,
+    val getSchoolInteractor: GetSchoolsInteractor,
+    val getCityNameInteractor: GetCityNameInteractor,
+    val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
     val currentMode = MutableLiveData<Mode>().also {
         it.value = Mode.TEACHER
@@ -75,23 +75,23 @@ class SignUpViewModel
     val cityNameState: BehaviorSubject<ResultState> = BehaviorSubject.create()
 
     val schools = schoolsSubject
-            .startWith(true)
-            .flatMapSingle { getSchoolInteractor() }
-            .replay()
-            .autoConnect(1)
+        .startWith(true)
+        .flatMapSingle { getSchoolInteractor() }
+        .replay()
+        .autoConnect(1)
 
     val cityNameObserver = postalCodeSubject
-            .filter { it.length == 5 }
-            .flatMapSingle {
-                getCityNameInteractor(it)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .onErrorReturn {
-                            cityNameState.onNext(ResultState.Error(failureMessageMapper(it)))
-                            ""
-                        }
-            }
-            .replay()
-            .autoConnect(1)
+        .filter { it.length == 5 }
+        .flatMapSingle {
+            getCityNameInteractor(it)
+                .observeOn(AndroidSchedulers.mainThread())
+                .onErrorReturn {
+                    cityNameState.onNext(ResultState.Error(failureMessageMapper(it)))
+                    ""
+                }
+        }
+        .replay()
+        .autoConnect(1)
 
     fun loadSchools() {
         schoolsSubject.onNext(true)
@@ -103,35 +103,35 @@ class SignUpViewModel
 
     private fun signUpSchool(): Completable {
         val schoolModel = SchoolModel(
-                nameOfAuthority.value ?: "",
-                schoolName.value ?: "",
-                schoolEmail.value ?: "",
-                schoolAreaCode.value ?: "",
-                schoolCity.value ?: "",
-                phoneNo.value ?: PhoneModel(),
-                profilePhoto.value ?: "",
-                schoolLogo.value ?: "",
-                password.value ?: ""
+            nameOfAuthority.value ?: "",
+            schoolName.value ?: "",
+            schoolEmail.value ?: "",
+            schoolAreaCode.value ?: "",
+            schoolCity.value ?: "",
+            phoneNo.value ?: PhoneModel(),
+            profilePhoto.value ?: "",
+            schoolLogo.value ?: "",
+            password.value ?: ""
         )
         return signUpSchoolInteractor(
-                schoolModel
+            schoolModel
         )
     }
 
     private fun signUpTeacher(): Completable {
         val teacherModel = TeacherModel(
-                firstName.value ?: "",
-                lastName.value ?: "",
-                school.value ?: "",
-                teacher.value ?: false,
-                classValue.value ?: "",
-                sectionValue.value ?: "",
-                phoneNo.value ?: PhoneModel(),
-                profilePhoto.value ?: "",
-                password.value ?: ""
+            firstName.value ?: "",
+            lastName.value ?: "",
+            school.value ?: "",
+            teacher.value ?: false,
+            classValue.value ?: "",
+            sectionValue.value ?: "",
+            phoneNo.value ?: PhoneModel(),
+            profilePhoto.value ?: "",
+            password.value ?: ""
         )
         return signUpTeacherInteractor(
-                teacherModel
+            teacherModel
         )
     }
 

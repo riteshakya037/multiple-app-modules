@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.login.ui.LoginActivity
 import com.riteshakya.teacher.feature.main.ui.MainActivity
-import com.riteshakya.teacher.interactor.login.IsLoggedInInteractor
+import com.riteshakya.businesslogic.interactor.login.IsLoggedInInteractor
 import com.riteshakya.ui.components.ViewPagerFragment
 import javax.inject.Inject
 import javax.inject.Singleton

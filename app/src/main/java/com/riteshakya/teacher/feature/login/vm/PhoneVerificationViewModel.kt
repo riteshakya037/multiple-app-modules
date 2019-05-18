@@ -1,14 +1,14 @@
 package com.riteshakya.teacher.feature.login.vm
 
 import androidx.lifecycle.MutableLiveData
+import com.riteshakya.businesslogic.repository.auth.PhoneRepository
+import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.NONE
+import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.PHONE
+import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.VERIFIED
+import com.riteshakya.businesslogic.repository.auth.PhoneRepository.Companion.WAITING_CODE
 import com.riteshakya.core.exception.FailureMessageMapper
 import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.platform.BaseViewModel
-import com.riteshakya.teacher.repository.auth.PhoneRepository
-import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.NONE
-import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.PHONE
-import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.VERIFIED
-import com.riteshakya.teacher.repository.auth.PhoneRepository.Companion.WAITING_CODE
 import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Singleton
@@ -26,7 +26,7 @@ class PhoneVerificationViewModel(
     val phoneNo = MutableLiveData<PhoneModel>()
     val code = MutableLiveData<String>()
 
-    private val isVerified = MutableLiveData<Boolean>().also {
+    val isVerified = MutableLiveData<Boolean>().also {
         it.value = false
     }
 
