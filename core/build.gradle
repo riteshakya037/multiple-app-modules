@@ -66,4 +66,5 @@ dependencies {
     // Permission Helper
     api 'com.karumi:dexter:5.0.0'
 
+    api 'com.github.yalantis:ucrop:2.2.3'
 }

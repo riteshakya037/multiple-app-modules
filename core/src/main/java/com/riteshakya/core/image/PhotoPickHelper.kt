@@ -5,11 +5,16 @@ import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.riteshakya.core.R
+import com.yalantis.ucrop.UCrop
+import com.yalantis.ucrop.UCropActivity
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
@@ -23,13 +28,13 @@ import javax.inject.Inject
 
 class PhotoPickHelper
 @Inject constructor(
-        private val context: Context,
-        private val permissionHelper: PermissionHelper,
-        private val realPathUtil: RealPathUtil
+    private val context: Context,
+    private val permissionHelper: PermissionHelper,
+    private val realPathUtil: RealPathUtil
 ) {
     private var tempPhotoPath: String? = null
     private var photoPickCallback: PhotoPickCallback = object :
-            PhotoPickCallback {
+        PhotoPickCallback {
         override fun showError(b: Boolean, e: Throwable) {
             e.printStackTrace()
         }
@@ -48,9 +53,9 @@ class PhotoPickHelper
         val imageFileName = "JPEG_" + timeStamp + "_"
         val storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val image = File.createTempFile(
-                imageFileName, /* prefix */
-                ".jpg", /* suffix */
-                storageDir      /* directory */
+            imageFileName, /* prefix */
+            ".jpg", /* suffix */
+            storageDir      /* directory */
         )
         tempPhotoPath = image.absolutePath
         return image
@@ -58,82 +63,118 @@ class PhotoPickHelper
 
     fun requestTakePhoto(applicationId: String) {
         permissionHelper.checkPermission(
-                Manifest.permission.CAMERA,
-                "Camera Permission",
-                "Permission is needed to take a photo",
-                object : PermissionHelper.PermissionGrant {
-                    override fun permissionGranted() {
-                        val takePictureIntent = Intent(
-                                MediaStore.ACTION_IMAGE_CAPTURE
-                        )
-                        // Ensure that there's a camera context to handle the intent
-                        if (takePictureIntent.resolveActivity(context.packageManager) != null) {
-                            // Create the File where the photo should go
-                            var photoFile: File? = null
-                            try {
-                                photoFile = createImageFile()
-                            } catch (ex: IOException) {
-                                photoPickCallback.showError(true, ex)
-                                // Error occurred while creating the File
-                            }
+            Manifest.permission.CAMERA,
+            "Camera Permission",
+            "Permission is needed to take a photo",
+            object : PermissionHelper.PermissionGrant {
+                override fun permissionGranted() {
+                    val takePictureIntent = Intent(
+                        MediaStore.ACTION_IMAGE_CAPTURE
+                    )
+                    // Ensure that there's a camera context to handle the intent
+                    if (takePictureIntent.resolveActivity(context.packageManager) != null) {
+                        // Create the File where the photo should go
+                        var photoFile: File? = null
+                        try {
+                            photoFile = createImageFile()
+                        } catch (ex: IOException) {
+                            photoPickCallback.showError(true, ex)
+                            // Error occurred while creating the File
+                        }
 
-                            // Continue only if the File was successfully created
-                            if (photoFile != null) {
-                                val photoURI =
-                                        FileProvider.getUriForFile(
-                                                context, "$applicationId.provider", photoFile
-                                        )
-                                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                                if (fragment != null) {
-                                    fragment?.startActivityForResult(
-                                            takePictureIntent,
-                                            REQUEST_TAKE_PHOTO
-                                    )
-                                } else if (activity != null) {
-                                    activity?.startActivityForResult(
-                                            takePictureIntent,
-                                            REQUEST_TAKE_PHOTO
-                                    )
-                                }
+                        // Continue only if the File was successfully created
+                        if (photoFile != null) {
+                            val photoURI =
+                                FileProvider.getUriForFile(
+                                    context, "$applicationId.provider", photoFile
+                                )
+                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                            if (fragment != null) {
+                                fragment?.startActivityForResult(
+                                    takePictureIntent,
+                                    REQUEST_TAKE_PHOTO
+                                )
+                            } else if (activity != null) {
+                                activity?.startActivityForResult(
+                                    takePictureIntent,
+                                    REQUEST_TAKE_PHOTO
+                                )
                             }
                         }
                     }
-                })
+                }
+            })
     }
 
     fun requestPickPhoto() {
         permissionHelper.checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
-                "Storage Permission",
-                "Permission is needed to read the image files",
-                object : PermissionHelper.PermissionGrant {
-                    override fun permissionGranted() {
-                        val intent = Intent(Intent.ACTION_PICK)
-                        intent.type = "image/*"
-                        if (fragment != null) {
-                            fragment!!.startActivityForResult(
-                                    Intent.createChooser(intent, "Complete action using"),
-                                    REQUEST_PICK_IMAGE
-                            )
-                        } else if (activity != null) {
-                            activity!!.startActivityForResult(
-                                    Intent.createChooser(intent, "Complete action using"),
-                                    REQUEST_PICK_IMAGE
-                            )
-                        }
+            "Storage Permission",
+            "Permission is needed to read the image files",
+            object : PermissionHelper.PermissionGrant {
+                override fun permissionGranted() {
+                    val intent = Intent(Intent.ACTION_PICK)
+                    intent.type = "image/*"
+                    if (fragment != null) {
+                        fragment!!.startActivityForResult(
+                            Intent.createChooser(intent, "Complete action using"),
+                            REQUEST_PICK_IMAGE
+                        )
+                    } else if (activity != null) {
+                        activity!!.startActivityForResult(
+                            Intent.createChooser(intent, "Complete action using"),
+                            REQUEST_PICK_IMAGE
+                        )
                     }
-                })
+                }
+            })
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_PICK_IMAGE) {
+        if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
+            handleCropResult(data!!)
+        } else if (requestCode == REQUEST_PICK_IMAGE) {
             data ?: return
             if (resultCode == RESULT_OK && data.data != null) {
                 val currentPhotoPath = realPathUtil.getRealPath(data.data!!)
-                photoPickCallback.setUpImage(currentPhotoPath)
+                checkImage(currentPhotoPath)
             }
         } else if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-            photoPickCallback.setUpImage(tempPhotoPath ?: "")
+            checkImage(tempPhotoPath ?: "")
         }
+    }
+
+    private fun handleCropResult(result: Intent) {
+        val resultUri = UCrop.getOutput(result)!!.path
+        if (resultUri != null) {
+            photoPickCallback.setUpImage(resultUri)
+        }
+    }
+
+    private fun checkImage(currentPhotoPath: String) {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
+        val destinationFileName = "PNG_" + timeStamp + "_" + ".png"
+        val options = UCrop.Options()
+        options.setCircleDimmedLayer(true)
+        options.setDimmedLayerColor(
+            ContextCompat.getColor(context, R.color.colorLighterGreyOverlay)
+        )
+        options.setToolbarColor(ContextCompat.getColor(context, R.color.colorTransparent))
+        options.setStatusBarColor(ContextCompat.getColor(context, R.color.colorTransparent))
+        options.setActiveWidgetColor(
+            ContextCompat.getColor(context, R.color.colorBlack)
+        )
+        options.setToolbarWidgetColor(
+            ContextCompat.getColor(context, R.color.colorTextLight)
+        )
+        options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.ROTATE, UCropActivity.ALL)
+        UCrop.of(
+            Uri.fromFile(File(currentPhotoPath)),
+            Uri.fromFile(File(context.cacheDir, destinationFileName))
+        )
+            .withAspectRatio(1f, 1f)
+            .withOptions(options)
+            .start(context, fragment!!)
+
     }
 
     fun addPhotoPickCallback(photoPickCallback: PhotoPickCallback) {
