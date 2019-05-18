@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.riteshakya.core.platform.ConnectionInterceptor
+import com.riteshakya.core.platform.StatusResponseInterceptor
 import com.riteshakya.teacher.BuildConfig
 import com.riteshakya.teacher.constants.Constants.Companion.API_BASE_URL
 import dagger.Module
@@ -38,6 +39,7 @@ class NetworkModule {
     @Singleton
     internal fun providesOkHttpClient(context: Context) =
             OkHttpClient.Builder().apply {
+                addInterceptor(StatusResponseInterceptor())
                 addInterceptor(ConnectionInterceptor(context))
                 connectTimeout(10, TimeUnit.SECONDS)
                 readTimeout(15, TimeUnit.SECONDS)

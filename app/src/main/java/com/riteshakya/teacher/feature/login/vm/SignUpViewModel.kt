@@ -4,12 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import com.riteshakya.core.exception.FailureMessageMapper
 import com.riteshakya.core.model.PhoneModel
 import com.riteshakya.core.platform.BaseViewModel
+import com.riteshakya.core.platform.ResultState
+import com.riteshakya.teacher.interactor.geocode.GetCityNameInteractor
 import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
 import com.riteshakya.teacher.interactor.signup.SignUpSchoolInteractor
 import com.riteshakya.teacher.interactor.signup.SignUpTeacherInteractor
 import com.riteshakya.teacher.repository.school.model.SchoolModel
 import com.riteshakya.teacher.repository.teacher.model.TeacherModel
 import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
@@ -19,6 +23,7 @@ class SignUpViewModel
         val signUpSchoolInteractor: SignUpSchoolInteractor,
         val signUpTeacherInteractor: SignUpTeacherInteractor,
         val getSchoolInteractor: GetSchoolsInteractor,
+        val getCityNameInteractor: GetCityNameInteractor,
         val failureMessageMapper: FailureMessageMapper
 ) : BaseViewModel() {
     val currentMode = MutableLiveData<Mode>().also {
@@ -27,6 +32,10 @@ class SignUpViewModel
 
     private val schoolsSubject by lazy {
         PublishSubject.create<Boolean>()
+    }
+
+    private val postalCodeSubject by lazy {
+        PublishSubject.create<String>()
     }
 
     // SignUp teacher screen
@@ -63,14 +72,33 @@ class SignUpViewModel
         }
     }
 
+    val cityNameState: BehaviorSubject<ResultState> = BehaviorSubject.create()
+
     val schools = schoolsSubject
             .startWith(true)
             .flatMapSingle { getSchoolInteractor() }
             .replay()
             .autoConnect(1)
 
+    val cityNameObserver = postalCodeSubject
+            .filter { it.length == 5 }
+            .flatMapSingle {
+                getCityNameInteractor(it)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .onErrorReturn {
+                            cityNameState.onNext(ResultState.Error(failureMessageMapper(it)))
+                            ""
+                        }
+            }
+            .replay()
+            .autoConnect(1)
+
     fun loadSchools() {
         schoolsSubject.onNext(true)
+    }
+
+    fun getCityFromPostalCode(postalCode: String) {
+        postalCodeSubject.onNext(postalCode)
     }
 
     private fun signUpSchool(): Completable {

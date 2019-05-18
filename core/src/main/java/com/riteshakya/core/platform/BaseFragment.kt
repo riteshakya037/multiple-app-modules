@@ -101,7 +101,7 @@ abstract class BaseFragment : DaggerFragment(), BackPressConsumer, DisposeOnLife
         }.doOnError {
             hideLoading()
             showMessage(it.localizedMessage)
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        }.observeOn(AndroidSchedulers.mainThread())
     }
 
     fun Completable.addLoading(): Completable {
@@ -112,7 +112,7 @@ abstract class BaseFragment : DaggerFragment(), BackPressConsumer, DisposeOnLife
         }.doOnError {
             hideLoading()
             showMessage(it.localizedMessage)
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        }.observeOn(AndroidSchedulers.mainThread())
 
     }
 
@@ -124,7 +124,7 @@ abstract class BaseFragment : DaggerFragment(), BackPressConsumer, DisposeOnLife
         }.doOnError {
             hideLoading()
             showMessage(it.localizedMessage)
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        }.observeOn(AndroidSchedulers.mainThread())
     }
 
     protected fun showLoading(type: LoadingUiHelper.Type = LoadingUiHelper.Type.DIALOG) {

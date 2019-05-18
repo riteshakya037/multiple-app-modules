@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.riteshakya.core.di.AppViewModelFactory
 import com.riteshakya.teacher.TeacherApp
 import com.riteshakya.teacher.data.datasource.auth.AuthModule
+import com.riteshakya.teacher.data.datasource.geocode.GeocodeModule
 import com.riteshakya.teacher.data.datasource.image.ImageModule
 import com.riteshakya.teacher.data.datasource.school.SchoolModule
 import com.riteshakya.teacher.data.datasource.teacher.TeacherModule
@@ -47,7 +48,8 @@ abstract class AppModule {
                 UserModule.Repositories::class,
                 TeacherModule.Repositories::class,
                 ImageModule.Repositories::class,
-                AuthModule.Repositories::class
+                AuthModule.Repositories::class,
+                GeocodeModule.Repositories::class
             ]
     )
     class Repository

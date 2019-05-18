@@ -14,6 +14,7 @@ class FailureMessageMapper
             context.resources.let {
                 when (throwable) {
                     is HttpException -> it.getString(R.string.error_response)
+                    is StatusResponseException -> throwable.errorMessage
                     is NoConnectivityException, is SocketTimeoutException -> it.getString(
                             R.string.error_no_connection
                     )

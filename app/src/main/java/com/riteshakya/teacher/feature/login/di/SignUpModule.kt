@@ -13,6 +13,7 @@ import com.riteshakya.teacher.feature.login.ui.signup.phone.PhoneFragment
 import com.riteshakya.teacher.feature.login.ui.signup.profilepicture.ProfilePictureFragment
 import com.riteshakya.teacher.feature.login.vm.PhoneVerificationViewModel
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
+import com.riteshakya.teacher.interactor.geocode.GetCityNameInteractor
 import com.riteshakya.teacher.interactor.school.GetSchoolsInteractor
 import com.riteshakya.teacher.interactor.signup.SignUpSchoolInteractor
 import com.riteshakya.teacher.interactor.signup.SignUpTeacherInteractor
@@ -56,11 +57,13 @@ abstract class SignUpModule {
                 signUpSchoolInteractor: SignUpSchoolInteractor,
                 signUpTeacherInteractor: SignUpTeacherInteractor,
                 getSchoolsInteractor: GetSchoolsInteractor,
+                getCityNameInteractor: GetCityNameInteractor,
                 failureMessageMapper: FailureMessageMapper
         ): ViewModel = SignUpViewModel(
                 signUpSchoolInteractor,
                 signUpTeacherInteractor,
                 getSchoolsInteractor,
+                getCityNameInteractor,
                 failureMessageMapper
         )
 

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.riteshakya.core.extension.addMovementMethod
 import com.riteshakya.core.platform.BaseFragment
+import com.riteshakya.core.platform.ResultState
 import com.riteshakya.core.validation.types.EmailValidation
 import com.riteshakya.core.validation.types.LengthValidation
 import com.riteshakya.core.validation.types.NameValidation
@@ -19,9 +20,11 @@ import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
 import com.riteshakya.ui.components.SpinnerAdapter
 import com.riteshakya.ui.helpers.CustomClickableSpan
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up_school.*
 import kotlinx.android.synthetic.main.fragment_sign_up_teacher.*
+import timber.log.Timber
 import javax.inject.Inject
 
 class SignUpFragment : BaseFragment() {
@@ -47,19 +50,42 @@ class SignUpFragment : BaseFragment() {
         initializeMode()
         initializeValidators()
         initializeSchools()
+        initializeCityFromPostal()
+    }
+
+    private fun initializeCityFromPostal() {
+        with(signUpViewModel) {
+            cityNameObserver
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        Timber.e("City $it")
+                        if (it.isNotBlank()) {
+                            cityNameTxt.setText(it)
+                        }
+                    }, {}).untilStop()
+            cityNameState
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        when (it) {
+                            is ResultState.Error -> {
+                                showMessage(it.failure)
+                            }
+                        }
+                    }.untilStop()
+        }
     }
 
     private fun initializeSchools() {
         signUpViewModel.schools
                 .addLoading()
-                .subscribe({
+                .subscribe {
                     schoolSelect.items =
                             it.map { school ->
                                 SpinnerAdapter.SpinnerModel(
                                         school.id, school.schoolName, school.schoolLogo
                                 )
                             }
-                }, {})
+                }
                 .untilStop()
     }
 
@@ -135,6 +161,7 @@ class SignUpFragment : BaseFragment() {
         }))
         addValidationList(schoolAreaPinTxt.addValidity(LengthValidation(5), {
             signUpViewModel.schoolAreaCode.value = it
+            signUpViewModel.getCityFromPostalCode(it)
         }))
         addValidationList(cityNameTxt.addValidity(NameValidation(), {
             signUpViewModel.schoolCity.value = it
