@@ -1,6 +1,7 @@
 package com.riteshakya.ui.components
 
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -11,9 +12,9 @@ import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.custom_select_input.view.*
 
 class SelectInput @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private var publishValidity = PublishSubject.create<Boolean>()
@@ -30,7 +31,7 @@ class SelectInput @JvmOverloads constructor(
             value?.also {
                 items = (it.map { item -> item.toString() }.map { item ->
                     SpinnerAdapter.SpinnerModel(
-                            item, item
+                        item, item
                     )
                 })
             }
@@ -48,7 +49,9 @@ class SelectInput @JvmOverloads constructor(
 
     init {
         init()
-        initTypedArray(attrs)
+        Handler().postDelayed({
+            initTypedArray(attrs)
+        }, 200)
     }
 
     private fun initTypedArray(attrs: AttributeSet?) {

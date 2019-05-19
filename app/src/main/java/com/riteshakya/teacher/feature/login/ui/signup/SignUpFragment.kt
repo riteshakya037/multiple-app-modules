@@ -24,7 +24,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up_school.*
 import kotlinx.android.synthetic.main.fragment_sign_up_teacher.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class SignUpFragment : BaseFragment() {
@@ -35,9 +34,9 @@ class SignUpFragment : BaseFragment() {
     internal lateinit var signUpViewModel: SignUpViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,46 +46,50 @@ class SignUpFragment : BaseFragment() {
         nextBtn.setOnClickListener {
             navigateToPassword()
         }
+        initializeSchools()
+
+    }
+
+    private fun initializeFeatures() {
         initializeMode()
         initializeValidators()
-        initializeSchools()
         initializeCityFromPostal()
     }
 
     private fun initializeCityFromPostal() {
         with(signUpViewModel) {
             cityNameObserver
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        Timber.e("City $it")
-                        if (it.isNotBlank()) {
-                            cityNameTxt.setText(it)
-                        }
-                    }, {}).untilStop()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.isNotBlank()) {
+                        cityNameTxt.setText(it)
+                    }
+                }, {}).untilStop()
             cityNameState
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        when (it) {
-                            is ResultState.Error -> {
-                                showMessage(it.failure)
-                            }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    when (it) {
+                        is ResultState.Error -> {
+                            showMessage(it.failure)
                         }
-                    }.untilStop()
+                    }
+                }.untilStop()
         }
     }
 
     private fun initializeSchools() {
         signUpViewModel.schools
-                .addLoading()
-                .subscribe {
-                    schoolSelect.items =
-                            it.map { school ->
-                                SpinnerAdapter.SpinnerModel(
-                                        school.id, school.schoolName, school.schoolLogo
-                                )
-                            }
-                }
-                .untilStop()
+            .addLoading()
+            .subscribe {
+                schoolSelect.items =
+                    it.map { school ->
+                        SpinnerAdapter.SpinnerModel(
+                            school.id, school.schoolName, school.schoolLogo
+                        )
+                    }
+                initializeFeatures()
+            }
+            .untilStop()
     }
 
     private fun addModeChangeListener() {
@@ -126,12 +129,12 @@ class SignUpFragment : BaseFragment() {
         val footerText = SpannableStringBuilder()
         footerText.append(context!!.getString(R.string.txt_school_not_listed))
         footerText.append(
-                context!!.getString(R.string.txt_add_here),
-                object : CustomClickableSpan(context!!, R.color.colorBlue) {
-                    override fun onClick(p0: View) {
-                        modeSwitch.setScrollPosition(1)
-                    }
-                }, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            context!!.getString(R.string.txt_add_here),
+            object : CustomClickableSpan(context!!, R.color.colorBlue) {
+                override fun onClick(p0: View) {
+                    modeSwitch.setScrollPosition(1)
+                }
+            }, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         teacherFooterText.text = footerText
         teacherFooterText.addMovementMethod()

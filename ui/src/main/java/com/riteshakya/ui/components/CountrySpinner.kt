@@ -1,6 +1,7 @@
 package com.riteshakya.ui.components
 
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.View
 import android.widget.AdapterView
@@ -13,7 +14,11 @@ import io.reactivex.subjects.PublishSubject
  * @author Ritesh Shakya
  */
 
-class CountrySpinner : AppCompatSpinner, AdapterView.OnItemSelectedListener {
+class CountrySpinner @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : AppCompatSpinner(context, attrs, defStyleAttr), AdapterView.OnItemSelectedListener {
     var dialCode: String = ""
         set(value) {
             field = value
@@ -21,33 +26,22 @@ class CountrySpinner : AppCompatSpinner, AdapterView.OnItemSelectedListener {
             publishValidity.onNext(true)
         }
 
-    private var customAdapter: CountryAdapter = CountryAdapter(context)
-    private var publishValidity = PublishSubject.create<Boolean>()
+    private val customAdapter: CountryAdapter by lazy { CountryAdapter(context) }
+    private val publishValidity = PublishSubject.create<Boolean>()
 
-    constructor(context: Context) : super(context) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-            context, attrs, defStyleAttr
-    ) {
-        init()
-    }
-
-    private fun init() {
-        adapter = customAdapter
-        if (!isInEditMode) {
-            setSelection(customAdapter.getPosition(Country.getCountryFromSIM(context)))
-        }
-        onItemSelectedListener = this
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+        Handler().postDelayed({
+            adapter = customAdapter
+            if (!isInEditMode) {
+                setSelection(customAdapter.getPosition(Country.getCountryFromSIM(context)))
+            }
+            onItemSelectedListener = this
+        }, 200)
     }
 
     private fun getCountryFromDialCode(value: String): Country =
-            Country.getAllCountries().first { it.dialCode == value }
+        Country.getAllCountries().first { it.dialCode == value }
 
 
     override fun onItemSelected(adapterView: AdapterView<*>, view: View?, i: Int, l: Long) {

@@ -19,7 +19,7 @@
         style="@style/Widget.Form.Input"
         android:hint="@string/txt_first_name"
         android:imeOptions="actionNext"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +29,7 @@
         style="@style/Widget.Form.Input"
         android:hint="@string/txt_last_name"
         android:imeOptions="actionNext"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/firstNameTxt" />

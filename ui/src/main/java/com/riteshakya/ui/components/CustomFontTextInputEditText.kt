@@ -11,8 +11,8 @@ class CustomFontTextInputEditText(
         attrs: AttributeSet? = null
 ) : TextInputEditText(context, attrs) {
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
+    override fun onFinishInflate() {
+        super.onFinishInflate()
         if (parent?.parent is CustomFontTextInputLayout) {
             (parent.parent as CustomFontTextInputLayout).shouldChangeFont(false)
         }

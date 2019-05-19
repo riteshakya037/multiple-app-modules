@@ -57,8 +57,8 @@ class PhoneInput @JvmOverloads constructor(
     }
 
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
+    override fun onFinishInflate() {
+        super.onFinishInflate()
         countrySpinner.dropDownWidth = getViewWidth()
     }
 
