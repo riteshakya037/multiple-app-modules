@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.riteshakya.core.extension.getDimensionPixelSize
 import com.riteshakya.ui.R
 import kotlinx.android.synthetic.main.custom_main_button.view.*
 
@@ -12,15 +13,15 @@ import kotlinx.android.synthetic.main.custom_main_button.view.*
  * author riteshakya037
  */
 class MainButton @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     var text: String = ""
         set(value) {
-            field = value
-            textTxt.text = value
+            field = value.split("\\s".toRegex()).joinToString("\n")
+            textTxt.text = field
         }
     var src: Int = 0
         set(value) {
@@ -35,6 +36,11 @@ class MainButton @JvmOverloads constructor(
 
     private fun init() {
         LayoutInflater.from(context).inflate(R.layout.custom_main_button, this)
+        isClickable = true
+        isFocusable = true
+        setBackgroundResource(R.drawable.background_main_button)
+        val padding = context.getDimensionPixelSize(R.dimen.vertical_padding)
+        setPadding(padding, padding, padding, padding)
     }
 
     private fun initTypedArray(attrs: AttributeSet?) {
