@@ -2,7 +2,7 @@
 
 This project demonstrates how two different application can share different modules and be listed into a single project. 
 
-To get started with this project some prior knowledge to [https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](Clean Architecture) is required as the application architecture is based on this principle. I have linked some great resource if you aren't familiar with it. 
+To get started with this project some prior knowledge to [Clean Architecture](https://fernandocejas.com/2018/05/07/architecting-android-reloaded) is required as the application architecture is based on this principle. I have linked some great resource if you aren't familiar with it. 
 
 ## Application feature modules
 
@@ -31,7 +31,7 @@ One of these module will still be the installed module. These module in turn dep
 You can essentially use these module to separate out related areas of your project so that they are decoupled from the main module of your project. This consists of the core function that are mostly used in any android application and thus doesn't have any application specific logic. Basically it consists of some platform specific helpers, extensions, etc. This is the module that I would use in any or every android application that follows this design application. 
 
 ### Business logic module  
-This is where the bulk of the logic to make the application functional lies. Basically if you have gone through [https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](Clean Architecture) this is somewhat a combination of Domain and Data Layers. And yes we can separate them as such, but this is a relatively simple project so I didn't find it necessary. 
+This is where the bulk of the logic to make the application functional lies. Basically if you have gone through [Clean Architecture](https://fernandocejas.com/2018/05/07/architecting-android-reloaded) this is somewhat a combination of Domain and Data Layers. And yes we can separate them as such, but this is a relatively simple project so I didn't find it necessary. 
 
 ### UI module
 This layer is the implementation of the components from your design guide documents. Weather you have custom components with specific behaviours, styles and such, this is the place you would put it.  
