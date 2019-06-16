@@ -12,8 +12,8 @@ import com.riteshakya.businesslogic.data.datasource.teacher.TeacherModule
 import com.riteshakya.businesslogic.data.datasource.user.UserModule
 import com.riteshakya.core.di.AppViewModelFactory
 import com.riteshakya.student.StudentApp
-import com.riteshakya.ui.imageloaders.GlideLoader
-import com.riteshakya.ui.imageloaders.IImageLoader
+import com.riteshakya.core.imageloaders.GlideLoader
+import com.riteshakya.core.imageloaders.IImageLoader
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

@@ -1,4 +1,4 @@
-package com.riteshakya.ui.imageloaders
+package com.riteshakya.core.imageloaders
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule

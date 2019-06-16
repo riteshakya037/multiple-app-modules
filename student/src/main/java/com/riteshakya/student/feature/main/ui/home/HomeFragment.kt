@@ -10,7 +10,7 @@ import com.riteshakya.core.model.BaseUser
 import com.riteshakya.core.platform.BaseFragment
 import com.riteshakya.student.R
 import com.riteshakya.student.feature.main.vm.HomeViewModel
-import com.riteshakya.ui.imageloaders.IImageLoader
+import com.riteshakya.core.imageloaders.IImageLoader
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject

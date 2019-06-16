@@ -1,4 +1,4 @@
-package com.riteshakya.ui.imageloaders
+package com.riteshakya.core.imageloaders
 
 import android.content.Context
 import android.graphics.drawable.Drawable

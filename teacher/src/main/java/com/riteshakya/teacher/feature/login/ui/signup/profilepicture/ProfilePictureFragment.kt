@@ -14,7 +14,7 @@ import com.riteshakya.teacher.feature.login.navigation.LoginNavigator
 import com.riteshakya.teacher.feature.login.vm.SignUpViewModel
 import com.riteshakya.teacher.navigation.Navigator
 import com.riteshakya.ui.components.MenuBottomSheet
-import com.riteshakya.ui.imageloaders.IImageLoader
+import com.riteshakya.core.imageloaders.IImageLoader
 import kotlinx.android.synthetic.main.fragment_profile_picture.*
 import javax.inject.Inject
 

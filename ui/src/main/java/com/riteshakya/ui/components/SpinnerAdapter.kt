@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.riteshakya.ui.R
-import com.riteshakya.ui.imageloaders.GlideLoader
+import com.riteshakya.core.imageloaders.GlideLoader
 import kotlinx.android.synthetic.main.custom_spinner_items_drop_down.view.*
 
 /**

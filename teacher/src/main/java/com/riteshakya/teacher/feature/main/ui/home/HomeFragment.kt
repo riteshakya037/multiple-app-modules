@@ -12,7 +12,7 @@ import com.riteshakya.core.platform.BaseFragment
 import com.riteshakya.teacher.R
 import com.riteshakya.teacher.feature.main.vm.HomeViewModel
 import com.riteshakya.teacher.navigation.Navigator
-import com.riteshakya.ui.imageloaders.IImageLoader
+import com.riteshakya.core.imageloaders.IImageLoader
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
