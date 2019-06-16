@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/logoImg"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="@dimen/horizontal_padding"
+        android:layout_marginTop="@dimen/vertical_padding_medium"
+        android:src="@mipmap/ic_launcher"
+        app:civ_border_color="@color/colorBlack"
+        app:civ_border_width="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.riteshakya.ui.components.WelcomeView
+        android:id="@+id/welcomeView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_padding_large"
+        android:src="@color/colorBlue"
+        android:subtitle="Lotus Valley International"
+        android:title="Hey, Amanda"
+        android:visibility="invisible"
+        app:badgeText="Class Teacher"
+        app:layout_constraintTop_toBottomOf="@id/logoImg"
+        app:showBadge="true"
+        tools:visibility="visible" />
+
+    <ProgressBar
+        android:id="@+id/welcomeLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/welcomeView"
+        app:layout_constraintEnd_toEndOf="@id/welcomeView"
+        app:layout_constraintStart_toStartOf="@id/welcomeView"
+        app:layout_constraintTop_toTopOf="@id/welcomeView" />
+
+    <com.riteshakya.ui.components.MainButton
+        android:id="@+id/reportBullyingBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/horizontal_padding_medium"
+        android:layout_marginTop="@dimen/vertical_padding_large"
+        android:layout_marginEnd="@dimen/horizontal_padding_medium"
+        android:layout_marginBottom="@dimen/vertical_padding_medium"
+        android:src="@drawable/ic_alarm"
+        android:text="report bullying."
+        app:layout_constraintBottom_toTopOf="@id/askDoubtsBtn"
+        app:layout_constraintEnd_toStartOf="@id/seePollsBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeView" />
+
+    <com.riteshakya.ui.components.MainButton
+        android:id="@+id/seePollsBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/horizontal_padding_medium"
+        android:layout_marginEnd="@dimen/horizontal_padding_medium"
+        android:src="@drawable/ic_polling"
+        android:text="see polls."
+        app:layout_constraintBottom_toBottomOf="@id/reportBullyingBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/reportBullyingBtn"
+        app:layout_constraintTop_toTopOf="@id/reportBullyingBtn" />
+
+    <com.riteshakya.ui.components.MainButton
+        android:id="@+id/askDoubtsBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/vertical_padding_medium"
+        android:layout_marginBottom="@dimen/vertical_padding_large"
+        android:src="@drawable/ic_request"
+        android:text="ask doubts."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/reportBullyingBtn"
+        app:layout_constraintStart_toStartOf="@id/reportBullyingBtn"
+        app:layout_constraintTop_toBottomOf="@id/reportBullyingBtn" />
+
+    <com.riteshakya.ui.components.MainButton
+        android:id="@+id/checkAssignmentBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_sketchbook"
+        android:text="check assignment."
+        app:layout_constraintBottom_toBottomOf="@id/askDoubtsBtn"
+        app:layout_constraintEnd_toEndOf="@id/seePollsBtn"
+        app:layout_constraintStart_toStartOf="@id/seePollsBtn"
+        app:layout_constraintTop_toTopOf="@id/askDoubtsBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

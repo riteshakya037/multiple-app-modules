@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/nextBtn"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/titleTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/horizontal_padding"
+                android:layout_marginTop="60dp"
+                android:text="Signup."
+                android:textAppearance="@style/TextAppearance.SignUp.Title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.riteshakya.ui.components.TextInput
+                android:id="@+id/firstNameTxt"
+                style="@style/Widget.Form.Input"
+                android:layout_marginTop="@dimen/vertical_padding_large"
+                android:hint="@string/txt_first_name"
+                android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleTxt" />
+
+            <com.riteshakya.ui.components.TextInput
+                android:id="@+id/lastNameTxt"
+                style="@style/Widget.Form.Input"
+                android:hint="@string/txt_last_name"
+                android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/firstNameTxt" />
+
+            <com.riteshakya.ui.components.TabSwitchView
+                android:id="@+id/genderSwitch"
+                style="@style/Widget.TabAsSwitch"
+                android:layout_marginTop="@dimen/vertical_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lastNameTxt">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female" />
+            </com.riteshakya.ui.components.TabSwitchView>
+
+            <com.riteshakya.ui.components.SelectInput
+                android:id="@+id/schoolSelect"
+                style="@style/Widget.Form.Input"
+                android:layout_marginTop="@dimen/vertical_padding"
+                android:hint="@string/txt_school"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/genderSwitch" />
+
+            <com.riteshakya.ui.components.CustomSpinner
+                android:id="@+id/classSelect"
+                style="@style/SpinnerTheme"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/horizontal_padding_large"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="@dimen/horizontal_padding_small"
+                android:background="@drawable/background_spinner_border"
+                android:entries="@array/classList"
+                android:paddingStart="@dimen/horizontal_padding_medium"
+                android:theme="@style/AppTheme.InputLayout.Text"
+                app:layout_constraintEnd_toStartOf="@id/sectionSelect"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/schoolSelect"
+                app:selectedTextAppearance="@style/TextAppearance.Spinner.Small" />
+
+
+            <com.riteshakya.ui.components.CustomSpinner
+                android:id="@+id/sectionSelect"
+                style="@style/SpinnerTheme"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/horizontal_padding_small"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="@dimen/horizontal_padding_large"
+                android:background="@drawable/background_spinner_border"
+                android:entries="@array/sectionList"
+                android:paddingStart="@dimen/horizontal_padding_medium"
+                android:theme="@style/AppTheme.InputLayout.Text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/classSelect"
+                app:layout_constraintTop_toBottomOf="@id/schoolSelect"
+                app:selectedTextAppearance="@style/TextAppearance.Spinner.Small" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/nextBtn"
+        style="@style/Widget.Button"
+        android:enabled="false"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

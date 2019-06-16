@@ -1,1 +1,1 @@
-include ':teacher', ':core', ':ui', ':businesslogic'
+include ':teacher', ':student', ':core', ':ui', ':businesslogic'

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/nextBtn"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/titleTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/horizontal_padding"
+                android:layout_marginTop="60dp"
+                android:text="@string/txt_on_boarding_signup"
+                android:textAppearance="@style/TextAppearance.SignUp.Title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/subtitleTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/horizontal_padding_large"
+                android:layout_marginTop="@dimen/vertical_padding_medium"
+                android:text="@string/txt_what_s_your_number"
+                android:textAppearance="@style/TextAppearance.Footer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleTxt" />
+
+            <com.riteshakya.ui.components.PhoneInput
+                android:id="@+id/phoneSelector"
+                style="@style/Widget.Form.Input"
+                android:layout_marginTop="@dimen/vertical_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/subtitleTxt" />
+
+
+            <com.riteshakya.ui.components.PasswordView
+                android:id="@+id/verificationCodeView"
+                style="@style/Widget.Form.Input"
+                android:layout_marginTop="@dimen/vertical_padding_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phoneSelector"
+                app:length="6" />
+
+            <Button
+                android:id="@+id/getCodeBtn"
+                style="@style/Widget.Button.OutlinedButton.Small"
+                android:layout_marginTop="@dimen/vertical_padding_medium"
+                android:enabled="false"
+                android:text="@string/txt_send_code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/verificationCodeView" />
+
+
+            <Button
+                android:id="@+id/resendBtn"
+                style="@style/Widget.Button.OutlinedButton.Small"
+                android:layout_marginTop="@dimen/vertical_padding_medium"
+                android:text="@string/txt_resend_code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/getCodeBtn" />
+
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/waitingGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="resendBtn,verificationCodeView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/nextBtn"
+        style="@style/Widget.Button.Bottom"
+        android:enabled="false"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
