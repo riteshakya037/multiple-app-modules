@@ -23,7 +23,7 @@ static def getAppName(BuildType buildType) {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.riteshakya.student"
+        applicationId "com.demo.riteshakya.student"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
