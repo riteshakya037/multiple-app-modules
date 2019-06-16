@@ -31,6 +31,16 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
+        release {
+            def keystorePropertiesFile = file("keystore/release.keystore.properties")
+            def keystoreProperties = new Properties()
+            keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+            storeFile file(keystoreProperties['store.file'])
+            storePassword keystoreProperties['key.store.password']
+            keyAlias keystoreProperties['key.alias']
+            keyPassword keystoreProperties['key.alias.password']
+        }
         debug {
             def keystorePropertiesFile = file("keystore/debug.keystore.properties")
             def keystoreProperties = new Properties()
@@ -45,6 +55,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "app_name", getAppName(BuildType.RELEASE)
         }

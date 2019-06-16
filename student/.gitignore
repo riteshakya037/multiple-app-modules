@@ -2,3 +2,6 @@
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
+
+/keystore/release.jks
+/keystore/release.keystore.properties
